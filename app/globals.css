@@ -650,6 +650,17 @@ main {
   color: var(--blanco);
 }
 
+.boton-secundario {
+  background: #ffffff;
+  color: var(--verde);
+  box-shadow: inset 0 0 0 1px #d6dfda;
+}
+
+.boton-secundario:hover {
+  background: #eef4f1;
+  color: var(--verde-oscuro);
+}
+
 .calendar-menu {
   position: relative;
   display: inline-block;
@@ -817,7 +828,7 @@ main {
 
 .content-fotos {
   display: grid;
-  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
   gap: 24px;
   width: min(980px, 100%);
   margin: 38px auto 0;
@@ -855,10 +866,28 @@ main {
 
 .item-fiesta {
   position: relative;
+  overflow: hidden;
   min-height: 360px;
   padding: 46px 28px;
   background: var(--blanco);
   box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
+}
+
+.hojas-musica {
+  position: absolute;
+  top: -86px;
+  left: -78px;
+  width: 172px;
+  opacity: 0.2;
+  transform: rotate(185deg);
+}
+
+.content-item-fiesta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  min-height: 268px;
 }
 
 .item-fiesta h3 {
@@ -876,6 +905,31 @@ main {
   line-height: 1.7;
 }
 
+.dress-icon,
+.tips-icon {
+  width: 118px;
+  height: 118px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  animation: icon-float 3.2s ease-in-out infinite;
+}
+
+.dress-icon {
+  background:
+    linear-gradient(90deg, transparent 42%, var(--verde) 0 58%, transparent 0),
+    radial-gradient(circle at 50% 22%, var(--menta) 0 12px, transparent 13px),
+    conic-gradient(from 222deg at 50% 34%, transparent 0 90deg, var(--verde) 0 180deg, transparent 0);
+}
+
+.tips-icon {
+  position: relative;
+  border: 2px solid var(--menta);
+  background:
+    radial-gradient(circle at 50% 34%, var(--oliva) 0 18px, transparent 19px),
+    linear-gradient(var(--verde) 0 0) 50% 63% / 44px 10px no-repeat,
+    linear-gradient(var(--verde) 0 0) 50% 74% / 34px 8px no-repeat;
+}
+
 .regalos {
   background: var(--claro);
 }
@@ -886,6 +940,22 @@ main {
   width: 210px;
   height: 380px;
   opacity: 0.28;
+}
+
+.gift-icon path {
+  fill: var(--verde);
+}
+
+.gift-icon .gift-lid,
+.gift-icon .gift-bow {
+  fill: var(--menta);
+}
+
+.gift-icon .gift-ribbon {
+  fill: #b6c19e;
+  stroke: #b6c19e;
+  stroke-width: 8;
+  stroke-linecap: round;
 }
 
 .instagram {
@@ -988,6 +1058,35 @@ footer a {
   background: var(--blanco);
   padding: 34px;
   box-shadow: 0 30px 70px rgb(0 0 0 / 0.34);
+}
+
+.modal-musica {
+  width: min(720px, 100%);
+  padding: 58px 42px;
+  text-align: center;
+}
+
+.music-modal p {
+  margin: 0 0 14px;
+  color: var(--verde);
+  font-family: "Cookie", cursive;
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  line-height: 0.9;
+}
+
+.music-modal span {
+  display: block;
+  color: #697872;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.music-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .modal:has(.map-modal-content) {
@@ -1100,6 +1199,33 @@ footer a {
   line-height: 1.7;
 }
 
+.controlador-musica {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.24);
+  cursor: pointer;
+}
+
+.controlador-musica span {
+  width: 22px;
+  height: 22px;
+  background: var(--blanco);
+  clip-path: polygon(22% 0, 100% 50%, 22% 100%);
+}
+
+.controlador-musica.is-playing span {
+  clip-path: polygon(0 0, 34% 0, 34% 100%, 0 100%, 0 0, 66% 0, 100% 0, 100% 100%, 66% 100%, 66% 0);
+}
+
 @media (max-width: 780px) {
   .portada {
     background-position: center center;
@@ -1151,6 +1277,10 @@ footer a {
   .content-fotos,
   .footer-invitacion {
     grid-template-columns: 1fr;
+  }
+
+  .item-fiesta {
+    min-height: 330px;
   }
 
   .footer-invitacion {

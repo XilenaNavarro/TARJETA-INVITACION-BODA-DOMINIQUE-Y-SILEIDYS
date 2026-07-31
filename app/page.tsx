@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const weddingDate = new Date("2026-09-27T19:00:00");
 const ceremonyStart = "20260927T180000";
 const ceremonyEnd = "20260927T200000";
+const partyStart = "20260927T200000";
+const partyEnd = "20260928T010000";
 const ceremonyTitle = "Boda de Dominique y Sileidys (Ceremonia)";
+const partyTitle = "Boda de Dominique y Sileidys (Fiesta)";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = ceremonyAddress;
 const ceremonyDescription = "Ceremonia de boda de Dominique y Sileidys";
@@ -51,7 +54,7 @@ function Countdown() {
     const current = now ?? weddingDate;
     const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
     return [
-      ["d\u00edas", Math.floor(distance / 86400000)],
+      ["dias", Math.floor(distance / 86400000)],
       ["hs", Math.floor((distance / 3600000) % 24)],
       ["min", Math.floor((distance / 60000) % 60)],
       ["seg", Math.floor((distance / 1000) % 60)],
@@ -69,10 +72,7 @@ function Countdown() {
             <span className="falta">Falta</span>
             <div className="reloj">
               {parts.map(([label, value], index) => (
-                <div
-                  className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"}
-                  key={label}
-                >
+                <div className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"} key={label}>
                   <span className="number">{String(value).padStart(2, "0")}</span>
                   <span className="time">{label}</span>
                 </div>
@@ -86,22 +86,14 @@ function Countdown() {
   );
 }
 
-function Modal({
-  title,
-  children,
-  onClose,
-}: {
-  title: string;
-  children: React.ReactNode;
-  onClose: () => void;
-}) {
+function Modal({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true">
-      <div className="modal">
-        <button className="modal-close" type="button" onClick={onClose}>
+      <div className={title ? "modal" : "modal modal-musica"}>
+        <button className="modal-close" type="button" onClick={onClose} aria-label="Cerrar">
           x
         </button>
-        <h3>{title}</h3>
+        {title ? <h3>{title}</h3> : null}
         {children}
       </div>
     </div>
@@ -124,11 +116,15 @@ function CalendarMenu() {
           </a>
           <a href={calendarLinks.google} target="_blank">
             <span className="cal-icon google">G</span>
-            <b>Google <em>(online)</em></b>
+            <b>
+              Google <em>(online)</em>
+            </b>
           </a>
           <a href={calendarLinks.office} target="_blank">
             <span className="cal-icon office">O</span>
-            <b>Office 365 <em>(online)</em></b>
+            <b>
+              Office 365 <em>(online)</em>
+            </b>
           </a>
           <a href={calendarLinks.outlook}>
             <span className="cal-icon outlook">O</span>
@@ -136,11 +132,15 @@ function CalendarMenu() {
           </a>
           <a href={calendarLinks.outlookCom} target="_blank">
             <span className="cal-icon outlookcom">O</span>
-            <b>Outlook.com <em>(online)</em></b>
+            <b>
+              Outlook.com <em>(online)</em>
+            </b>
           </a>
           <a href={calendarLinks.yahoo} target="_blank">
             <span className="cal-icon yahoo">Y</span>
-            <b>Yahoo <em>(online)</em></b>
+            <b>
+              Yahoo <em>(online)</em>
+            </b>
           </a>
           <small>ADDEVENT.COM</small>
         </div>
@@ -179,16 +179,64 @@ function PartyIcon() {
   );
 }
 
+function GiftIcon() {
+  return (
+    <div className="animated-icon gift-icon" aria-hidden="true">
+      <svg viewBox="0 0 128 128">
+        <path className="gift-box" d="M20 55 H108 V112 H20 Z" />
+        <path className="gift-lid" d="M14 39 H114 V58 H14 Z" />
+        <path className="gift-ribbon" d="M56 39 H72 V112 H56 Z" />
+        <path className="gift-ribbon gift-ribbon-h" d="M20 72 H108" />
+        <path className="gift-bow" d="M61 39 C35 33 35 14 53 17 C65 19 64 34 61 39 Z" />
+        <path className="gift-bow" d="M67 39 C93 33 93 14 75 17 C63 19 64 34 67 39 Z" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
-  const [modal, setModal] = useState<"rsvp" | "map" | null>(null);
+  const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | "gifts" | null>(null);
+  const [musicPrompt, setMusicPrompt] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const playMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.45;
+    await audio.play();
+    setIsPlaying(true);
+  };
+
+  const enterInvitation = async (withMusic: boolean) => {
+    setMusicPrompt(false);
+    if (!withMusic) return;
+    try {
+      await playMusic();
+    } catch {
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) {
+      await playMusic();
+      return;
+    }
+    audio.pause();
+    setIsPlaying(false);
+  };
 
   return (
     <main>
+      <audio ref={audioRef} src="/cancion.mp3" loop preload="metadata" />
+
       <section className="portada">
         <div className="portada-flor-izq-sup" />
         <div className="portada-flor-der-inf" />
         <div className="portada-flor-izq-inf" />
-
         <div className="content-portada">
           <div className="box-nombres-fecha-portada">
             <span className="fecha">27.09.2026</span>
@@ -201,7 +249,6 @@ export default function Home() {
             </h1>
             <div className="line" />
           </div>
-
           <div className="box-frase-portada">
             <p>
               <img src="/fixdate-comilla-apertura.svg" alt="" />
@@ -214,7 +261,6 @@ export default function Home() {
               <img src="/fixdate-comilla-cierre.svg" alt="" />
             </p>
           </div>
-
           <a className="flecha-continuar" href="#cuenta" aria-label="Continuar" />
         </div>
       </section>
@@ -236,7 +282,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ceremonia-fiesta ceremonia-unica">
+      <section className="ceremonia-fiesta">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
           <HeartIcon />
@@ -251,6 +297,37 @@ export default function Home() {
             <p className="direccion-principal">Cl. 30 # 18-85</p>
             <p className="info-direccion">
               Brr. 1 de Mayo
+              <br />
+              Santa Marta, Magdalena
+            </p>
+            <button className="boton" type="button" onClick={() => setModal("map")}>
+              Como llegar?
+            </button>
+          </div>
+        </article>
+        <article className="col-fiesta">
+          <PartyIcon />
+          <h3>Fiesta</h3>
+          <div className="info-box">
+            <h6>Dia</h6>
+            <p>Domingo 27 de Septiembre - 8:00 pm</p>
+            <a
+              className="boton"
+              href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+                partyTitle,
+              )}&dates=${partyStart}/${partyEnd}&details=${encodeURIComponent(
+                "Celebracion de boda de Dominique y Sileidys",
+              )}&location=${encodeURIComponent(ceremonyLocation)}`}
+              target="_blank"
+            >
+              Agendar
+            </a>
+          </div>
+          <div className="info-box">
+            <h6>Lugar</h6>
+            <p className="direccion-principal">Celebracion con amor</p>
+            <p className="info-direccion">
+              Compartiremos despues de la ceremonia
               <br />
               Santa Marta, Magdalena
             </p>
@@ -278,12 +355,68 @@ export default function Home() {
           <PartyIcon />
         </div>
         <div className="content-fotos">
-          {[1, 2, 3].map((item) => (
+          {[1, 2, 3, 4].map((item) => (
             <div className="polaroid" key={item}>
               <img src={item === 1 ? "/hero.jpg" : "/fixdate-portada-3.webp"} alt="" />
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="fiesta">
+        <h2 className="title">Fiesta</h2>
+        <p className="subtitle">Hagamos juntos una fiesta epica. Aqui algunos detalles a tener en cuenta.</p>
+        <div className="items-fiesta">
+          <article className="item-fiesta">
+            <img className="hojas-musica" src="/fixdate-hojas-fiesta.svg" alt="" />
+            <div className="content-item-fiesta">
+              <h3>Musica</h3>
+              <PartyIcon />
+              <p>Cual es la cancion que no debe faltar en la playlist de la fiesta?</p>
+              <button className="boton" type="button" onClick={() => setModal("song")}>
+                Sugerir cancion
+              </button>
+            </div>
+          </article>
+          <article className="item-fiesta">
+            <div className="content-item-fiesta">
+              <h3>Dress Code</h3>
+              <div className="dress-icon" aria-hidden="true" />
+              <p>
+                Una orientacion para
+                <br />
+                tu vestuario
+              </p>
+              <button className="boton" type="button" onClick={() => setModal("dress")}>
+                Ver mas
+              </button>
+            </div>
+          </article>
+          <article className="item-fiesta">
+            <div className="content-item-fiesta">
+              <h3>Tips y Notas</h3>
+              <div className="tips-icon" aria-hidden="true" />
+              <p>
+                Informacion adicional
+                <br />
+                para tener en cuenta
+              </p>
+              <button className="boton" type="button" onClick={() => setModal("tips")}>
+                + Info
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="regalos">
+        <div className="regalos-flor-der" />
+        <h2 className="title">Regalos</h2>
+        <p className="subtitle">Si deseas regalarnos algo mas que tu hermosa presencia...</p>
+        <GiftIcon />
+        <button className="boton" type="button" onClick={() => setModal("gifts")}>
+          Cuenta Bancaria - Lista Regalos
+        </button>
       </section>
 
       <section className="instagram">
@@ -308,6 +441,12 @@ export default function Home() {
               Confirmar asistencia
             </button>
           </li>
+          <li>
+            <button type="button" onClick={() => setModal("song")}>
+              Sugerir cancion
+            </button>
+          </li>
+          <li>Agendar Fiesta</li>
           <li>Agendar Ceremonia</li>
         </ul>
       </section>
@@ -317,6 +456,36 @@ export default function Home() {
           Desarrollado con amor por <a href="https://fixdate.io/co/" target="_blank">Fixdate</a>
         </p>
       </footer>
+
+      <button
+        className={isPlaying ? "controlador-musica is-playing" : "controlador-musica"}
+        type="button"
+        aria-label={isPlaying ? "Pausar musica" : "Reproducir musica"}
+        onClick={toggleMusic}
+      >
+        <span />
+      </button>
+
+      {musicPrompt ? (
+        <Modal title="" onClose={() => enterInvitation(false)}>
+          <div className="music-modal">
+            <p>
+              Bienvenidos a la invitacion de
+              <br />
+              Dominique y Sileidys
+            </p>
+            <span>La musica de fondo es parte de la experiencia</span>
+            <div className="music-actions">
+              <button className="boton" type="button" onClick={() => enterInvitation(true)}>
+                Ingresar con musica
+              </button>
+              <button className="boton boton-secundario" type="button" onClick={() => enterInvitation(false)}>
+                Ingresar sin musica
+              </button>
+            </div>
+          </div>
+        </Modal>
+      ) : null}
 
       {modal === "rsvp" ? (
         <Modal title="Confirma tu asistencia" onClose={() => setModal(null)}>
@@ -354,7 +523,7 @@ export default function Home() {
       ) : null}
 
       {modal === "map" ? (
-        <Modal title="Cómo llegar a la Ceremonia" onClose={() => setModal(null)}>
+        <Modal title="Como llegar a la Ceremonia" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
               title="Mapa de la ceremonia"
@@ -366,6 +535,55 @@ export default function Home() {
               Ampliar mapa
             </a>
           </div>
+        </Modal>
+      ) : null}
+
+      {modal === "song" ? (
+        <Modal title="Sugerir Cancion" onClose={() => setModal(null)}>
+          <form className="form">
+            <label>
+              Tu nombre
+              <input placeholder="Ej: Maria Lopez" />
+            </label>
+            <label>
+              Nombre de cancion y autor
+              <input placeholder="Ej: Perfect - Ed Sheeran" />
+            </label>
+            <label>
+              Link opcional
+              <input placeholder="YouTube, Spotify, etc." />
+            </label>
+            <button className="boton" type="button" onClick={() => setModal(null)}>
+              Sugerir cancion
+            </button>
+          </form>
+        </Modal>
+      ) : null}
+
+      {modal === "dress" ? (
+        <Modal title="Dress Code" onClose={() => setModal(null)}>
+          <p className="modal-text">
+            Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompanar el
+            estilo de la celebracion.
+          </p>
+        </Modal>
+      ) : null}
+
+      {modal === "tips" ? (
+        <Modal title="Tips y Notas" onClose={() => setModal(null)}>
+          <p className="modal-text">
+            Llega con tiempo, confirma tu asistencia y guarda la ubicacion. Lo mas importante: ven preparado para
+            celebrar con nosotros.
+          </p>
+        </Modal>
+      ) : null}
+
+      {modal === "gifts" ? (
+        <Modal title="Regalos" onClose={() => setModal(null)}>
+          <p className="modal-text">
+            Tu presencia es nuestro mayor regalo. Si deseas tener un detalle adicional, puedes coordinarlo directamente
+            con los novios.
+          </p>
         </Modal>
       ) : null}
     </main>
