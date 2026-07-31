@@ -187,7 +187,6 @@ export default function Home() {
 
           <a className="flecha-continuar" href="#cuenta" aria-label="Continuar" />
         </div>
-        <div className="barra-mobile" aria-hidden="true" />
       </section>
 
       <div id="cuenta">

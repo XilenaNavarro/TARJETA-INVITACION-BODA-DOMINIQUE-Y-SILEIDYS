@@ -212,18 +212,6 @@ main {
   transform: rotate(45deg);
 }
 
-.barra-mobile {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  z-index: 4;
-  width: 48px;
-  height: 9px;
-  border-radius: 999px;
-  background: rgb(0 0 0 / 0.72);
-  transform: translateX(-50%);
-}
-
 .cuenta-regresiva {
   position: relative;
   display: grid;
@@ -457,12 +445,7 @@ main {
 }
 
 .anim-anillos,
-.anim-fiesta,
 .anim-galeria,
-.anim-musica,
-.anim-vestuario,
-.anim-tips,
-.anim-regalos,
 .anim-instagram {
   width: 92px;
   height: 92px;
@@ -637,11 +620,34 @@ main {
 
 .confirmacion-asistencia {
   background: var(--menta);
+  min-height: 395px;
+  display: grid;
+  place-items: center;
+  padding: 78px 20px 86px;
 }
 
 .box-confirmacion {
   width: min(640px, 100%);
   margin: 0 auto;
+}
+
+.confirmacion-asistencia .title {
+  font-size: clamp(4.2rem, 7.8vw, 6.4rem);
+  margin-bottom: 24px;
+}
+
+.confirmacion-asistencia .subtitle {
+  margin-bottom: 34px;
+  color: #61756f;
+}
+
+.confirmacion-asistencia .boton {
+  min-width: 255px;
+  min-height: 55px;
+  background: var(--verde);
+  color: var(--blanco);
+  font-size: 1.05rem;
+  text-transform: none;
 }
 
 .subtitle {
@@ -658,6 +664,21 @@ main {
   padding: 86px 20px;
   background: var(--claro);
   text-align: center;
+}
+
+.galeria {
+  min-height: 520px;
+  padding-top: 98px;
+  background: #fbfbfa;
+}
+
+.galeria .title {
+  font-size: clamp(4.4rem, 7.8vw, 6.5rem);
+  margin-bottom: 18px;
+}
+
+.galeria .subtitle {
+  color: #6f7f7a;
 }
 
 .content-fotos {
@@ -704,14 +725,6 @@ main {
   padding: 46px 28px;
   background: var(--blanco);
   box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
-}
-
-.hojas-musica {
-  position: absolute;
-  top: -90px;
-  left: -68px;
-  width: 150px;
-  height: auto;
 }
 
 .item-fiesta h3 {
