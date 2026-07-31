@@ -138,12 +138,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 2.4vw, 28px);
+  gap: clamp(12px, 1.7vw, 22px);
   margin: 0;
   font-family: "Cookie", cursive;
-  font-size: clamp(4.6rem, 8vw, 7.2rem);
+  font-size: clamp(3.6rem, 5.6vw, 5.55rem);
   font-weight: 400;
-  line-height: 0.82;
+  line-height: 0.88;
   text-shadow: 0 8px 20px rgb(0 0 0 / 0.22);
 }
 
@@ -151,14 +151,14 @@ main {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: clamp(58px, 5vw, 72px);
-  height: clamp(58px, 5vw, 72px);
+  width: clamp(46px, 4vw, 58px);
+  height: clamp(46px, 4vw, 58px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--menta);
   color: var(--verde);
   font-family: Georgia, serif;
-  font-size: clamp(2.2rem, 3vw, 3.05rem);
+  font-size: clamp(1.75rem, 2.35vw, 2.3rem);
   font-weight: 700;
   line-height: 1;
   text-shadow: none;
@@ -171,7 +171,7 @@ main {
 .box-nombres-fecha-portada .line {
   width: min(498px, 74vw);
   height: 1px;
-  margin: 52px auto 62px;
+  margin: 42px auto 58px;
   background: rgb(255 255 255 / 0.68);
 }
 
@@ -796,8 +796,8 @@ footer a {
 
   .box-nombres-fecha-portada h1 {
     display: block;
-    font-size: clamp(4.25rem, 18vw, 6.7rem);
-    line-height: 0.76;
+    font-size: clamp(3.55rem, 15vw, 5.3rem);
+    line-height: 0.82;
   }
 
   .box-nombres-fecha-portada h1 span {
