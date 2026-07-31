@@ -149,6 +149,36 @@ function CalendarMenu() {
   );
 }
 
+function HeartIcon() {
+  return (
+    <div className="animated-icon heart-icon" aria-hidden="true">
+      <svg viewBox="0 0 128 128">
+        <path d="M64 113 C39 101 8 76 8 43 C8 22 22 10 40 10 C51 10 59 16 64 25 C69 16 77 10 88 10 C106 10 120 22 120 43 C120 76 89 101 64 113 Z" />
+      </svg>
+    </div>
+  );
+}
+
+function PartyIcon() {
+  return (
+    <div className="animated-icon party-icon" aria-hidden="true">
+      <svg viewBox="0 0 128 128">
+        <path className="party-cone" d="M16 112 L50 42 C57 62 73 78 95 88 Z" />
+        <path className="party-cone-shadow" d="M50 42 C57 62 73 78 95 88 L76 96 C61 86 47 69 40 52 Z" />
+        <path className="party-highlight" d="M22 103 L45 55 C50 67 58 78 69 86 Z" />
+        <path className="party-ribbon" d="M72 28 C93 15 87 6 69 9 C54 12 55 25 73 24 C90 23 95 39 76 44" />
+        <path className="party-streamer" d="M81 64 C94 54 109 51 121 52" />
+        <circle className="dot dot-a" cx="24" cy="64" r="6" />
+        <circle className="dot dot-b" cx="98" cy="18" r="7" />
+        <circle className="dot dot-c" cx="103" cy="54" r="6" />
+        <circle className="dot dot-d" cx="82" cy="102" r="6" />
+        <path className="curl curl-a" d="M19 11 C33 2 41 16 29 30 C23 38 21 49 28 55" />
+        <path className="curl curl-b" d="M108 76 C121 73 124 86 111 92 C104 95 101 102 111 106" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
   const [modal, setModal] = useState<"rsvp" | "map" | null>(null);
 
@@ -209,16 +239,7 @@ export default function Home() {
       <section className="ceremonia-fiesta ceremonia-unica">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
-          <div className="anim-anillos" aria-hidden="true">
-            <svg viewBox="0 0 180 180" role="img">
-              <circle className="ring ring-left" cx="62" cy="109" r="52" />
-              <circle className="ring ring-right" cx="118" cy="109" r="52" />
-              <path
-                className="heart-ring"
-                d="M90 53 C78 38 63 38 58 51 C52 66 72 84 90 102 C108 84 128 66 122 51 C117 38 102 38 90 53 Z"
-              />
-            </svg>
-          </div>
+          <HeartIcon />
           <h3>Ceremonia</h3>
           <div className="info-box">
             <h6>Dia</h6>
@@ -254,7 +275,7 @@ export default function Home() {
         <div className="content-galeria">
           <h2 className="title">Retratos de Nuestro Amor</h2>
           <p className="subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
-          <div className="anim-galeria" />
+          <PartyIcon />
         </div>
         <div className="content-fotos">
           {[1, 2, 3].map((item) => (

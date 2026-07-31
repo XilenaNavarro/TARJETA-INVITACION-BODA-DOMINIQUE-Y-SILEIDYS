@@ -444,8 +444,6 @@ main {
   text-align: center;
 }
 
-.anim-anillos,
-.anim-galeria,
 .anim-instagram {
   width: 92px;
   height: 92px;
@@ -458,69 +456,132 @@ main {
     radial-gradient(circle at 63% 58%, var(--oliva) 0 8px, transparent 9px);
 }
 
-.anim-anillos {
-  width: 150px;
-  height: 150px;
-  margin-bottom: 28px;
-  border: 0;
-  background: none;
+.animated-icon {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 28px;
 }
 
-.anim-anillos svg {
+.animated-icon svg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-.anim-anillos .ring,
-.anim-anillos .heart-ring {
-  fill: none;
-  stroke: #40b7b4;
-  stroke-width: 7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.heart-icon {
+  animation: icon-float 3s ease-in-out infinite;
+}
+
+.heart-icon path {
+  fill: var(--verde);
+  animation: heart-pulse 1.9s ease-in-out infinite;
+  filter: drop-shadow(0 8px 10px rgb(80 115 108 / 0.12));
   transform-origin: center;
 }
 
-.anim-anillos .ring-left {
-  animation: ring-left-breathe 2.8s ease-in-out infinite;
+.party-icon {
+  width: 118px;
+  height: 118px;
+  animation: icon-float 3.4s ease-in-out infinite;
 }
 
-.anim-anillos .ring-right {
-  animation: ring-right-breathe 2.8s ease-in-out infinite;
+.party-icon svg {
+  transform: rotate(-8deg);
 }
 
-.anim-anillos .heart-ring {
-  animation: heart-bounce 2.1s ease-in-out infinite;
+.party-cone {
+  fill: var(--verde);
 }
 
-@keyframes ring-left-breathe {
+.party-cone-shadow {
+  fill: #3f5f58;
+}
+
+.party-highlight {
+  fill: var(--menta);
+  opacity: 0.76;
+}
+
+.party-ribbon,
+.party-streamer,
+.curl {
+  fill: none;
+  stroke: var(--oliva);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: streamer-wiggle 2.3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.party-streamer {
+  stroke: #82918a;
+  animation-delay: 0.2s;
+}
+
+.curl {
+  stroke: var(--verde);
+}
+
+.dot {
+  fill: var(--oliva);
+  animation: dot-pop 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.dot-a,
+.dot-d {
+  fill: #82918a;
+}
+
+.dot-b {
+  fill: var(--menta);
+}
+
+.dot-c {
+  fill: var(--verde);
+  animation-delay: 0.35s;
+}
+
+@keyframes icon-float {
   0%,
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   50% {
-    transform: translateX(-3px);
+    transform: translateY(-7px);
   }
 }
 
-@keyframes ring-right-breathe {
+@keyframes heart-pulse {
   0%,
   100% {
-    transform: translateX(0);
+    transform: scale(1);
   }
   50% {
-    transform: translateX(3px);
+    transform: scale(1.06);
   }
 }
 
-@keyframes heart-bounce {
+@keyframes streamer-wiggle {
   0%,
   100% {
-    transform: translateY(0) scale(1);
+    transform: rotate(0deg);
   }
   50% {
-    transform: translateY(-5px) scale(1.04);
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes dot-pop {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 1;
   }
 }
 
