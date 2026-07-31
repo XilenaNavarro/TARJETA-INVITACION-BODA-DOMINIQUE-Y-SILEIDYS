@@ -96,9 +96,10 @@ export default function Home() {
             <p>
               <img src="/fixdate-comilla-apertura.svg" alt="" />
               <br />
-              Todos somos mortales,
+              Una cuerda triple
               <br />
-              hasta el primer beso y la segunda copa de vino
+              no se rompe facilmente
+              <small>ECLESIASTES 4:12</small>
               <br />
               <img src="/fixdate-comilla-cierre.svg" alt="" />
             </p>

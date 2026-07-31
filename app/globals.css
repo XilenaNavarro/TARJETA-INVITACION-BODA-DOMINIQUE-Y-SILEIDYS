@@ -193,6 +193,15 @@ main {
   margin: 12px auto 0;
 }
 
+.box-frase-portada small {
+  display: block;
+  margin-top: 16px;
+  color: rgb(255 255 255 / 0.84);
+  font-size: clamp(0.82rem, 1.2vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
 .flecha-continuar {
   display: block;
   width: 34px;
