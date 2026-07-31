@@ -18,27 +18,28 @@ function Countdown() {
     const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
     return [
       ["dias", Math.floor(distance / 86400000)],
-      ["hrs", Math.floor((distance / 3600000) % 24)],
+      ["hs", Math.floor((distance / 3600000) % 24)],
       ["min", Math.floor((distance / 60000) % 60)],
       ["seg", Math.floor((distance / 1000) % 60)],
     ];
   }, [now]);
 
   return (
-    <section className="countdown-section" aria-label="Cuenta regresiva">
-      <img className="count-leaf left" src="/follaje.png" alt="" />
-      <div className="count-card">
-        <span>Falta</span>
-        <div>
-          {parts.map(([label, value]) => (
-            <p key={label}>
-              <strong>{String(value).padStart(2, "0")}</strong>
-              <small>{label}</small>
-            </p>
-          ))}
+    <section className="cuenta-regresiva">
+      <div className="box-aros">
+        <div className="box-circulo">
+          <span className="falta">Falta</span>
+          <div className="reloj">
+            {parts.map(([label, value], index) => (
+              <div className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"} key={label}>
+                <span className="number">{String(value).padStart(2, "0")}</span>
+                <span className="time">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="corazon-falta" />
         </div>
       </div>
-      <img className="count-leaf right" src="/follaje.png" alt="" />
     </section>
   );
 }
@@ -71,12 +72,13 @@ function MusicButton() {
     <>
       <audio ref={audioRef} src="/cancion.mp3" preload="metadata" />
       <button
-        className={playing ? "music-float active" : "music-float"}
+        id="controlador-musica"
+        className={playing ? "music-on" : ""}
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pausar musica" : "Reproducir musica"}
       >
-        <span>&#9835;</span>
+        <span className="music-anim-icon">&#9835;</span>
       </button>
     </>
   );
@@ -111,114 +113,200 @@ export default function Home() {
     <main>
       <MusicButton />
 
-      <header className="invitation-hero" id="inicio">
-        <img className="hero-photo" src="/hero.jpg" alt="Carlos y Alejandra" />
-        <div className="hero-filter" />
-        <img className="hero-leaf leaf-top" src="/follaje.png" alt="" />
-        <img className="hero-leaf leaf-bottom" src="/follaje.png" alt="" />
+      <section className="portada">
+        <div className="portada-flor-izq-sup" />
+        <div className="portada-flor-der-inf" />
+        <div className="portada-flor-izq-inf" />
 
-        <div className="hero-center">
-          <div className="date-line">
-            <span />
-            <p>22.11.2026</p>
-            <span />
+        <div className="content-portada">
+          <div className="box-nombres-fecha-portada">
+            <span className="fecha">22.11.2026</span>
+            <h1>
+              Carlos
+              <br className="mobile-break" />
+              <span>&amp;</span>
+              <br className="mobile-break" />
+              Alejandra
+            </h1>
+            <div className="line" />
           </div>
 
-          <h1>
-            <span>Carlos</span>
-            <b>&amp;</b>
-            <span>Alejandra</span>
-          </h1>
+          <div className="box-frase-portada">
+            <p>
+              <img src="/fixdate-comilla-apertura.svg" alt="" />
+              <br />
+              Todos somos mortales,
+              <br />
+              hasta el primer beso y la segunda copa de vino
+              <br />
+              <img src="/fixdate-comilla-cierre.svg" alt="" />
+            </p>
+          </div>
 
-          <div className="name-line" />
-
-          <blockquote>
-            <span />
-            Todos somos mortales,
-            <br />
-            hasta el primer beso y la segunda copa de vino
-            <i />
-          </blockquote>
-
-          <a className="scroll-arrow" href="#contador" aria-label="Bajar">
-            <span />
-          </a>
+          <a className="flecha-continuar" href="#cuenta" aria-label="Continuar" />
         </div>
-
-        <div className="phone-home" aria-hidden="true" />
-      </header>
-
-      <Countdown />
-
-      <section className="intro-section">
-        <img src="/follaje.png" alt="" />
-        <p>Nos casamos</p>
-        <h2>Carlos &amp; Alejandra</h2>
-        <span>Con la bendicion de Dios y la alegria de nuestras familias.</span>
+        <div className="barra-mobile" aria-hidden="true" />
       </section>
 
-      <section className="details-section" id="contador">
-        <article>
-          <span>Ceremonia</span>
-          <h3>6:00 pm</h3>
-          <p>Parroquia Virgen del Carmen</p>
-          <small>Calle 57 aa #00 00</small>
-          <a href="https://www.google.com/maps" target="_blank">
-            Como llegar
-          </a>
+      <div id="cuenta">
+        <Countdown />
+      </div>
+
+      <section className="seccion-principal bloque-grupo-invitados">
+        <div className="card-grupo-invitados">
+          <div className="pases-total">3</div>
+          <h3 className="titulo-grupo">INVITADOS</h3>
+          <div className="acompanantes-info">(1 acompanante)</div>
+          <ul className="lista-invitados">
+            <li>Familia invitada</li>
+            <li>Persona especial</li>
+          </ul>
+          <p>Sera un dia inolvidable y queremos vivirlo contigo.</p>
+        </div>
+      </section>
+
+      <section className="ceremonia-fiesta">
+        <div className="ceremonia-fiesta-flor-der" />
+        <article className="col-ceremonia">
+          <div className="anim-anillos" />
+          <h3>Ceremonia</h3>
+          <div className="info-box">
+            <h6>Dia</h6>
+            <p>Domingo 22 de Noviembre - 6:00 pm</p>
+            <a className="boton" href="https://www.google.com/calendar" target="_blank">
+              Agendar
+            </a>
+          </div>
+          <div className="info-box">
+            <h6>Lugar</h6>
+            <p>Parroquia Virgen del Carmen</p>
+            <p className="info-direccion">Calle 57 aa #00 00</p>
+            <a className="boton" href="https://www.google.com/maps" target="_blank">
+              Como llegar?
+            </a>
+          </div>
         </article>
-        <article>
-          <span>Recepcion</span>
-          <h3>7:30 pm</h3>
-          <p>Eventos Medellin</p>
-          <small>Calle 57 aa #00 00</small>
-          <a href="https://www.google.com/maps" target="_blank">
-            Como llegar
-          </a>
+
+        <article className="col-fiesta">
+          <div className="anim-fiesta" />
+          <h3>Fiesta</h3>
+          <div className="info-box">
+            <h6>Dia</h6>
+            <p>Domingo 22 de Noviembre - 7:30 pm</p>
+            <a className="boton" href="https://www.google.com/calendar" target="_blank">
+              Agendar
+            </a>
+          </div>
+          <div className="info-box">
+            <h6>Lugar</h6>
+            <p>Eventos Medellin</p>
+            <p className="info-direccion">Calle 57 aa #00 00</p>
+            <a className="boton" href="https://www.google.com/maps" target="_blank">
+              Como llegar?
+            </a>
+          </div>
         </article>
       </section>
 
-      <section className="rsvp-section">
-        <h2>Confirma tu asistencia</h2>
-        <p>
-          Para nosotros es muy importante contar contigo. Por favor confirmanos
-          tu asistencia antes del 20 de noviembre de 2026.
-        </p>
-        <button type="button" onClick={() => setModal("rsvp")}>
-          Confirmar asistencia
+      <section className="seccion-principal confirmacion-asistencia">
+        <div className="box-confirmacion">
+          <h2 className="title">Confirmar Asistencia</h2>
+          <p className="subtitle">Es importante que confirmes tu asistencia</p>
+          <button className="boton" type="button" onClick={() => setModal("rsvp")}>
+            Confirmar asistencia
+          </button>
+        </div>
+      </section>
+
+      <section className="galeria">
+        <div className="content-galeria">
+          <h2 className="title">Retratos de Nuestro Amor</h2>
+          <p className="subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
+          <div className="anim-galeria" />
+        </div>
+        <div className="content-fotos">
+          {[1, 2, 3].map((item) => (
+            <div className="polaroid" key={item}>
+              <img src={item === 1 ? "/hero.jpg" : "/fixdate-portada-3.webp"} alt="" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="fiesta">
+        <h2 className="title">Fiesta</h2>
+        <p className="subtitle">Hagamos juntos una fiesta epica. Aqui algunos detalles a tener en cuenta.</p>
+        <div className="items-fiesta">
+          <article className="item-fiesta">
+            <img className="hojas-musica" src="/fixdate-hojas-fiesta.svg" alt="" />
+            <h3>Musica</h3>
+            <div className="anim-musica" />
+            <p>Cual es la cancion que no debe faltar en la playlist de la fiesta?</p>
+            <button className="boton" type="button" onClick={() => setModal("playlist")}>
+              Sugerir cancion
+            </button>
+          </article>
+          <article className="item-fiesta">
+            <h3>Dress Code</h3>
+            <div className="anim-vestuario" />
+            <p>Una orientacion para tu vestuario</p>
+            <button className="boton" type="button">
+              Ver mas
+            </button>
+          </article>
+          <article className="item-fiesta">
+            <h3>Tips y Notas</h3>
+            <div className="anim-tips" />
+            <p>Informacion adicional para tener en cuenta</p>
+            <button className="boton" type="button">
+              + Info
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section className="regalos">
+        <div className="regalos-flor-der" />
+        <h2 className="title">Regalos</h2>
+        <p className="subtitle">Si deseas regalarnos algo mas que tu hermosa presencia...</p>
+        <div className="anim-regalos" />
+        <button className="boton" type="button" onClick={() => setModal("gift")}>
+          Cuenta Bancaria - Lista Regalos
         </button>
       </section>
 
-      <section className="info-section">
-        <article>
-          <h3>Codigo de vestuario</h3>
-          <p>Ellas: vestido largo. Ellos: traje formal. Evitar blanco, beige y rojo.</p>
-        </article>
-        <article>
-          <h3>Regalos</h3>
-          <p>
-            Tu presencia es nuestro mejor regalo. Si deseas tener un detalle,
-            tendremos lluvia de sobres.
-          </p>
-          <button type="button" onClick={() => setModal("gift")}>
-            Opcion virtual
-          </button>
-        </article>
-        <article>
-          <h3>Playlist boda</h3>
-          <p>Ayudanos a crear la mejor fiesta con esas canciones imperdibles.</p>
-          <button type="button" onClick={() => setModal("playlist")}>
-            Anadir canciones
-          </button>
-        </article>
+      <section className="instagram">
+        <h2 className="title">Compartimos este dia junto a vos</h2>
+        <p className="subtitle">Comparte tus fotos y videos de ese hermoso dia</p>
+        <div className="anim-instagram" />
+        <a className="hashtag" href="https://www.instagram.com/" target="_blank">
+          #carlosyalejandra
+        </a>
+        <a className="boton" href="https://www.instagram.com/" target="_blank">
+          Ver en Instagram
+        </a>
+      </section>
+
+      <section className="footer-invitacion">
+        <h4>
+          Carlos <span>&amp;</span> Alejandra
+        </h4>
+        <ul>
+          <li>
+            <button type="button" onClick={() => setModal("rsvp")}>Confirmar asistencia</button>
+          </li>
+          <li>
+            <button type="button" onClick={() => setModal("playlist")}>Sugerir cancion</button>
+          </li>
+          <li>Agendar Fiesta</li>
+          <li>Agendar Ceremonia</li>
+        </ul>
       </section>
 
       <footer>
-        <p>Carlos y Alejandra</p>
-        <span>Disenado con amor por</span>
-        <a href="https://evervy-invitaciones.web.app/" target="_blank">
-          <img src="/evervy-logo.png" alt="Evervy Invitaciones Digitales" />
-        </a>
+        <p>
+          Desarrollado con amor por <a href="https://fixdate.io/co/" target="_blank">Fixdate</a>
+        </p>
       </footer>
 
       {modal === "rsvp" ? (
@@ -239,9 +327,7 @@ export default function Home() {
               Numero de personas
               <select defaultValue="1">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <option key={item}>
-                    {item} Persona{item > 1 ? "s" : ""}
-                  </option>
+                  <option key={item}>{item} Persona{item > 1 ? "s" : ""}</option>
                 ))}
               </select>
             </label>
@@ -249,7 +335,7 @@ export default function Home() {
               Mensaje
               <textarea placeholder="Restricciones alimenticias o mensaje para los novios" />
             </label>
-            <button type="button" onClick={() => setModal(null)}>
+            <button className="boton" type="button" onClick={() => setModal(null)}>
               Enviar confirmacion
             </button>
           </form>
@@ -257,29 +343,27 @@ export default function Home() {
       ) : null}
 
       {modal === "gift" ? (
-        <Modal title="Lluvia de sobres" onClose={() => setModal(null)}>
+        <Modal title="Regalos" onClose={() => setModal(null)}>
           <p className="modal-text">
-            Gracias por acompanarnos. Si deseas hacerlo de forma virtual, puedes
-            coordinar tu detalle directamente con los novios.
+            Tu presencia es nuestro mejor regalo. Si deseas tener un detalle,
+            tendremos lluvia de sobres.
           </p>
         </Modal>
       ) : null}
 
       {modal === "playlist" ? (
-        <Modal title="Playlist boda" onClose={() => setModal(null)}>
+        <Modal title="Sugerir cancion" onClose={() => setModal(null)}>
           <form className="form">
             <label>
               Tu nombre
               <input placeholder="Ej: Familia Perez" />
             </label>
-            {[1, 2, 3, 4, 5].map((item) => (
-              <label key={item}>
-                Cancion {item}
-                <input placeholder={item === 1 ? "Cancion - Artista" : "Opcional"} />
-              </label>
-            ))}
-            <button type="button" onClick={() => setModal(null)}>
-              Anadir a la lista
+            <label>
+              Cancion
+              <input placeholder="Cancion - Artista" />
+            </label>
+            <button className="boton" type="button" onClick={() => setModal(null)}>
+              Enviar sugerencia
             </button>
           </form>
         </Modal>

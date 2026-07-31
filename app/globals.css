@@ -1,16 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Galada&family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Open+Sans:wght@300;400;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --dark: #20262b;
-  --green: #31473d;
-  --sage: #bfcec5;
-  --leaf: #d7d7a5;
-  --paper: #f5f3ed;
-  --line: rgb(255 255 255 / 0.62);
-  --text: #262a2d;
-  --muted: #6d746f;
-  --white: #ffffff;
+  --verde: #50736c;
+  --verde-oscuro: #374c48;
+  --menta: #c6d7cf;
+  --oliva: #d8d5b3;
+  --gris: #545d61;
+  --negro: #333333;
+  --claro: #f4f4f2;
+  --blanco: #ffffff;
 }
 
 * {
@@ -23,9 +22,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--text);
-  font-family: "Montserrat", Arial, sans-serif;
+  background: var(--claro);
+  color: var(--negro);
+  font-family: "Open Sans", Arial, sans-serif;
+  font-weight: 300;
 }
 
 button,
@@ -38,7 +38,7 @@ textarea {
 
 button,
 a {
-  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 button:hover,
@@ -48,472 +48,632 @@ a:hover {
 
 main {
   overflow: hidden;
-  background: var(--paper);
 }
 
-.invitation-hero {
+.portada {
   position: relative;
   display: grid;
   place-items: center;
   min-height: 100vh;
   overflow: hidden;
-  color: var(--white);
-  background: #293235;
+  background:
+    linear-gradient(rgb(37 43 50 / 0.62), rgb(37 43 50 / 0.5)),
+    url("/fixdate-portada-3.webp") center center / cover no-repeat;
+  color: var(--blanco);
   text-align: center;
 }
 
-.hero-photo,
-.hero-filter {
+.portada-flor-izq-sup,
+.portada-flor-der-inf,
+.portada-flor-izq-inf,
+.ceremonia-fiesta-flor-der,
+.regalos-flor-der {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-photo {
-  object-fit: cover;
-  object-position: center 44%;
-  filter: grayscale(0.28) saturate(0.72);
-}
-
-.hero-filter {
-  background:
-    linear-gradient(90deg, rgb(20 25 30 / 0.42), rgb(24 29 35 / 0.28) 46%, rgb(20 25 30 / 0.58)),
-    linear-gradient(rgb(21 26 32 / 0.62), rgb(36 43 47 / 0.52));
-}
-
-.hero-leaf {
-  position: absolute;
-  z-index: 2;
-  width: clamp(170px, 18vw, 330px);
-  filter: sepia(0.5) saturate(0.82) hue-rotate(58deg) brightness(1.15);
-  opacity: 0.92;
+  background: url("/fixdate-hojas-fiesta.svg") center / contain no-repeat;
   pointer-events: none;
+  z-index: 2;
 }
 
-.leaf-top {
-  top: -88px;
-  left: -96px;
-  transform: rotate(138deg);
+.portada-flor-izq-sup {
+  top: -156px;
+  left: -116px;
+  width: 260px;
+  height: 470px;
+  transform: rotate(180deg);
 }
 
-.leaf-bottom {
-  right: -72px;
-  bottom: 12px;
-  width: clamp(230px, 24vw, 430px);
-  transform: rotate(-18deg) scaleX(-1);
+.portada-flor-der-inf {
+  right: -18px;
+  bottom: 16px;
+  width: 330px;
+  height: 260px;
+  transform: rotate(91deg);
 }
 
-.hero-center {
+.portada-flor-izq-inf {
+  left: -130px;
+  bottom: -150px;
+  width: 260px;
+  height: 420px;
+  opacity: 0.35;
+  transform: rotate(20deg);
+}
+
+.content-portada {
   position: relative;
   z-index: 3;
-  display: grid;
-  justify-items: center;
-  width: min(900px, calc(100% - 40px));
-  padding: 8vh 0 4vh;
+  width: min(900px, calc(100% - 36px));
+  padding: 42px 0 24px;
 }
 
-.date-line {
-  display: grid;
-  grid-template-columns: minmax(80px, 150px) auto minmax(80px, 150px);
-  align-items: center;
-  gap: 24px;
-  width: min(520px, 82vw);
+.box-nombres-fecha-portada .fecha {
+  position: relative;
+  display: inline-block;
   margin-bottom: 34px;
-}
-
-.date-line span,
-.name-line {
-  height: 1px;
-  background: var(--line);
-}
-
-.date-line p {
-  margin: 0;
-  color: rgb(255 255 255 / 0.95);
-  font-size: clamp(1.2rem, 2.2vw, 1.95rem);
+  color: rgb(255 255 255 / 0.92);
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
   font-weight: 300;
   line-height: 1;
 }
 
-.hero-center h1 {
+.box-nombres-fecha-portada .fecha::before,
+.box-nombres-fecha-portada .fecha::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  height: 1px;
+  background: rgb(255 255 255 / 0.58);
+}
+
+.box-nombres-fecha-portada .fecha::before {
+  right: calc(100% + 24px);
+}
+
+.box-nombres-fecha-portada .fecha::after {
+  left: calc(100% + 24px);
+}
+
+.box-nombres-fecha-portada h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 3.2vw, 36px);
+  gap: clamp(16px, 3.2vw, 38px);
   margin: 0;
-  font-family: "Galada", cursive;
-  font-size: clamp(4.2rem, 9.3vw, 8.9rem);
+  font-family: "Cookie", cursive;
+  font-size: clamp(5.5rem, 10vw, 9.4rem);
   font-weight: 400;
-  line-height: 0.85;
-  text-shadow: 0 14px 30px rgb(0 0 0 / 0.28);
+  line-height: 0.75;
+  text-shadow: 0 8px 20px rgb(0 0 0 / 0.22);
 }
 
-.hero-center h1 b {
+.box-nombres-fecha-portada h1 span {
   display: grid;
   place-items: center;
-  width: clamp(60px, 5.4vw, 76px);
-  height: clamp(60px, 5.4vw, 76px);
+  width: clamp(62px, 5.5vw, 76px);
+  height: clamp(62px, 5.5vw, 76px);
   border-radius: 50%;
-  background: var(--sage);
-  color: var(--green);
+  background: var(--menta);
+  color: var(--verde);
   font-family: Georgia, serif;
-  font-size: clamp(2.1rem, 3vw, 3rem);
+  font-size: clamp(2.2rem, 3vw, 3.05rem);
   font-weight: 700;
   line-height: 1;
   text-shadow: none;
 }
 
-.name-line {
-  width: min(500px, 72vw);
-  margin: 44px 0 72px;
+.mobile-break {
+  display: none;
 }
 
-blockquote {
-  display: grid;
-  justify-items: center;
-  max-width: 800px;
+.box-nombres-fecha-portada .line {
+  width: min(498px, 74vw);
+  height: 1px;
+  margin: 58px auto 66px;
+  background: rgb(255 255 255 / 0.68);
+}
+
+.box-frase-portada p {
   margin: 0;
-  color: rgb(255 255 255 / 0.95);
-  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
+  color: rgb(255 255 255 / 0.96);
+  font-size: clamp(1.45rem, 2.25vw, 2.15rem);
   font-weight: 300;
   line-height: 1.52;
 }
 
-blockquote span,
-blockquote i {
-  color: var(--white);
-  font-family: Georgia, serif;
-  font-size: clamp(3rem, 4.2vw, 4.3rem);
-  font-style: normal;
-  font-weight: 800;
-  line-height: 0.65;
+.box-frase-portada img {
+  width: clamp(38px, 4vw, 54px);
+  height: auto;
+  margin: 0 auto 12px;
 }
 
-blockquote span::before {
-  content: '"';
+.box-frase-portada img:last-child {
+  margin: 12px auto 0;
 }
 
-blockquote i::before {
-  content: '"';
-}
-
-.scroll-arrow {
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  margin-top: 48px;
-  text-decoration: none;
-}
-
-.scroll-arrow span {
-  width: 30px;
-  height: 30px;
-  border-right: 2px solid var(--white);
-  border-bottom: 2px solid var(--white);
+.flecha-continuar {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 46px auto 0;
+  border-right: 2px solid var(--blanco);
+  border-bottom: 2px solid var(--blanco);
   transform: rotate(45deg);
 }
 
-.phone-home {
+.barra-mobile {
   position: absolute;
-  z-index: 5;
   bottom: 20px;
   left: 50%;
+  z-index: 4;
   width: 48px;
   height: 9px;
   border-radius: 999px;
-  background: rgb(0 0 0 / 0.62);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
+  background: rgb(0 0 0 / 0.72);
   transform: translateX(-50%);
 }
 
-.music-float {
+#controlador-musica {
   position: fixed;
-  z-index: 20;
-  top: 112px;
+  top: 110px;
   right: 28px;
+  z-index: 30;
   display: grid;
   place-items: center;
-  width: 74px;
-  height: 74px;
+  width: 78px;
+  height: 78px;
   border: 0;
   border-radius: 50%;
-  background: rgb(39 47 55 / 0.86);
-  color: var(--white);
+  background: rgb(55 65 73 / 0.86);
+  color: var(--blanco);
   cursor: pointer;
-  box-shadow: 0 18px 32px rgb(0 0 0 / 0.22);
+  box-shadow: 0 12px 26px rgb(0 0 0 / 0.18);
 }
 
-.music-float span {
-  font-size: 2.5rem;
+.music-anim-icon {
+  font-size: 2.7rem;
   line-height: 1;
 }
 
-.music-float.active {
-  background: rgb(49 71 61 / 0.92);
+#controlador-musica.music-on {
+  background: rgb(80 115 108 / 0.9);
 }
 
-.countdown-section {
+.cuenta-regresiva {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 360px;
-  overflow: hidden;
-  background: var(--paper);
+  min-height: 368px;
+  background: var(--claro);
 }
 
-.count-leaf {
+.box-aros {
+  display: grid;
+  place-items: center;
+  width: 254px;
+  height: 254px;
+  border: 1px solid rgb(216 213 179 / 0.75);
+  transform: rotate(18deg);
+}
+
+.box-aros::before,
+.box-aros::after {
+  content: "";
   position: absolute;
-  width: clamp(180px, 25vw, 390px);
-  opacity: 0.45;
-  filter: sepia(0.42) saturate(0.78) hue-rotate(58deg) brightness(1.03);
-  pointer-events: none;
+  inset: 0;
+  border: 1px solid rgb(216 213 179 / 0.75);
 }
 
-.count-leaf.left {
-  left: -100px;
-  top: -56px;
-  transform: rotate(138deg);
+.box-aros::before {
+  transform: rotate(17deg);
 }
 
-.count-leaf.right {
-  right: -105px;
-  bottom: -60px;
-  transform: rotate(-22deg) scaleX(-1);
+.box-aros::after {
+  transform: rotate(-17deg);
 }
 
-.count-card {
+.box-circulo {
   position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
-  width: min(340px, 78vw);
-  min-height: 210px;
-  padding: 34px 28px;
-  border: 1px solid rgb(49 71 61 / 0.15);
+  width: 168px;
+  height: 168px;
   border-radius: 50%;
-  background: rgb(255 255 255 / 0.72);
-  color: var(--green);
+  background: rgb(255 255 255 / 0.95);
+  color: #8a918d;
   text-align: center;
-  box-shadow: 0 22px 55px rgb(49 71 61 / 0.12);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  transform: rotate(-18deg);
 }
 
-.count-card > span {
-  color: var(--muted);
-  font-size: 1.05rem;
+.falta {
+  align-self: end;
+  font-size: 0.95rem;
 }
 
-.count-card div {
+.reloj {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  width: 86%;
 }
 
-.count-card p {
-  margin: 0;
+.reloj-col {
+  border-right: 1px solid #d7d7d7;
 }
 
-.count-card strong {
+.reloj-col.no-border {
+  border-right: 0;
+}
+
+.number {
   display: block;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #707773;
+  font-size: 1.22rem;
+  font-weight: 700;
   line-height: 1;
 }
 
-.count-card small {
-  color: var(--muted);
-  font-size: 0.7rem;
-  text-transform: uppercase;
+.time {
+  display: block;
+  color: #b2b8b4;
+  font-size: 0.62rem;
+  line-height: 1.15;
 }
 
-.intro-section {
+.corazon-falta {
+  align-self: start;
+  width: 14px;
+  height: 12px;
+  background: var(--menta);
+  clip-path: polygon(50% 100%, 0 38%, 20% 0, 50% 24%, 80% 0, 100% 38%);
+}
+
+.seccion-principal {
+  position: relative;
+  padding: 82px 20px;
+  background: var(--claro);
+  text-align: center;
+}
+
+.bloque-grupo-invitados {
+  background: #f9f9f8;
+}
+
+.card-grupo-invitados {
+  width: min(520px, 100%);
+  margin: 0 auto;
+  padding: 44px 30px;
+  border-radius: 6px;
+  background: var(--blanco);
+  box-shadow: 0 10px 35px rgb(80 115 108 / 0.14);
+}
+
+.pases-total {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--menta);
+  color: var(--verde);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.titulo-grupo {
+  margin: 0;
+  color: var(--verde);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.acompanantes-info,
+.lista-invitados,
+.card-grupo-invitados p {
+  color: #777777;
+}
+
+.lista-invitados {
+  list-style: none;
+  margin: 22px 0;
+  padding: 0;
+}
+
+.lista-invitados li {
+  padding: 7px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.ceremonia-fiesta {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  background: #d8dfdc;
+}
+
+.ceremonia-fiesta-flor-der {
+  top: -48px;
+  right: -90px;
+  width: 240px;
+  height: 430px;
+  opacity: 0.28;
+}
+
+.col-ceremonia,
+.col-fiesta {
   display: grid;
   justify-items: center;
-  padding: 78px 24px 88px;
-  background: #f9f8f4;
+  padding: 84px 28px;
+  background: var(--claro);
   text-align: center;
 }
 
-.intro-section img {
-  width: min(340px, 70vw);
-  margin-bottom: 30px;
-  filter: sepia(0.42) saturate(0.78) hue-rotate(58deg) brightness(1.05);
-  opacity: 0.82;
+.anim-anillos,
+.anim-fiesta,
+.anim-galeria,
+.anim-musica,
+.anim-vestuario,
+.anim-tips,
+.anim-regalos,
+.anim-instagram {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 18px;
+  border: 2px solid var(--menta);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, var(--menta) 0 11px, transparent 12px),
+    radial-gradient(circle at 37% 58%, var(--verde) 0 8px, transparent 9px),
+    radial-gradient(circle at 63% 58%, var(--oliva) 0 8px, transparent 9px);
 }
 
-.intro-section p {
+.col-ceremonia h3,
+.col-fiesta h3,
+.title {
+  margin: 0 0 24px;
+  color: var(--verde);
+  font-family: "Cookie", cursive;
+  font-size: clamp(3.4rem, 7vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.info-box {
+  width: min(360px, 100%);
+  margin-top: 26px;
+}
+
+.info-box h6 {
   margin: 0 0 8px;
-  color: var(--green);
-  font-size: 1rem;
+  color: var(--verde);
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.intro-section h2,
-.rsvp-section h2,
-footer p {
-  margin: 0;
-  color: var(--green);
-  font-family: "Galada", cursive;
-  font-size: clamp(3.2rem, 7vw, 5.8rem);
-  font-weight: 400;
-  line-height: 0.95;
+.info-box p {
+  margin: 0 0 8px;
+  color: #555555;
+  font-size: 1.05rem;
 }
 
-.intro-section span {
-  max-width: 660px;
-  margin-top: 20px;
-  color: var(--muted);
-  font-size: 1.2rem;
-  line-height: 1.7;
+.info-direccion {
+  color: #8a8a8a !important;
+  font-size: 0.92rem !important;
 }
 
-.details-section {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  background: rgb(49 71 61 / 0.16);
-  gap: 1px;
-}
-
-.details-section article {
-  display: grid;
-  justify-items: center;
-  min-height: 335px;
-  padding: 56px 24px;
-  background: var(--paper);
-  text-align: center;
-}
-
-.details-section span {
-  color: var(--green);
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.details-section h3 {
-  margin: 12px 0;
-  color: var(--green);
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  line-height: 1;
-}
-
-.details-section p {
-  margin: 0 0 6px;
-  color: var(--text);
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.details-section small {
-  color: var(--muted);
-}
-
-.details-section a,
-.rsvp-section button,
-.info-section button,
-.form button {
+.boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  margin-top: 24px;
+  min-height: 43px;
+  margin-top: 12px;
   border: 0;
   border-radius: 999px;
-  background: var(--green);
-  color: var(--white);
-  padding: 13px 28px;
-  font-weight: 800;
+  background: var(--verde);
+  color: var(--blanco);
+  padding: 11px 26px;
+  font-size: 0.92rem;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 14px 24px rgb(49 71 61 / 0.18);
 }
 
-.rsvp-section {
+.boton:hover {
+  background: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+.confirmacion-asistencia {
+  background: var(--menta);
+}
+
+.box-confirmacion {
+  width: min(640px, 100%);
+  margin: 0 auto;
+}
+
+.subtitle {
+  margin: -8px auto 24px;
+  color: #606965;
+  font-size: 1.05rem;
+}
+
+.galeria,
+.fiesta,
+.regalos,
+.instagram {
   position: relative;
-  display: grid;
-  justify-items: center;
-  padding: 88px 24px 96px;
-  background: var(--green);
-  color: var(--white);
+  padding: 86px 20px;
+  background: var(--claro);
   text-align: center;
 }
 
-.rsvp-section h2 {
-  color: var(--white);
+.content-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: 24px;
+  width: min(980px, 100%);
+  margin: 38px auto 0;
 }
 
-.rsvp-section p {
-  max-width: 720px;
-  margin: 22px 0 10px;
-  color: rgb(255 255 255 / 0.82);
-  font-size: 1.12rem;
-  line-height: 1.75;
+.polaroid {
+  padding: 12px 12px 42px;
+  background: var(--blanco);
+  box-shadow: 0 10px 26px rgb(0 0 0 / 0.18);
+  transform: rotate(-2deg);
 }
 
-.rsvp-section button {
-  background: var(--sage);
-  color: var(--green);
+.polaroid:nth-child(2) {
+  transform: rotate(2deg);
 }
 
-.info-section {
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.fiesta {
+  background: #fbfbfa;
+}
+
+.items-fiesta {
   display: grid;
   grid-template-columns: repeat(3, minmax(230px, 1fr));
-  gap: 1px;
-  background: rgb(49 71 61 / 0.14);
+  gap: 28px;
+  width: min(1120px, 100%);
+  margin: 44px auto 0;
 }
 
-.info-section article {
-  min-height: 310px;
-  padding: 54px 34px;
-  background: #fbfaf6;
+.item-fiesta {
+  position: relative;
+  min-height: 360px;
+  padding: 46px 28px;
+  background: var(--blanco);
+  box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
 }
 
-.info-section h3 {
-  margin: 0 0 18px;
-  color: var(--green);
-  font-size: 1.55rem;
-  font-weight: 800;
+.hojas-musica {
+  position: absolute;
+  top: -90px;
+  left: -68px;
+  width: 150px;
+  height: auto;
 }
 
-.info-section p {
-  color: var(--muted);
+.item-fiesta h3 {
+  margin: 0 0 20px;
+  color: var(--verde);
+  font-family: "Cookie", cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
+}
+
+.item-fiesta p,
+.regalos p,
+.instagram p {
+  color: #606965;
   line-height: 1.7;
 }
 
-footer {
+.regalos {
+  background: var(--claro);
+}
+
+.regalos-flor-der {
+  right: -90px;
+  top: -80px;
+  width: 210px;
+  height: 380px;
+  opacity: 0.28;
+}
+
+.instagram {
+  background:
+    linear-gradient(rgb(40 48 52 / 0.72), rgb(40 48 52 / 0.72)),
+    url("/fixdate-portada-3.webp") center center / cover no-repeat;
+  color: var(--blanco);
+  background-attachment: fixed;
+}
+
+.instagram .title,
+.instagram .subtitle {
+  color: var(--blanco);
+}
+
+.hashtag {
+  display: block;
+  margin: 24px 0 8px;
+  color: var(--menta);
+  font-size: 1.55rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-invitacion {
   display: grid;
-  place-items: center;
-  padding: 64px 20px;
-  background: #202b26;
-  color: var(--white);
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  align-items: center;
+  padding: 64px 9vw;
+  background: var(--verde);
+  color: var(--blanco);
+}
+
+.footer-invitacion h4 {
+  margin: 0;
+  text-align: right;
+  font-family: "Cookie", cursive;
+  font-size: clamp(3.8rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.85;
+}
+
+.footer-invitacion h4 span {
+  color: var(--menta);
+}
+
+.footer-invitacion ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-invitacion li,
+.footer-invitacion button {
+  color: rgb(255 255 255 / 0.9);
+  font-size: 0.95rem;
+}
+
+.footer-invitacion button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+footer {
+  padding: 25px 20px;
+  background: #2d3335;
+  color: rgb(255 255 255 / 0.75);
   text-align: center;
 }
 
 footer p {
-  color: var(--white);
-}
-
-footer span {
-  margin: 24px 0 14px;
-  color: rgb(255 255 255 / 0.62);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  margin: 0;
+  font-size: 0.82rem;
 }
 
 footer a {
-  display: inline-flex;
-  border-radius: 12px;
-  background: var(--white);
-  padding: 10px 22px;
-}
-
-footer img {
-  height: 28px;
-  width: auto;
+  color: var(--menta);
 }
 
 .modal-backdrop {
@@ -532,16 +692,18 @@ footer img {
   width: min(540px, 100%);
   max-height: 90vh;
   overflow: auto;
-  border-radius: 18px;
-  background: #fbfaf6;
+  border-radius: 10px;
+  background: var(--blanco);
   padding: 34px;
   box-shadow: 0 30px 70px rgb(0 0 0 / 0.34);
 }
 
 .modal h3 {
   margin: 0 48px 24px 0;
-  color: var(--green);
-  font-size: 2rem;
+  color: var(--verde);
+  font-family: "Cookie", cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
 }
 
 .modal-close {
@@ -554,9 +716,9 @@ footer img {
   height: 36px;
   border: 0;
   border-radius: 50%;
-  background: #e9e7df;
-  color: var(--green);
-  font-weight: 800;
+  background: var(--menta);
+  color: var(--verde);
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -568,19 +730,19 @@ footer img {
 .form label {
   display: grid;
   gap: 7px;
-  color: var(--green);
-  font-weight: 800;
+  color: var(--verde);
+  font-weight: 700;
 }
 
 .form input,
 .form select,
 .form textarea {
   width: 100%;
-  border: 1px solid #d7d2c6;
-  border-radius: 10px;
-  background: var(--white);
-  color: var(--text);
-  padding: 14px 16px;
+  border: 1px solid #d5dcd8;
+  border-radius: 4px;
+  background: var(--blanco);
+  color: var(--negro);
+  padding: 13px 14px;
   outline: 0;
 }
 
@@ -590,91 +752,98 @@ footer img {
 }
 
 .modal-text {
-  color: var(--muted);
+  color: #606965;
   line-height: 1.7;
 }
 
-@media (max-width: 860px) {
-  .hero-center {
-    padding-top: 6vh;
+@media (max-width: 780px) {
+  .portada {
+    background-position: center center;
   }
 
-  .hero-center h1 {
-    display: grid;
-    gap: 6px;
-    font-size: clamp(4.7rem, 19vw, 7.4rem);
+  .content-portada {
+    padding-top: 28px;
   }
 
-  .hero-center h1 b {
-    justify-self: center;
+  .mobile-break {
+    display: block;
   }
 
-  .name-line {
-    margin: 30px 0 50px;
+  .box-nombres-fecha-portada h1 {
+    display: block;
+    font-size: clamp(5.1rem, 23vw, 8rem);
+    line-height: 0.76;
   }
 
-  blockquote {
-    max-width: 560px;
-    font-size: clamp(1.2rem, 5vw, 1.75rem);
+  .box-nombres-fecha-portada h1 span {
+    display: inline-grid;
+    margin: 8px 0 12px;
   }
 
-  .leaf-top {
-    left: -116px;
+  .box-nombres-fecha-portada .fecha::before,
+  .box-nombres-fecha-portada .fecha::after {
+    width: 82px;
   }
 
-  .leaf-bottom {
-    right: -116px;
-    bottom: 0;
+  .box-nombres-fecha-portada .line {
+    margin: 34px auto 45px;
   }
 
-  .details-section,
-  .info-section {
+  .box-frase-portada p {
+    font-size: clamp(1.18rem, 5.5vw, 1.8rem);
+  }
+
+  #controlador-musica {
+    top: 88px;
+    right: 18px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .portada-flor-izq-sup {
+    left: -144px;
+  }
+
+  .portada-flor-der-inf {
+    right: -112px;
+    width: 270px;
+  }
+
+  .ceremonia-fiesta,
+  .items-fiesta,
+  .content-fotos,
+  .footer-invitacion {
     grid-template-columns: 1fr;
+  }
+
+  .footer-invitacion {
+    text-align: center;
+  }
+
+  .footer-invitacion h4 {
+    text-align: center;
   }
 }
 
-@media (max-width: 520px) {
-  .invitation-hero {
+@media (max-width: 430px) {
+  .portada {
     min-height: 100svh;
   }
 
-  .hero-photo {
-    object-position: center;
+  .box-nombres-fecha-portada .fecha::before,
+  .box-nombres-fecha-portada .fecha::after {
+    width: 58px;
   }
 
-  .date-line {
-    gap: 14px;
-    margin-bottom: 26px;
+  .box-nombres-fecha-portada .fecha::before {
+    right: calc(100% + 14px);
   }
 
-  .hero-center h1 {
-    font-size: clamp(4.1rem, 22vw, 6.1rem);
+  .box-nombres-fecha-portada .fecha::after {
+    left: calc(100% + 14px);
   }
 
-  .hero-center h1 b {
-    width: 54px;
-    height: 54px;
-    font-size: 2rem;
-  }
-
-  .music-float {
-    top: 92px;
-    right: 18px;
-    width: 62px;
-    height: 62px;
-  }
-
-  .music-float span {
-    font-size: 2rem;
-  }
-
-  .count-card div {
-    gap: 8px;
-  }
-
-  .rsvp-section button,
-  .info-section button,
-  .form button {
+  .boton {
     width: 100%;
   }
 }
