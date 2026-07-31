@@ -864,8 +864,11 @@ footer a {
 }
 
 .modal:has(.map-modal-content) {
-  width: min(1000px, calc(100vw - 36px));
+  width: min(1000px, calc(100vw - 32px));
+  max-height: calc(100vh - 18px);
+  overflow: visible;
   padding: 0 20px 28px;
+  border-radius: 5px;
 }
 
 .modal h3 {
@@ -878,7 +881,7 @@ footer a {
 
 .modal:has(.map-modal-content) h3 {
   margin: 0 -20px 20px;
-  padding: 28px 70px 26px;
+  padding: 33px 70px 20px;
   background: var(--blanco);
   color: #82918a;
   font-family: "Open Sans", Arial, sans-serif;
@@ -904,10 +907,10 @@ footer a {
 }
 
 .modal:has(.map-modal-content) .modal-close {
-  top: -20px;
-  right: -20px;
-  width: 52px;
-  height: 52px;
+  top: -22px;
+  right: -14px;
+  width: 50px;
+  height: 50px;
   background: #82918a;
   color: var(--blanco);
   font-size: 1.5rem;
@@ -917,11 +920,13 @@ footer a {
 .map-modal-content {
   display: grid;
   justify-items: center;
+  overflow: hidden;
 }
 
 .map-modal-content iframe {
   width: 100%;
-  height: min(565px, 58vh);
+  height: min(565px, calc(100vh - 245px));
+  min-height: 360px;
   border: 0;
 }
 
