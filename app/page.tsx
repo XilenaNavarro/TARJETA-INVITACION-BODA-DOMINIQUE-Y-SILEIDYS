@@ -324,7 +324,7 @@ export default function Home() {
       ) : null}
 
       {modal === "map" ? (
-        <Modal title="Como llegar a la Ceremonia" onClose={() => setModal(null)}>
+        <Modal title="C\u00f3mo llegar a la Ceremonia" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
               title="Mapa de la ceremonia"

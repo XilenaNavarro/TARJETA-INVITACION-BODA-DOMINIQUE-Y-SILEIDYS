@@ -864,10 +864,10 @@ footer a {
 }
 
 .modal:has(.map-modal-content) {
-  width: min(1000px, calc(100vw - 32px));
-  max-height: calc(100vh - 18px);
+  width: min(780px, calc(100vw - 34px));
+  max-height: calc(100vh - 36px);
   overflow: visible;
-  padding: 0 20px 28px;
+  padding: 0 18px 24px;
   border-radius: 5px;
 }
 
@@ -880,12 +880,12 @@ footer a {
 }
 
 .modal:has(.map-modal-content) h3 {
-  margin: 0 -20px 20px;
-  padding: 33px 70px 20px;
+  margin: 0 -18px 18px;
+  padding: 28px 62px 18px;
   background: var(--blanco);
   color: #82918a;
   font-family: "Open Sans", Arial, sans-serif;
-  font-size: clamp(1.65rem, 3vw, 2rem);
+  font-size: clamp(1.45rem, 2.5vw, 1.8rem);
   font-weight: 700;
   text-align: center;
 }
@@ -925,14 +925,14 @@ footer a {
 
 .map-modal-content iframe {
   width: 100%;
-  height: min(565px, calc(100vh - 245px));
-  min-height: 360px;
+  height: min(420px, calc(100vh - 235px));
+  min-height: 300px;
   border: 0;
 }
 
 .map-modal-content .ampliar-mapa {
-  min-width: 220px;
-  margin-top: 38px;
+  min-width: 210px;
+  margin-top: 28px;
   background: var(--blanco);
   color: #82918a;
   box-shadow: 0 4px 15px rgb(0 0 0 / 0.18);
