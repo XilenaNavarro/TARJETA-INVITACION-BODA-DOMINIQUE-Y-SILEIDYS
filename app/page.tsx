@@ -3,6 +3,36 @@
 import { useEffect, useMemo, useState } from "react";
 
 const weddingDate = new Date("2026-09-27T19:00:00");
+const ceremonyStart = "20260927T180000";
+const ceremonyEnd = "20260927T200000";
+const ceremonyTitle = "Boda de Dominique y Sileidys (Ceremonia)";
+const ceremonyLocation = "Parroquia Virgen del Carmen, Calle 57 aa #00 00";
+const ceremonyDescription = "Ceremonia de boda de Dominique y Sileidys";
+
+const calendarLinks = {
+  apple: `/dominique-sileidys-ceremonia.ics`,
+  google: `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    ceremonyTitle,
+  )}&dates=${ceremonyStart}/${ceremonyEnd}&details=${encodeURIComponent(
+    ceremonyDescription,
+  )}&location=${encodeURIComponent(ceremonyLocation)}`,
+  office: `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
+    ceremonyTitle,
+  )}&startdt=2026-09-27T18:00:00&enddt=2026-09-27T20:00:00&body=${encodeURIComponent(
+    ceremonyDescription,
+  )}&location=${encodeURIComponent(ceremonyLocation)}`,
+  outlook: `/dominique-sileidys-ceremonia.ics`,
+  outlookCom: `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
+    ceremonyTitle,
+  )}&startdt=2026-09-27T18:00:00&enddt=2026-09-27T20:00:00&body=${encodeURIComponent(
+    ceremonyDescription,
+  )}&location=${encodeURIComponent(ceremonyLocation)}`,
+  yahoo: `https://calendar.yahoo.com/?v=60&title=${encodeURIComponent(
+    ceremonyTitle,
+  )}&st=${ceremonyStart}&et=${ceremonyEnd}&desc=${encodeURIComponent(
+    ceremonyDescription,
+  )}&in_loc=${encodeURIComponent(ceremonyLocation)}`,
+};
 
 function Countdown() {
   const [now, setNow] = useState<Date | null>(null);
@@ -74,6 +104,47 @@ function Modal({
   );
 }
 
+function CalendarMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="calendar-menu">
+      <button className="boton" type="button" onClick={() => setOpen((value) => !value)}>
+        Agendar
+      </button>
+      {open ? (
+        <div className="calendar-options">
+          <a href={calendarLinks.apple}>
+            <span className="cal-icon apple">Apple</span>
+            <b>Apple Calendar</b>
+          </a>
+          <a href={calendarLinks.google} target="_blank">
+            <span className="cal-icon google">G</span>
+            <b>Google <em>(online)</em></b>
+          </a>
+          <a href={calendarLinks.office} target="_blank">
+            <span className="cal-icon office">O</span>
+            <b>Office 365 <em>(online)</em></b>
+          </a>
+          <a href={calendarLinks.outlook}>
+            <span className="cal-icon outlook">O</span>
+            <b>Outlook</b>
+          </a>
+          <a href={calendarLinks.outlookCom} target="_blank">
+            <span className="cal-icon outlookcom">O</span>
+            <b>Outlook.com <em>(online)</em></b>
+          </a>
+          <a href={calendarLinks.yahoo} target="_blank">
+            <span className="cal-icon yahoo">Y</span>
+            <b>Yahoo <em>(online)</em></b>
+          </a>
+          <small>ADDEVENT.COM</small>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function Home() {
   const [modal, setModal] = useState<"rsvp" | null>(null);
 
@@ -140,9 +211,7 @@ export default function Home() {
           <div className="info-box">
             <h6>Dia</h6>
             <p>Domingo 27 de Septiembre - 6:00 pm</p>
-            <a className="boton" href="https://www.google.com/calendar" target="_blank">
-              Agendar
-            </a>
+            <CalendarMenu />
           </div>
           <div className="info-box">
             <h6>Lugar</h6>

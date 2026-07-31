@@ -533,6 +533,108 @@ main {
   color: var(--blanco);
 }
 
+.calendar-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.calendar-options {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  z-index: 20;
+  width: 288px;
+  padding: 16px 0 10px;
+  background: var(--blanco);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.22);
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.calendar-options a {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 22px;
+  color: #3f3f3f;
+  text-decoration: none;
+}
+
+.calendar-options a:hover {
+  background: #f5f5f5;
+  transform: none;
+}
+
+.calendar-options b {
+  font-size: 1.06rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.calendar-options em {
+  color: #9b9b9b;
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.calendar-options small {
+  display: block;
+  margin: 8px 12px 0 0;
+  border-top: 1px solid #e5e5e5;
+  color: #c2c2c2;
+  font-size: 0.68rem;
+  text-align: right;
+}
+
+.cal-icon {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  color: var(--blanco);
+  font-size: 0;
+  font-weight: 700;
+}
+
+.cal-icon.apple {
+  color: #5d5d5d;
+  font-size: 0;
+}
+
+.cal-icon.apple::before {
+  content: "\25CF";
+  font-size: 1.5rem;
+}
+
+.cal-icon.google {
+  background: conic-gradient(#4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+.cal-icon.office {
+  background: #e95420;
+  clip-path: polygon(8% 18%, 70% 0, 92% 15%, 92% 83%, 70% 100%, 8% 82%);
+  font-size: 1rem;
+}
+
+.cal-icon.outlook,
+.cal-icon.outlookcom {
+  background: #2f76c8;
+  font-size: 1rem;
+}
+
+.cal-icon.outlookcom {
+  background: #2764b2;
+}
+
+.cal-icon.yahoo {
+  color: #4b169f;
+  font-size: 1.55rem;
+}
+
 .confirmacion-asistencia {
   background: var(--menta);
 }
