@@ -458,6 +458,72 @@ main {
     radial-gradient(circle at 63% 58%, var(--oliva) 0 8px, transparent 9px);
 }
 
+.anim-anillos {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 28px;
+  border: 0;
+  background: none;
+}
+
+.anim-anillos svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.anim-anillos .ring,
+.anim-anillos .heart-ring {
+  fill: none;
+  stroke: #40b7b4;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: center;
+}
+
+.anim-anillos .ring-left {
+  animation: ring-left-breathe 2.8s ease-in-out infinite;
+}
+
+.anim-anillos .ring-right {
+  animation: ring-right-breathe 2.8s ease-in-out infinite;
+}
+
+.anim-anillos .heart-ring {
+  animation: heart-bounce 2.1s ease-in-out infinite;
+}
+
+@keyframes ring-left-breathe {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes ring-right-breathe {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes heart-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.04);
+  }
+}
+
 .col-ceremonia h3,
 .col-fiesta h3,
 .title {

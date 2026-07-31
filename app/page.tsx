@@ -209,7 +209,16 @@ export default function Home() {
       <section className="ceremonia-fiesta ceremonia-unica">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
-          <div className="anim-anillos" />
+          <div className="anim-anillos" aria-hidden="true">
+            <svg viewBox="0 0 180 180" role="img">
+              <circle className="ring ring-left" cx="62" cy="109" r="52" />
+              <circle className="ring ring-right" cx="118" cy="109" r="52" />
+              <path
+                className="heart-ring"
+                d="M90 53 C78 38 63 38 58 51 C52 66 72 84 90 102 C108 84 128 66 122 51 C117 38 102 38 90 53 Z"
+              />
+            </svg>
+          </div>
           <h3>Ceremonia</h3>
           <div className="info-box">
             <h6>Dia</h6>
