@@ -4,18 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const weddingDate = new Date("2026-11-22T19:00:00");
 
-const features = [
-  "Nombres de invitados",
-  "Envio ilimitado",
-  "Musica de fondo",
-  "Cuenta Regresiva",
-  "Ubicacion e Indicaciones",
-  "Lista de canciones",
-  "Regalos",
-  "Agenda",
-  "Confirmacion de asistencia",
-];
-
 function Countdown() {
   const [now, setNow] = useState<Date | null>(null);
 
@@ -37,22 +25,25 @@ function Countdown() {
   }, [now]);
 
   return (
-    <div className="countdown-card" aria-label="Cuenta regresiva para la boda">
-      <span>Falta</span>
-      <div>
-        {parts.map(([label, value]) => (
-          <p key={label}>
-            <strong>{String(value).padStart(2, "0")}</strong>
-            <small>{label}</small>
-          </p>
-        ))}
+    <section className="countdown-section" aria-label="Cuenta regresiva">
+      <img className="count-leaf left" src="/follaje.png" alt="" />
+      <div className="count-card">
+        <span>Falta</span>
+        <div>
+          {parts.map(([label, value]) => (
+            <p key={label}>
+              <strong>{String(value).padStart(2, "0")}</strong>
+              <small>{label}</small>
+            </p>
+          ))}
+        </div>
       </div>
-      <i aria-hidden="true" />
-    </div>
+      <img className="count-leaf right" src="/follaje.png" alt="" />
+    </section>
   );
 }
 
-function MusicPlayer() {
+function MusicButton() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -77,47 +68,17 @@ function MusicPlayer() {
   };
 
   return (
-    <section className="music-strip" aria-label="Musica de fondo">
+    <>
       <audio ref={audioRef} src="/cancion.mp3" preload="metadata" />
-      <button type="button" onClick={toggle} aria-label="Reproducir musica">
-        {playing ? "Pausar musica" : "Reproducir musica"}
+      <button
+        className={playing ? "music-float active" : "music-float"}
+        type="button"
+        onClick={toggle}
+        aria-label={playing ? "Pausar musica" : "Reproducir musica"}
+      >
+        <span>&#9835;</span>
       </button>
-    </section>
-  );
-}
-
-function InvitationPreview({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={compact ? "phone-preview compact" : "phone-preview"}>
-      <div className="phone-speaker" />
-      <div className="invite-screen">
-        <img className="screen-photo" src="/hero.jpg" alt="Carlos y Alejandra" />
-        <div className="screen-shade" />
-        <img className="leaf top-left" src="/follaje.png" alt="" />
-        <div className="screen-content">
-          <div className="date-line">
-            <span />
-            <p>22.11.2026</p>
-            <span />
-          </div>
-          <h1>
-            Carlos
-            <b>&amp;</b>
-            Alejandra
-          </h1>
-          <div className="thin-line" />
-          <blockquote>
-            Todos somos mortales, hasta el primer beso y la segunda copa de vino.
-          </blockquote>
-          <div className="chevron" aria-hidden="true" />
-        </div>
-        <div className="screen-wave" />
-        <img className="leaf bottom-right" src="/follaje.png" alt="" />
-        {!compact ? <Countdown /> : null}
-        <div className="gold-frame" aria-hidden="true" />
-      </div>
-      <div className="phone-button" />
-    </div>
+    </>
   );
 }
 
@@ -148,124 +109,76 @@ export default function Home() {
 
   return (
     <main>
-      <header className="hero">
-        <nav className="topbar" aria-label="Menu principal">
-          <a className="brand" href="#inicio">
-            fixdate
+      <MusicButton />
+
+      <header className="invitation-hero" id="inicio">
+        <img className="hero-photo" src="/hero.jpg" alt="Carlos y Alejandra" />
+        <div className="hero-filter" />
+        <img className="hero-leaf leaf-top" src="/follaje.png" alt="" />
+        <img className="hero-leaf leaf-bottom" src="/follaje.png" alt="" />
+
+        <div className="hero-center">
+          <div className="date-line">
+            <span />
+            <p>22.11.2026</p>
+            <span />
+          </div>
+
+          <h1>
+            <span>Carlos</span>
+            <b>&amp;</b>
+            <span>Alejandra</span>
+          </h1>
+
+          <div className="name-line" />
+
+          <blockquote>
+            <span />
+            Todos somos mortales,
+            <br />
+            hasta el primer beso y la segunda copa de vino
+            <i />
+          </blockquote>
+
+          <a className="scroll-arrow" href="#contador" aria-label="Bajar">
+            <span />
           </a>
-          <button className="menu-button" type="button" aria-label="Abrir menu">
-            <span />
-            <span />
-            <span />
-          </button>
-        </nav>
-
-        <section className="hero-grid" id="inicio">
-          <div className="hero-copy">
-            <p className="eyebrow">Hojas</p>
-            <h1>Elegancia y distincion</h1>
-            <p>
-              Un modelo en donde las hojas toman protagonismo, formando delicados
-              ramos que decoran de manera fina y sutil. Verde esmeralda, blanco
-              roto y pequenos detalles dorados envuelven nuestra invitacion.
-            </p>
-            <div className="hero-actions">
-              <button type="button" onClick={() => setModal("rsvp")}>
-                Confirmar asistencia
-              </button>
-              <a href="https://wa.me/" target="_blank">
-                Solicitar por Whatsapp
-              </a>
-            </div>
-          </div>
-
-          <div className="device-scene" aria-label="Vista previa de la invitacion">
-            <div className="browser-preview">
-              <div className="browser-bar" />
-              <div className="browser-screen">
-                <img src="/hero.jpg" alt="" />
-                <div />
-              </div>
-            </div>
-            <InvitationPreview />
-            <div className="tablet-preview">
-              <InvitationPreview compact />
-            </div>
-            <img className="scene-leaf leaf-a" src="/follaje.png" alt="" />
-            <img className="scene-leaf leaf-b" src="/follaje.png" alt="" />
-          </div>
-        </section>
-
-        <div className="hero-waves" aria-hidden="true">
-          <span />
-          <b />
         </div>
+
+        <div className="phone-home" aria-hidden="true" />
       </header>
 
-      <MusicPlayer />
+      <Countdown />
 
-      <section className="intro-panel">
-        <InvitationPreview />
-        <div>
-          <p className="section-kicker">Scrollea</p>
-          <h2>Carlos &amp; Alejandra</h2>
-          <p>
-            Con la bendicion de Dios y la alegria de nuestras familias, queremos
-            compartir contigo el comienzo de esta nueva historia.
-          </p>
-          <a href="#detalles">Ver detalles</a>
-        </div>
+      <section className="intro-section">
+        <img src="/follaje.png" alt="" />
+        <p>Nos casamos</p>
+        <h2>Carlos &amp; Alejandra</h2>
+        <span>Con la bendicion de Dios y la alegria de nuestras familias.</span>
       </section>
 
-      <section className="details-band" id="detalles">
+      <section className="details-section" id="contador">
         <article>
           <span>Ceremonia</span>
-          <h2>6:00 pm</h2>
+          <h3>6:00 pm</h3>
           <p>Parroquia Virgen del Carmen</p>
+          <small>Calle 57 aa #00 00</small>
           <a href="https://www.google.com/maps" target="_blank">
             Como llegar
           </a>
         </article>
         <article>
           <span>Recepcion</span>
-          <h2>7:30 pm</h2>
+          <h3>7:30 pm</h3>
           <p>Eventos Medellin</p>
+          <small>Calle 57 aa #00 00</small>
           <a href="https://www.google.com/maps" target="_blank">
             Como llegar
           </a>
         </article>
       </section>
 
-      <section className="included-section">
-        <div className="included-copy">
-          <h2>Que incluyen?</h2>
-          <p>Todo lo que necesitas en tu invitacion.</p>
-          <div className="feature-table">
-            <div className="table-head">
-              <span />
-              <b>Incluido</b>
-              <b>Que es?</b>
-            </div>
-            {features.map((feature) => (
-              <div className="table-row" key={feature}>
-                <strong>{feature}</strong>
-                <span className="check">✓</span>
-                <span className="help">?</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="included-phone">
-          <div className="scroll-badge">
-            <span>Scrollea!</span>
-            <b>⌄⌄</b>
-          </div>
-          <InvitationPreview compact />
-        </div>
-      </section>
-
-      <section className="action-section">
-        <img src="/follaje.png" alt="" />
+      <section className="rsvp-section">
         <h2>Confirma tu asistencia</h2>
         <p>
           Para nosotros es muy importante contar contigo. Por favor confirmanos
@@ -276,7 +189,7 @@ export default function Home() {
         </button>
       </section>
 
-      <section className="cards-section">
+      <section className="info-section">
         <article>
           <h3>Codigo de vestuario</h3>
           <p>Ellas: vestido largo. Ellos: traje formal. Evitar blanco, beige y rojo.</p>
