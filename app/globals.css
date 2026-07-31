@@ -489,9 +489,16 @@ main {
   font-size: 1.05rem;
 }
 
+.info-box .direccion-principal {
+  color: #82918a;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
 .info-direccion {
   color: #8a8a8a !important;
-  font-size: 0.92rem !important;
+  font-size: 1.08rem !important;
+  line-height: 1.65;
 }
 
 .boton {

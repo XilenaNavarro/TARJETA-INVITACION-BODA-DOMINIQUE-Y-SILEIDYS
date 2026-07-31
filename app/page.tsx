@@ -7,7 +7,7 @@ const ceremonyStart = "20260927T180000";
 const ceremonyEnd = "20260927T200000";
 const ceremonyTitle = "Boda de Dominique y Sileidys (Ceremonia)";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
-const ceremonyLocation = `Parroquia Virgen del Carmen, ${ceremonyAddress}`;
+const ceremonyLocation = ceremonyAddress;
 const ceremonyDescription = "Ceremonia de boda de Dominique y Sileidys";
 const mapsQuery = encodeURIComponent(ceremonyAddress);
 const mapsEmbedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
@@ -218,10 +218,8 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
-            <p>Parroquia Virgen del Carmen</p>
+            <p className="direccion-principal">Cl. 30 # 18-85</p>
             <p className="info-direccion">
-              Cl. 30 # 18-85
-              <br />
               Brr. 1 de Mayo
               <br />
               Santa Marta, Magdalena
