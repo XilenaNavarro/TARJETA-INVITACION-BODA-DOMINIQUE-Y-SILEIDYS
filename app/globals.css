@@ -243,16 +243,52 @@ main {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 368px;
-  background: var(--claro);
+  min-height: 720px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 12%, rgb(80 115 108 / 0.06), transparent 26%),
+    linear-gradient(#f8f8f6, #ffffff);
+}
+
+.franja-verde {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  top: 178px;
+  height: 160px;
+  background: #b6c19e;
+  transform: rotate(-10deg);
+  transform-origin: center;
+}
+
+.hojas-conteo {
+  position: absolute;
+  z-index: 3;
+  width: 275px;
+  height: auto;
+  pointer-events: none;
+}
+
+.hojas-conteo-sup {
+  top: 66px;
+  left: 50%;
+  transform: translateX(-12%) rotate(86deg);
+}
+
+.hojas-conteo-inf {
+  left: calc(50% - 360px);
+  bottom: 72px;
+  transform: rotate(-76deg) scaleX(-1);
 }
 
 .box-aros {
+  position: relative;
+  z-index: 2;
   display: grid;
   place-items: center;
-  width: 254px;
-  height: 254px;
-  border: 1px solid rgb(216 213 179 / 0.75);
+  width: min(540px, 86vw);
+  height: min(540px, 86vw);
+  border: 2px solid rgb(222 168 61 / 0.78);
   transform: rotate(18deg);
 }
 
@@ -274,32 +310,36 @@ main {
 
 .box-circulo {
   position: relative;
-  z-index: 1;
+  z-index: 4;
   display: grid;
   place-items: center;
-  width: 168px;
-  height: 168px;
+  width: min(420px, 68vw);
+  height: min(420px, 68vw);
   border-radius: 50%;
   background: rgb(255 255 255 / 0.95);
-  color: #8a918d;
+  color: #82918a;
   text-align: center;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  box-shadow: 22px 28px 40px rgb(0 0 0 / 0.16);
   transform: rotate(-18deg);
 }
 
 .falta {
   align-self: end;
-  font-size: 0.95rem;
+  color: #83928c;
+  font-size: clamp(2.4rem, 6vw, 3.65rem);
+  font-weight: 300;
+  line-height: 1;
 }
 
 .reloj {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 86%;
+  width: 78%;
 }
 
 .reloj-col {
-  border-right: 1px solid #d7d7d7;
+  min-width: 0;
+  border-right: 1px solid #cdd3cf;
 }
 
 .reloj-col.no-border {
@@ -308,24 +348,25 @@ main {
 
 .number {
   display: block;
-  color: #707773;
-  font-size: 1.22rem;
+  color: #26473f;
+  font-size: clamp(1.65rem, 4.8vw, 2.85rem);
   font-weight: 700;
   line-height: 1;
 }
 
 .time {
   display: block;
-  color: #b2b8b4;
-  font-size: 0.62rem;
-  line-height: 1.15;
+  margin-top: 11px;
+  color: #82918a;
+  font-size: clamp(1.1rem, 3vw, 1.65rem);
+  line-height: 1;
 }
 
 .corazon-falta {
   align-self: start;
-  width: 14px;
-  height: 12px;
-  background: var(--menta);
+  width: 58px;
+  height: 48px;
+  background: #82918a;
   clip-path: polygon(50% 100%, 0 38%, 20% 0, 50% 24%, 80% 0, 100% 38%);
 }
 
@@ -394,6 +435,12 @@ main {
   gap: 1px;
   overflow: hidden;
   background: #d8dfdc;
+}
+
+.ceremonia-fiesta.ceremonia-unica {
+  grid-template-columns: minmax(280px, 680px);
+  justify-content: center;
+  background: var(--claro);
 }
 
 .ceremonia-fiesta-flor-der {

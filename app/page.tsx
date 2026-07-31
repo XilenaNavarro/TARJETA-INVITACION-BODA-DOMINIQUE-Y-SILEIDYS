@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-const weddingDate = new Date("2026-11-22T19:00:00");
+const weddingDate = new Date("2026-09-27T19:00:00");
 
 function Countdown() {
   const [now, setNow] = useState<Date | null>(null);
@@ -17,7 +17,7 @@ function Countdown() {
     const current = now ?? weddingDate;
     const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
     return [
-      ["dias", Math.floor(distance / 86400000)],
+      ["días", Math.floor(distance / 86400000)],
       ["hs", Math.floor((distance / 3600000) % 24)],
       ["min", Math.floor((distance / 60000) % 60)],
       ["seg", Math.floor((distance / 1000) % 60)],
@@ -26,6 +26,9 @@ function Countdown() {
 
   return (
     <section className="cuenta-regresiva">
+      <div className="franja-verde" />
+      <img className="hojas-conteo hojas-conteo-sup" src="/fixdate-hojas-fiesta.svg" alt="" />
+      <img className="hojas-conteo hojas-conteo-inf" src="/fixdate-hojas-fiesta.svg" alt="" />
       <div className="box-aros">
         <div className="box-circulo">
           <span className="falta">Falta</span>
@@ -41,46 +44,6 @@ function Countdown() {
         </div>
       </div>
     </section>
-  );
-}
-
-function MusicButton() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const stop = () => setPlaying(false);
-    audio.addEventListener("ended", stop);
-    return () => audio.removeEventListener("ended", stop);
-  }, []);
-
-  const toggle = async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-      return;
-    }
-    await audio.play();
-    setPlaying(true);
-  };
-
-  return (
-    <>
-      <audio ref={audioRef} src="/cancion.mp3" preload="metadata" />
-      <button
-        id="controlador-musica"
-        className={playing ? "music-on" : ""}
-        type="button"
-        onClick={toggle}
-        aria-label={playing ? "Pausar musica" : "Reproducir musica"}
-      >
-        <span className="music-anim-icon">&#9835;</span>
-      </button>
-    </>
   );
 }
 
@@ -107,12 +70,10 @@ function Modal({
 }
 
 export default function Home() {
-  const [modal, setModal] = useState<"rsvp" | "gift" | "playlist" | null>(null);
+  const [modal, setModal] = useState<"rsvp" | null>(null);
 
   return (
     <main>
-      <MusicButton />
-
       <section className="portada">
         <div className="portada-flor-izq-sup" />
         <div className="portada-flor-der-inf" />
@@ -120,13 +81,13 @@ export default function Home() {
 
         <div className="content-portada">
           <div className="box-nombres-fecha-portada">
-            <span className="fecha">22.11.2026</span>
+            <span className="fecha">27.09.2026</span>
             <h1>
-              Carlos
+              Dominique
               <br className="mobile-break" />
               <span>&amp;</span>
               <br className="mobile-break" />
-              Alejandra
+              Sileidys
             </h1>
             <div className="line" />
           </div>
@@ -165,14 +126,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ceremonia-fiesta">
+      <section className="ceremonia-fiesta ceremonia-unica">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
           <div className="anim-anillos" />
           <h3>Ceremonia</h3>
           <div className="info-box">
             <h6>Dia</h6>
-            <p>Domingo 22 de Noviembre - 6:00 pm</p>
+            <p>Domingo 27 de Septiembre - 6:00 pm</p>
             <a className="boton" href="https://www.google.com/calendar" target="_blank">
               Agendar
             </a>
@@ -180,26 +141,6 @@ export default function Home() {
           <div className="info-box">
             <h6>Lugar</h6>
             <p>Parroquia Virgen del Carmen</p>
-            <p className="info-direccion">Calle 57 aa #00 00</p>
-            <a className="boton" href="https://www.google.com/maps" target="_blank">
-              Como llegar?
-            </a>
-          </div>
-        </article>
-
-        <article className="col-fiesta">
-          <div className="anim-fiesta" />
-          <h3>Fiesta</h3>
-          <div className="info-box">
-            <h6>Dia</h6>
-            <p>Domingo 22 de Noviembre - 7:30 pm</p>
-            <a className="boton" href="https://www.google.com/calendar" target="_blank">
-              Agendar
-            </a>
-          </div>
-          <div className="info-box">
-            <h6>Lugar</h6>
-            <p>Eventos Medellin</p>
             <p className="info-direccion">Calle 57 aa #00 00</p>
             <a className="boton" href="https://www.google.com/maps" target="_blank">
               Como llegar?
@@ -233,48 +174,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="fiesta">
-        <h2 className="title">Fiesta</h2>
-        <p className="subtitle">Hagamos juntos una fiesta epica. Aqui algunos detalles a tener en cuenta.</p>
-        <div className="items-fiesta">
-          <article className="item-fiesta">
-            <img className="hojas-musica" src="/fixdate-hojas-fiesta.svg" alt="" />
-            <h3>Musica</h3>
-            <div className="anim-musica" />
-            <p>Cual es la cancion que no debe faltar en la playlist de la fiesta?</p>
-            <button className="boton" type="button" onClick={() => setModal("playlist")}>
-              Sugerir cancion
-            </button>
-          </article>
-          <article className="item-fiesta">
-            <h3>Dress Code</h3>
-            <div className="anim-vestuario" />
-            <p>Una orientacion para tu vestuario</p>
-            <button className="boton" type="button">
-              Ver mas
-            </button>
-          </article>
-          <article className="item-fiesta">
-            <h3>Tips y Notas</h3>
-            <div className="anim-tips" />
-            <p>Informacion adicional para tener en cuenta</p>
-            <button className="boton" type="button">
-              + Info
-            </button>
-          </article>
-        </div>
-      </section>
-
-      <section className="regalos">
-        <div className="regalos-flor-der" />
-        <h2 className="title">Regalos</h2>
-        <p className="subtitle">Si deseas regalarnos algo mas que tu hermosa presencia...</p>
-        <div className="anim-regalos" />
-        <button className="boton" type="button" onClick={() => setModal("gift")}>
-          Cuenta Bancaria - Lista Regalos
-        </button>
-      </section>
-
       <section className="instagram">
         <h2 className="title">Compartimos este dia junto a vos</h2>
         <p className="subtitle">Comparte tus fotos y videos de ese hermoso dia</p>
@@ -289,16 +188,12 @@ export default function Home() {
 
       <section className="footer-invitacion">
         <h4>
-          Carlos <span>&amp;</span> Alejandra
+          Dominique <span>&amp;</span> Sileidys
         </h4>
         <ul>
           <li>
             <button type="button" onClick={() => setModal("rsvp")}>Confirmar asistencia</button>
           </li>
-          <li>
-            <button type="button" onClick={() => setModal("playlist")}>Sugerir cancion</button>
-          </li>
-          <li>Agendar Fiesta</li>
           <li>Agendar Ceremonia</li>
         </ul>
       </section>
@@ -342,32 +237,6 @@ export default function Home() {
         </Modal>
       ) : null}
 
-      {modal === "gift" ? (
-        <Modal title="Regalos" onClose={() => setModal(null)}>
-          <p className="modal-text">
-            Tu presencia es nuestro mejor regalo. Si deseas tener un detalle,
-            tendremos lluvia de sobres.
-          </p>
-        </Modal>
-      ) : null}
-
-      {modal === "playlist" ? (
-        <Modal title="Sugerir cancion" onClose={() => setModal(null)}>
-          <form className="form">
-            <label>
-              Tu nombre
-              <input placeholder="Ej: Familia Perez" />
-            </label>
-            <label>
-              Cancion
-              <input placeholder="Cancion - Artista" />
-            </label>
-            <button className="boton" type="button" onClick={() => setModal(null)}>
-              Enviar sugerencia
-            </button>
-          </form>
-        </Modal>
-      ) : null}
     </main>
   );
 }
