@@ -17,7 +17,7 @@ function Countdown() {
     const current = now ?? weddingDate;
     const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
     return [
-      ["días", Math.floor(distance / 86400000)],
+      ["d\u00edas", Math.floor(distance / 86400000)],
       ["hs", Math.floor((distance / 3600000) % 24)],
       ["min", Math.floor((distance / 60000) % 60)],
       ["seg", Math.floor((distance / 1000) % 60)],
@@ -27,20 +27,25 @@ function Countdown() {
   return (
     <section className="cuenta-regresiva">
       <div className="franja-verde" />
-      <img className="hojas-conteo hojas-conteo-sup" src="/fixdate-hojas-fiesta.svg" alt="" />
-      <img className="hojas-conteo hojas-conteo-inf" src="/fixdate-hojas-fiesta.svg" alt="" />
-      <div className="box-aros">
-        <div className="box-circulo">
-          <span className="falta">Falta</span>
-          <div className="reloj">
-            {parts.map(([label, value], index) => (
-              <div className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"} key={label}>
-                <span className="number">{String(value).padStart(2, "0")}</span>
-                <span className="time">{label}</span>
-              </div>
-            ))}
+      <div className="decor-conteo">
+        <img className="hojas-conteo hojas-conteo-sup" src="/fixdate-hojas-fiesta.svg" alt="" />
+        <img className="hojas-conteo hojas-conteo-inf" src="/fixdate-hojas-fiesta.svg" alt="" />
+        <div className="box-aros">
+          <div className="box-circulo">
+            <span className="falta">Falta</span>
+            <div className="reloj">
+              {parts.map(([label, value], index) => (
+                <div
+                  className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"}
+                  key={label}
+                >
+                  <span className="number">{String(value).padStart(2, "0")}</span>
+                  <span className="time">{label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="corazon-falta" />
           </div>
-          <div className="corazon-falta" />
         </div>
       </div>
     </section>
@@ -180,7 +185,7 @@ export default function Home() {
         <p className="subtitle">Comparte tus fotos y videos de ese hermoso dia</p>
         <div className="anim-instagram" />
         <a className="hashtag" href="https://www.instagram.com/" target="_blank">
-          #carlosyalejandra
+          #dominiqueysileidys
         </a>
         <a className="boton" href="https://www.instagram.com/" target="_blank">
           Ver en Instagram
@@ -193,7 +198,9 @@ export default function Home() {
         </h4>
         <ul>
           <li>
-            <button type="button" onClick={() => setModal("rsvp")}>Confirmar asistencia</button>
+            <button type="button" onClick={() => setModal("rsvp")}>
+              Confirmar asistencia
+            </button>
           </li>
           <li>Agendar Ceremonia</li>
         </ul>
@@ -223,7 +230,9 @@ export default function Home() {
               Numero de personas
               <select defaultValue="1">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <option key={item}>{item} Persona{item > 1 ? "s" : ""}</option>
+                  <option key={item}>
+                    {item} Persona{item > 1 ? "s" : ""}
+                  </option>
                 ))}
               </select>
             </label>
@@ -237,7 +246,6 @@ export default function Home() {
           </form>
         </Modal>
       ) : null}
-
     </main>
   );
 }

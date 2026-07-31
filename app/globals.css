@@ -228,7 +228,7 @@ main {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 720px;
+  min-height: 650px;
   overflow: hidden;
   background:
     radial-gradient(circle at 20% 12%, rgb(80 115 108 / 0.06), transparent 26%),
@@ -240,40 +240,49 @@ main {
   z-index: 1;
   left: -12%;
   right: -12%;
-  top: 178px;
-  height: 160px;
+  top: 188px;
+  height: 136px;
   background: #b6c19e;
   transform: rotate(-10deg);
   transform-origin: center;
 }
 
+.decor-conteo {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(560px, 88vw);
+  height: min(560px, 88vw);
+}
+
 .hojas-conteo {
   position: absolute;
-  z-index: 2;
-  width: clamp(210px, 27vw, 330px);
+  z-index: 4;
+  width: clamp(150px, 20vw, 245px);
   height: auto;
   pointer-events: none;
 }
 
 .hojas-conteo-sup {
-  top: 42px;
-  left: 50%;
-  transform: translateX(0) rotate(86deg);
+  top: -12px;
+  right: 72px;
+  transform: rotate(88deg);
 }
 
 .hojas-conteo-inf {
-  left: calc(50% - 380px);
-  bottom: 48px;
+  left: 56px;
+  bottom: 22px;
   transform: rotate(-76deg) scaleX(-1);
 }
 
 .box-aros {
-  position: relative;
-  z-index: 3;
+  position: absolute;
+  z-index: 5;
   display: grid;
   place-items: center;
-  width: min(540px, 86vw);
-  height: min(540px, 86vw);
+  width: min(500px, 78vw);
+  height: min(500px, 78vw);
   border: 2px solid rgb(222 168 61 / 0.78);
   transform: rotate(18deg);
 }
@@ -300,20 +309,20 @@ main {
   z-index: 5;
   display: grid;
   place-items: center;
-  width: min(420px, 68vw);
-  height: min(420px, 68vw);
+  width: min(350px, 58vw);
+  height: min(350px, 58vw);
   border-radius: 50%;
   background: #ffffff;
   color: #82918a;
   text-align: center;
-  box-shadow: 22px 28px 40px rgb(0 0 0 / 0.16);
+  box-shadow: 20px 26px 34px rgb(0 0 0 / 0.16);
   transform: rotate(-18deg);
 }
 
 .falta {
   align-self: end;
   color: #83928c;
-  font-size: clamp(2.4rem, 6vw, 3.65rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
   line-height: 1;
 }
@@ -321,7 +330,7 @@ main {
 .reloj {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 78%;
+  width: 80%;
 }
 
 .reloj-col {
@@ -336,7 +345,7 @@ main {
 .number {
   display: block;
   color: #26473f;
-  font-size: clamp(1.65rem, 4.8vw, 2.85rem);
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -345,14 +354,14 @@ main {
   display: block;
   margin-top: 11px;
   color: #82918a;
-  font-size: clamp(1.1rem, 3vw, 1.65rem);
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
   line-height: 1;
 }
 
 .corazon-falta {
   align-self: start;
-  width: 58px;
-  height: 48px;
+  width: 44px;
+  height: 36px;
   background: #82918a;
   clip-path: polygon(50% 100%, 0 38%, 20% 0, 50% 24%, 80% 0, 100% 38%);
 }
