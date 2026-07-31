@@ -6,8 +6,12 @@ const weddingDate = new Date("2026-09-27T19:00:00");
 const ceremonyStart = "20260927T180000";
 const ceremonyEnd = "20260927T200000";
 const ceremonyTitle = "Boda de Dominique y Sileidys (Ceremonia)";
-const ceremonyLocation = "Parroquia Virgen del Carmen, Calle 57 aa #00 00";
+const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
+const ceremonyLocation = `Parroquia Virgen del Carmen, ${ceremonyAddress}`;
 const ceremonyDescription = "Ceremonia de boda de Dominique y Sileidys";
+const mapsQuery = encodeURIComponent(ceremonyAddress);
+const mapsEmbedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
+const mapsOpenUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 
 const calendarLinks = {
   apple: `/dominique-sileidys-ceremonia.ics`,
@@ -146,7 +150,7 @@ function CalendarMenu() {
 }
 
 export default function Home() {
-  const [modal, setModal] = useState<"rsvp" | null>(null);
+  const [modal, setModal] = useState<"rsvp" | "map" | null>(null);
 
   return (
     <main>
@@ -216,10 +220,16 @@ export default function Home() {
           <div className="info-box">
             <h6>Lugar</h6>
             <p>Parroquia Virgen del Carmen</p>
-            <p className="info-direccion">Calle 57 aa #00 00</p>
-            <a className="boton" href="https://www.google.com/maps" target="_blank">
+            <p className="info-direccion">
+              Cl. 30 # 18-85
+              <br />
+              Brr. 1 de Mayo
+              <br />
+              Santa Marta, Magdalena
+            </p>
+            <button className="boton" type="button" onClick={() => setModal("map")}>
               Como llegar?
-            </a>
+            </button>
           </div>
         </article>
       </section>
@@ -313,6 +323,22 @@ export default function Home() {
               Enviar confirmacion
             </button>
           </form>
+        </Modal>
+      ) : null}
+
+      {modal === "map" ? (
+        <Modal title="Como llegar a la Ceremonia" onClose={() => setModal(null)}>
+          <div className="map-modal-content">
+            <iframe
+              title="Mapa de la ceremonia"
+              src={mapsEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <a className="boton ampliar-mapa" href={mapsOpenUrl} target="_blank">
+              Ampliar mapa
+            </a>
+          </div>
         </Modal>
       ) : null}
     </main>
