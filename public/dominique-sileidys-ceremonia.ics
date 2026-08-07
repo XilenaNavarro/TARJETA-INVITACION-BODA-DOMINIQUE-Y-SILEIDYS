@@ -1,15 +1,15 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Dominique y Sileidys//Invitacion Hojas//ES
+PRODID:-//Dominique y Sileidys//Invitacion Boda//ES
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:dominique-sileidys-ceremonia-20260927@example.local
-DTSTAMP:20260731T000000Z
+UID:dominique-sileidys-consejos-20260927@example.local
+DTSTAMP:20260807T000000Z
 DTSTART:20260927T230000Z
 DTEND:20260928T010000Z
-SUMMARY:Boda de Dominique y Sileidys (Ceremonia)
-DESCRIPTION:Ceremonia de boda de Dominique y Sileidys
-LOCATION:Parroquia Virgen del Carmen, Calle 57 aa #00 00
+SUMMARY:Boda de Dominique y Sileidys (Consejos Matrimoniales)
+DESCRIPTION:Consejos matrimoniales de Dominique y Sileidys
+LOCATION:Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena
 END:VEVENT
 END:VCALENDAR

@@ -1,0 +1,11 @@
+.codex-package
+.codex-work
+.codex-tools
+.wrangler
+.pnpm-store
+build
+dist
+server.err
+server.log
+*.log
+.codex-*.log

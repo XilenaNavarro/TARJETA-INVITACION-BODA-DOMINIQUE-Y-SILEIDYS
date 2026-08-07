@@ -7,14 +7,16 @@ const ceremonyStart = "20260927T180000";
 const ceremonyEnd = "20260927T200000";
 const partyStart = "20260927T200000";
 const partyEnd = "20260928T010000";
-const ceremonyTitle = "Boda de Dominique y Sileidys (Ceremonia)";
-const partyTitle = "Boda de Dominique y Sileidys (Fiesta)";
+const ceremonyTitle = "Boda de Dominique y Sileidys (Consejos Matrimoniales)";
+const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = ceremonyAddress;
-const ceremonyDescription = "Ceremonia de boda de Dominique y Sileidys";
+const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const mapsQuery = encodeURIComponent(ceremonyAddress);
 const mapsEmbedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
 const mapsOpenUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+const spotifySongUrl =
+  "https://open.spotify.com/intl-es/track/4UVKdTjE4WobaXwvjapVGn?si=jaPUkZQzT9i-_vh_NZBWeW&utm_source=whatsapp&nd=1&dlsi=4abc65e6672d4172";
 
 const calendarLinks = {
   apple: `/dominique-sileidys-ceremonia.ics`,
@@ -23,22 +25,7 @@ const calendarLinks = {
   )}&dates=${ceremonyStart}/${ceremonyEnd}&details=${encodeURIComponent(
     ceremonyDescription,
   )}&location=${encodeURIComponent(ceremonyLocation)}`,
-  office: `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
-    ceremonyTitle,
-  )}&startdt=2026-09-27T18:00:00&enddt=2026-09-27T20:00:00&body=${encodeURIComponent(
-    ceremonyDescription,
-  )}&location=${encodeURIComponent(ceremonyLocation)}`,
   outlook: `/dominique-sileidys-ceremonia.ics`,
-  outlookCom: `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
-    ceremonyTitle,
-  )}&startdt=2026-09-27T18:00:00&enddt=2026-09-27T20:00:00&body=${encodeURIComponent(
-    ceremonyDescription,
-  )}&location=${encodeURIComponent(ceremonyLocation)}`,
-  yahoo: `https://calendar.yahoo.com/?v=60&title=${encodeURIComponent(
-    ceremonyTitle,
-  )}&st=${ceremonyStart}&et=${ceremonyEnd}&desc=${encodeURIComponent(
-    ceremonyDescription,
-  )}&in_loc=${encodeURIComponent(ceremonyLocation)}`,
 };
 
 function Countdown() {
@@ -54,7 +41,7 @@ function Countdown() {
     const current = now ?? weddingDate;
     const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
     return [
-      ["dias", Math.floor(distance / 86400000)],
+      ["días", Math.floor(distance / 86400000)],
       ["hs", Math.floor((distance / 3600000) % 24)],
       ["min", Math.floor((distance / 60000) % 60)],
       ["seg", Math.floor((distance / 1000) % 60)],
@@ -64,9 +51,9 @@ function Countdown() {
   return (
     <section className="cuenta-regresiva">
       <div className="franja-verde" />
+      <img className="hojas-contador-izq" src="/hojas-contador-izq.svg" alt="" />
       <div className="decor-conteo">
-        <img className="hojas-conteo hojas-conteo-sup" src="/fixdate-hojas-fiesta.svg" alt="" />
-        <img className="hojas-conteo hojas-conteo-inf" src="/fixdate-hojas-fiesta.svg" alt="" />
+        <img className="marco-contador" src="/marco-contador.svg" alt="" />
         <div className="box-aros">
           <div className="box-circulo">
             <span className="falta">Falta</span>
@@ -78,7 +65,7 @@ function Countdown() {
                 </div>
               ))}
             </div>
-            <div className="corazon-falta" />
+            <img className="corazon-falta" src="/dia-de-san-valentin-paleta.gif" alt="" />
           </div>
         </div>
       </div>
@@ -110,8 +97,10 @@ function CalendarMenu() {
       </button>
       {open ? (
         <div className="calendar-options">
-          <a href={calendarLinks.apple}>
-            <span className="cal-icon apple">Apple</span>
+          <a href={calendarLinks.apple} download="dominique-sileidys-ceremonia.ics">
+            <span className="cal-icon apple">
+              <img src="/apple-calendar.png" alt="" />
+            </span>
             <b>Apple Calendar</b>
           </a>
           <a href={calendarLinks.google} target="_blank">
@@ -120,27 +109,9 @@ function CalendarMenu() {
               Google <em>(online)</em>
             </b>
           </a>
-          <a href={calendarLinks.office} target="_blank">
-            <span className="cal-icon office">O</span>
-            <b>
-              Office 365 <em>(online)</em>
-            </b>
-          </a>
           <a href={calendarLinks.outlook}>
             <span className="cal-icon outlook">O</span>
             <b>Outlook</b>
-          </a>
-          <a href={calendarLinks.outlookCom} target="_blank">
-            <span className="cal-icon outlookcom">O</span>
-            <b>
-              Outlook.com <em>(online)</em>
-            </b>
-          </a>
-          <a href={calendarLinks.yahoo} target="_blank">
-            <span className="cal-icon yahoo">Y</span>
-            <b>
-              Yahoo <em>(online)</em>
-            </b>
           </a>
           <small>ADDEVENT.COM</small>
         </div>
@@ -149,14 +120,8 @@ function CalendarMenu() {
   );
 }
 
-function HeartIcon() {
-  return (
-    <div className="animated-icon heart-icon" aria-hidden="true">
-      <svg viewBox="0 0 128 128">
-        <path d="M64 113 C39 101 8 76 8 43 C8 22 22 10 40 10 C51 10 59 16 64 25 C69 16 77 10 88 10 C106 10 120 22 120 43 C120 76 89 101 64 113 Z" />
-      </svg>
-    </div>
-  );
+function RingsIcon() {
+  return <img className="animated-icon soft-gif-icon" src="/libro-abierto-paleta.gif" alt="" />;
 }
 
 function PartyIcon() {
@@ -179,19 +144,8 @@ function PartyIcon() {
   );
 }
 
-function GiftIcon() {
-  return (
-    <div className="animated-icon gift-icon" aria-hidden="true">
-      <svg viewBox="0 0 128 128">
-        <path className="gift-box" d="M20 55 H108 V112 H20 Z" />
-        <path className="gift-lid" d="M14 39 H114 V58 H14 Z" />
-        <path className="gift-ribbon" d="M56 39 H72 V112 H56 Z" />
-        <path className="gift-ribbon gift-ribbon-h" d="M20 72 H108" />
-        <path className="gift-bow" d="M61 39 C35 33 35 14 53 17 C65 19 64 34 61 39 Z" />
-        <path className="gift-bow" d="M67 39 C93 33 93 14 75 17 C63 19 64 34 67 39 Z" />
-      </svg>
-    </div>
-  );
+function ReceptionIcon() {
+  return <img className="animated-icon reception-icon" src="/fiesta-paleta.gif" alt="" />;
 }
 
 export default function Home() {
@@ -199,13 +153,45 @@ export default function Home() {
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const instagramRef = useRef<HTMLElement | null>(null);
+  const instagramCollageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const updateInstagramParallax = () => {
+      const section = instagramRef.current;
+      const collage = instagramCollageRef.current;
+      if (!section || !collage) return;
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+      const clampedProgress = Math.min(1, Math.max(0, progress));
+      const movement = (0.5 - clampedProgress) * 260;
+
+      collage.style.setProperty("--instagram-parallax", `${movement}px`);
+    };
+
+    updateInstagramParallax();
+    window.addEventListener("scroll", updateInstagramParallax, { passive: true });
+    window.addEventListener("resize", updateInstagramParallax);
+
+    return () => {
+      window.removeEventListener("scroll", updateInstagramParallax);
+      window.removeEventListener("resize", updateInstagramParallax);
+    };
+  }, []);
 
   const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.volume = 0.45;
-    await audio.play();
-    setIsPlaying(true);
+    try {
+      await audio.play();
+      setIsPlaying(true);
+    } catch {
+      window.open(spotifySongUrl, "_blank", "noopener,noreferrer");
+      setIsPlaying(false);
+    }
   };
 
   const enterInvitation = async (withMusic: boolean) => {
@@ -255,7 +241,7 @@ export default function Home() {
               <br />
               Una cuerda triple
               <br />
-              no se rompe facilmente
+              no se rompe fácilmente
               <small>ECLESIASTES 4:12</small>
               <br />
               <img src="/fixdate-comilla-cierre.svg" alt="" />
@@ -285,10 +271,12 @@ export default function Home() {
       <section className="ceremonia-fiesta">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
-          <HeartIcon />
-          <h3>Ceremonia</h3>
+          <RingsIcon />
+          <div className="event-ribbon">
+            <h3>Consejos Matrimoniales</h3>
+          </div>
           <div className="info-box">
-            <h6>Dia</h6>
+            <h6>Día</h6>
             <p>Domingo 27 de Septiembre - 6:00 pm</p>
             <CalendarMenu />
           </div>
@@ -301,15 +289,18 @@ export default function Home() {
               Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
-              Como llegar?
+              <img className="boton-icon" src="/destino-paleta.gif" alt="" />
+              ¿Cómo llegar?
             </button>
           </div>
         </article>
         <article className="col-fiesta">
-          <PartyIcon />
-          <h3>Fiesta</h3>
+          <ReceptionIcon />
+          <div className="event-ribbon">
+            <h3>Recepción</h3>
+          </div>
           <div className="info-box">
-            <h6>Dia</h6>
+            <h6>Día</h6>
             <p>Domingo 27 de Septiembre - 8:00 pm</p>
             <a
               className="boton"
@@ -325,14 +316,15 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
-            <p className="direccion-principal">Celebracion con amor</p>
+            <p className="direccion-principal">Salón Jardín del Lago</p>
             <p className="info-direccion">
-              Compartiremos despues de la ceremonia
+              Cl. 22 # 14-58
               <br />
               Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
-              Como llegar?
+              <img className="boton-icon" src="/destino-paleta.gif" alt="" />
+              ¿Cómo llegar?
             </button>
           </div>
         </article>
@@ -352,58 +344,48 @@ export default function Home() {
         <div className="content-galeria">
           <h2 className="title">Retratos de Nuestro Amor</h2>
           <p className="subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
-          <PartyIcon />
+          <img className="section-gif-icon" src="/camara-paleta.gif" alt="" />
         </div>
         <div className="content-fotos">
-          {[1, 2, 3, 4].map((item) => (
-            <div className="polaroid" key={item}>
-              <img src={item === 1 ? "/hero.jpg" : "/fixdate-portada-3.webp"} alt="" />
-            </div>
-          ))}
+          <div className="carrusel-fotos">
+            {[
+              "/foto-carrusel-viaje.png",
+              "/foto-carrusel-pareja-sol.png",
+              "/foto-carrusel-cena.png",
+              "/foto-carrusel-iglesia.png",
+              "/foto-carrusel-playa-atardecer.png",
+              "/foto-carrusel-sendero.png",
+              "/foto-carrusel-viaje.png",
+              "/foto-carrusel-pareja-sol.png",
+              "/foto-carrusel-cena.png",
+              "/foto-carrusel-iglesia.png",
+              "/foto-carrusel-playa-atardecer.png",
+              "/foto-carrusel-sendero.png",
+            ].map((src, item) => (
+              <div className={src.includes("foto-carrusel") ? "polaroid polaroid-suave" : "polaroid"} key={`${src}-${item}`}>
+                <img src={src} alt="" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="fiesta">
-        <h2 className="title">Fiesta</h2>
-        <p className="subtitle">Hagamos juntos una fiesta epica. Aqui algunos detalles a tener en cuenta.</p>
+        <h2 className="title">Código de Vestimenta</h2>
+        <p className="subtitle">Para nosotros es importante que te sientas y te veas espectacular.</p>
         <div className="items-fiesta">
-          <article className="item-fiesta">
-            <img className="hojas-musica" src="/fixdate-hojas-fiesta.svg" alt="" />
+          <article className="item-fiesta dress-fiesta-card">
             <div className="content-item-fiesta">
-              <h3>Musica</h3>
-              <PartyIcon />
-              <p>Cual es la cancion que no debe faltar en la playlist de la fiesta?</p>
-              <button className="boton" type="button" onClick={() => setModal("song")}>
-                Sugerir cancion
-              </button>
+              <img className="dress-gif-icon" src="/vestido-paleta.gif" alt="" />
+              <h3>Ellas</h3>
+              <p className="dress-code-main">Vestido formal</p>
             </div>
           </article>
-          <article className="item-fiesta">
+          <article className="item-fiesta dress-fiesta-card">
             <div className="content-item-fiesta">
-              <h3>Dress Code</h3>
-              <div className="dress-icon" aria-hidden="true" />
-              <p>
-                Una orientacion para
-                <br />
-                tu vestuario
-              </p>
-              <button className="boton" type="button" onClick={() => setModal("dress")}>
-                Ver mas
-              </button>
-            </div>
-          </article>
-          <article className="item-fiesta">
-            <div className="content-item-fiesta">
-              <h3>Tips y Notas</h3>
-              <div className="tips-icon" aria-hidden="true" />
-              <p>
-                Informacion adicional
-                <br />
-                para tener en cuenta
-              </p>
-              <button className="boton" type="button" onClick={() => setModal("tips")}>
-                + Info
-              </button>
+              <img className="dress-gif-icon" src="/corbata-paleta.gif" alt="" />
+              <h3>Ellos</h3>
+              <p className="dress-code-main">Traje formal</p>
             </div>
           </article>
         </div>
@@ -413,16 +395,26 @@ export default function Home() {
         <div className="regalos-flor-der" />
         <h2 className="title">Regalos</h2>
         <p className="subtitle">Si deseas regalarnos algo mas que tu hermosa presencia...</p>
-        <GiftIcon />
-        <button className="boton" type="button" onClick={() => setModal("gifts")}>
-          Cuenta Bancaria - Lista Regalos
-        </button>
+        <img className="gift-price-icon" src="/precio-paleta.gif" alt="" />
       </section>
 
-      <section className="instagram">
+      <section className="instagram" ref={instagramRef}>
+        <div className="instagram-flower-collage" ref={instagramCollageRef} aria-hidden="true">
+          {[
+            "/flor-collage-azul.png",
+            "/flor-collage-roja.png",
+            "/flor-collage-rosa.png",
+            "/flor-collage-blanca.png",
+            "/flor-collage-tulipan.png",
+            "/flor-collage-campanilla.png",
+            "/flor-collage-arbol.png",
+            "/flor-collage-narciso.png",
+          ].map((src) => (
+            <img src={src} alt="" key={src} />
+          ))}
+        </div>
         <h2 className="title">Compartimos este dia junto a vos</h2>
         <p className="subtitle">Comparte tus fotos y videos de ese hermoso dia</p>
-        <div className="anim-instagram" />
         <a className="hashtag" href="https://www.instagram.com/" target="_blank">
           #dominiqueysileidys
         </a>
@@ -441,46 +433,37 @@ export default function Home() {
               Confirmar asistencia
             </button>
           </li>
-          <li>
-            <button type="button" onClick={() => setModal("song")}>
-              Sugerir cancion
-            </button>
-          </li>
-          <li>Agendar Fiesta</li>
-          <li>Agendar Ceremonia</li>
+          <li>Agendar Recepción</li>
+          <li>Agendar Consejos Matrimoniales</li>
         </ul>
       </section>
-
-      <footer>
-        <p>
-          Desarrollado con amor por <a href="https://fixdate.io/co/" target="_blank">Fixdate</a>
-        </p>
-      </footer>
 
       <button
         className={isPlaying ? "controlador-musica is-playing" : "controlador-musica"}
         type="button"
-        aria-label={isPlaying ? "Pausar musica" : "Reproducir musica"}
+        aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
         onClick={toggleMusic}
       >
-        <span />
+        <span className="music-wave music-wave-one" aria-hidden="true" />
+        <span className="music-wave music-wave-two" aria-hidden="true" />
+        <span className="music-note" aria-hidden="true">♪</span>
       </button>
 
       {musicPrompt ? (
         <Modal title="" onClose={() => enterInvitation(false)}>
           <div className="music-modal">
             <p>
-              Bienvenidos a la invitacion de
+              Bienvenidos a la invitación de
               <br />
-              Dominique y Sileidys
+              <strong>Dominique y Sileidys</strong>
             </p>
-            <span>La musica de fondo es parte de la experiencia</span>
+            <span>La música de fondo es parte de la experiencia</span>
             <div className="music-actions">
               <button className="boton" type="button" onClick={() => enterInvitation(true)}>
-                Ingresar con musica
+                Ingresar con música
               </button>
               <button className="boton boton-secundario" type="button" onClick={() => enterInvitation(false)}>
-                Ingresar sin musica
+                Ingresar sin música
               </button>
             </div>
           </div>
@@ -495,14 +478,14 @@ export default function Home() {
               <input placeholder="Ej: Familia Perez o Juan Lopez" />
             </label>
             <label>
-              Podras asistir?
+              ¿Podrás asistir?
               <select defaultValue="si">
                 <option value="si">Si, claro</option>
                 <option value="no">No puedo</option>
               </select>
             </label>
             <label>
-              Numero de personas
+              Número de personas
               <select defaultValue="1">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
                   <option key={item}>
@@ -516,17 +499,17 @@ export default function Home() {
               <textarea placeholder="Restricciones alimenticias o mensaje para los novios" />
             </label>
             <button className="boton" type="button" onClick={() => setModal(null)}>
-              Enviar confirmacion
+              Enviar confirmación
             </button>
           </form>
         </Modal>
       ) : null}
 
       {modal === "map" ? (
-        <Modal title="Como llegar a la Ceremonia" onClose={() => setModal(null)}>
+        <Modal title="Cómo llegar a Consejos Matrimoniales" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
-              title="Mapa de la ceremonia"
+              title="Mapa de consejos matrimoniales"
               src={mapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -539,14 +522,14 @@ export default function Home() {
       ) : null}
 
       {modal === "song" ? (
-        <Modal title="Sugerir Cancion" onClose={() => setModal(null)}>
+        <Modal title="Sugerir Canción" onClose={() => setModal(null)}>
           <form className="form">
             <label>
               Tu nombre
               <input placeholder="Ej: Maria Lopez" />
             </label>
             <label>
-              Nombre de cancion y autor
+              Nombre de canción y autor
               <input placeholder="Ej: Perfect - Ed Sheeran" />
             </label>
             <label>
@@ -554,25 +537,30 @@ export default function Home() {
               <input placeholder="YouTube, Spotify, etc." />
             </label>
             <button className="boton" type="button" onClick={() => setModal(null)}>
-              Sugerir cancion
+              Sugerir canción
             </button>
           </form>
         </Modal>
       ) : null}
 
       {modal === "dress" ? (
-        <Modal title="Dress Code" onClose={() => setModal(null)}>
-          <p className="modal-text">
+        <Modal title="Código de Vestimenta" onClose={() => setModal(null)}>
+          <div className="dress-modal-content">
+            <div className="dress-modal-icon" aria-hidden="true">
+              <img src="/corbata-paleta.gif" alt="" />
+            </div>
+            <p className="modal-text">
             Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompanar el
-            estilo de la celebracion.
-          </p>
+            estilo de la celebración.
+            </p>
+          </div>
         </Modal>
       ) : null}
 
       {modal === "tips" ? (
         <Modal title="Tips y Notas" onClose={() => setModal(null)}>
           <p className="modal-text">
-            Llega con tiempo, confirma tu asistencia y guarda la ubicacion. Lo mas importante: ven preparado para
+            Llega con tiempo, confirma tu asistencia y guarda la ubicación. Lo más importante: ven preparado para
             celebrar con nosotros.
           </p>
         </Modal>
