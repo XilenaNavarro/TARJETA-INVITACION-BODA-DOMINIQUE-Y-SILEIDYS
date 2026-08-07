@@ -349,21 +349,21 @@ export default function Home() {
         <div className="content-fotos">
           <div className="carrusel-fotos">
             {[
-              "/foto-carrusel-viaje.png",
-              "/foto-carrusel-pareja-sol.png",
-              "/foto-carrusel-cena.png",
-              "/foto-carrusel-iglesia.png",
-              "/foto-carrusel-playa-atardecer.png",
-              "/foto-carrusel-sendero.png",
-              "/foto-carrusel-viaje.png",
-              "/foto-carrusel-pareja-sol.png",
-              "/foto-carrusel-cena.png",
-              "/foto-carrusel-iglesia.png",
-              "/foto-carrusel-playa-atardecer.png",
-              "/foto-carrusel-sendero.png",
+              "/foto-carrusel-viaje.webp",
+              "/foto-carrusel-pareja-sol.webp",
+              "/foto-carrusel-cena.webp",
+              "/foto-carrusel-iglesia.webp",
+              "/foto-carrusel-playa-atardecer.webp",
+              "/foto-carrusel-sendero.webp",
+              "/foto-carrusel-viaje.webp",
+              "/foto-carrusel-pareja-sol.webp",
+              "/foto-carrusel-cena.webp",
+              "/foto-carrusel-iglesia.webp",
+              "/foto-carrusel-playa-atardecer.webp",
+              "/foto-carrusel-sendero.webp",
             ].map((src, item) => (
               <div className={src.includes("foto-carrusel") ? "polaroid polaroid-suave" : "polaroid"} key={`${src}-${item}`}>
-                <img src={src} alt="" />
+                <img src={src} alt="" loading="eager" decoding="async" />
               </div>
             ))}
           </div>
