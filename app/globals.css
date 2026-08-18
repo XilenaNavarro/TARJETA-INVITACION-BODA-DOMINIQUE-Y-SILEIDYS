@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 :root {
-  --verde: #2f7f8c;
-  --verde-oscuro: #1f5661;
-  --menta: #d7ecea;
-  --oliva: #e7cba3;
-  --dorado: #d59745;
-  --gris: #64787d;
-  --negro: #21373d;
-  --claro: #f7ead8;
+  --verde: #4e7a82;
+  --verde-oscuro: #2f555e;
+  --menta: #cfe4e3;
+  --oliva: #d8b58a;
+  --dorado: #d29a55;
+  --gris: #697b7e;
+  --negro: #26383d;
+  --claro: #f4efe6;
   --blanco: #ffffff;
   --letra-primaria: clamp(2.55rem, 4.2vw, 3.85rem);
   --letra-secundaria: clamp(1rem, 1.18vw, 1.14rem);
@@ -432,8 +432,8 @@ main {
   height: 78px;
   margin: 0 auto 14px;
   border-radius: 50%;
-  background: var(--dorado);
-  color: var(--blanco);
+  background: var(--menta);
+  color: var(--verde);
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -470,7 +470,7 @@ main {
   justify-content: center;
   column-gap: clamp(24px, 5vw, 82px);
   overflow: hidden;
-  background: linear-gradient(180deg, #f7ead8 0%, #edf7f5 55%, #f9f2e7 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta::before,
@@ -497,7 +497,7 @@ main {
 .ceremonia-fiesta.ceremonia-unica {
   grid-template-columns: minmax(280px, 680px);
   justify-content: center;
-  background: linear-gradient(180deg, #f7ead8 0%, #edf7f5 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta-flor-der {
@@ -864,8 +864,8 @@ main {
   margin-top: 12px;
   border: 0;
   border-radius: 999px;
-  background: var(--dorado);
-  color: var(--blanco);
+  background: var(--blanco);
+  color: var(--gris);
   padding: 10px 24px;
   font-size: 0.84rem;
   font-weight: 700;
@@ -883,7 +883,7 @@ main {
 }
 
 .boton:hover {
-  background: #e2ad61;
+  background: #fff8ec;
   color: var(--verde-oscuro);
 }
 
@@ -992,7 +992,7 @@ main {
 .confirmacion-asistencia {
   position: relative;
   overflow: hidden;
-  background: #fff4e3;
+  background: var(--claro);
   min-height: 595px;
   display: grid;
   place-items: end center;
@@ -1051,8 +1051,8 @@ main {
 .confirmacion-asistencia .boton {
   min-width: min(304px, 84vw);
   min-height: 54px;
-  background: var(--verde);
-  color: var(--blanco);
+  background: var(--blanco);
+  color: var(--gris);
   font-size: 0.95rem;
   text-transform: uppercase;
 }
@@ -1078,7 +1078,7 @@ main {
 .galeria {
   min-height: 470px;
   padding-top: 34px;
-  background: #eaf6f4;
+  background: var(--claro);
   overflow: hidden;
 }
 
@@ -1167,7 +1167,7 @@ main {
 .fiesta {
   overflow: hidden;
   padding-bottom: 70px;
-  background: #fff3df;
+  background: var(--claro);
 }
 
 .fiesta::before,
@@ -1215,8 +1215,8 @@ main {
   overflow: hidden;
   min-height: 360px;
   padding: 46px 28px;
-  background: #fffaf1;
-  box-shadow: 0 10px 30px rgb(47 127 140 / 0.14);
+  background: var(--blanco);
+  box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
 }
 
 .hojas-musica {
@@ -1338,7 +1338,7 @@ main {
 
 .regalos {
   overflow: hidden;
-  background: #eaf6f4;
+  background: var(--claro);
   min-height: 500px;
   padding-top: 300px;
 }
@@ -1507,8 +1507,8 @@ main {
   align-items: center;
   min-height: 420px;
   padding: 94px 14vw;
-  background: var(--verde-oscuro);
-  color: #f7ead8;
+  background: var(--claro);
+  color: var(--gris);
 }
 
 .footer-invitacion h4 {
@@ -1522,14 +1522,14 @@ main {
 }
 
 .footer-invitacion h4 span {
-  color: var(--verde-oscuro);
+  color: var(--menta);
   display: inline-grid;
   place-items: center;
   width: clamp(44px, 4vw, 58px);
   height: clamp(44px, 4vw, 58px);
   border-radius: 50%;
-  background: var(--dorado);
-  color: var(--verde-oscuro);
+  background: var(--menta);
+  color: var(--verde);
   font-family: Georgia, serif;
   font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   line-height: 1;
@@ -1546,7 +1546,7 @@ main {
 .footer-invitacion li,
 .footer-invitacion button {
   position: relative;
-  color: #f7ead8;
+  color: var(--gris);
   font-size: clamp(0.84rem, 1vw, 0.96rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -1596,7 +1596,7 @@ main {
 
 .footer-invitacion li:hover,
 .footer-invitacion button:hover {
-  color: var(--menta);
+  color: var(--verde-oscuro);
   transform: translateX(8px);
 }
 
