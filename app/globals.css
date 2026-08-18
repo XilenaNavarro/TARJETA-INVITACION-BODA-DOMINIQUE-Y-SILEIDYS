@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 :root {
-  --verde: #2f7f8c;
-  --verde-oscuro: #1f5661;
-  --menta: #d7ecea;
-  --oliva: #e7cba3;
-  --dorado: #d59745;
-  --gris: #64787d;
-  --negro: #21373d;
-  --claro: #f7ead8;
+  --verde: #526864;
+  --verde-oscuro: #405451;
+  --menta: #cbd9d2;
+  --oliva: #c8c99d;
+  --dorado: #c3aa7c;
+  --gris: #7f8f88;
+  --negro: #2f3433;
+  --claro: #f3f1ec;
   --blanco: #ffffff;
   --letra-primaria: clamp(2.55rem, 4.2vw, 3.85rem);
   --letra-secundaria: clamp(1rem, 1.18vw, 1.14rem);
@@ -93,8 +93,8 @@ main {
   min-height: 112vh;
   overflow: hidden;
   background:
-    linear-gradient(rgb(38 56 61 / 0.52), rgb(38 56 61 / 0.34)),
-    linear-gradient(rgb(244 239 230 / 0.1), rgb(244 239 230 / 0.1)),
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
+    linear-gradient(rgb(243 241 236 / 0.1), rgb(243 241 236 / 0.1)),
     url("/foto-principal-manos.webp") center center / cover no-repeat;
   background-attachment: fixed;
   color: var(--blanco);
@@ -358,7 +358,7 @@ main {
 
 .falta {
   margin: 0;
-  color: var(--dorado);
+  color: #bda77c;
   font-size: clamp(1.65rem, 2.55vw, 2.25rem);
   font-weight: 300;
   line-height: 1;
@@ -382,7 +382,7 @@ main {
 
 .number {
   display: block;
-  color: var(--gris);
+  color: #818487;
   font-size: clamp(1.45rem, 2.25vw, 1.95rem);
   font-weight: 700;
   line-height: 1;
@@ -391,7 +391,7 @@ main {
 .time {
   display: block;
   margin-top: 13px;
-  color: var(--dorado);
+  color: #bda77c;
   font-size: clamp(0.86rem, 1.25vw, 1rem);
   font-weight: 300;
   line-height: 1;
@@ -432,8 +432,8 @@ main {
   height: 78px;
   margin: 0 auto 14px;
   border-radius: 50%;
-  background: var(--dorado);
-  color: var(--blanco);
+  background: var(--menta);
+  color: var(--verde);
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -470,7 +470,7 @@ main {
   justify-content: center;
   column-gap: clamp(24px, 5vw, 82px);
   overflow: hidden;
-  background: linear-gradient(180deg, #f7ead8 0%, #edf7f5 55%, #f9f2e7 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta::before,
@@ -497,7 +497,7 @@ main {
 .ceremonia-fiesta.ceremonia-unica {
   grid-template-columns: minmax(280px, 680px);
   justify-content: center;
-  background: linear-gradient(180deg, #f7ead8 0%, #edf7f5 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta-flor-der {
@@ -785,7 +785,7 @@ main {
   min-height: 58px;
   margin-bottom: 42px;
   padding: 7px 28px 10px;
-  background: var(--verde);
+  background: #82918a;
   color: var(--blanco);
 }
 
@@ -796,7 +796,7 @@ main {
   top: 0;
   width: 38px;
   height: 100%;
-  background: var(--verde);
+  background: #82918a;
 }
 
 .event-ribbon::before {
@@ -864,8 +864,8 @@ main {
   margin-top: 12px;
   border: 0;
   border-radius: 999px;
-  background: var(--dorado);
-  color: var(--blanco);
+  background: var(--blanco);
+  color: var(--gris);
   padding: 10px 24px;
   font-size: 0.84rem;
   font-weight: 700;
@@ -883,18 +883,18 @@ main {
 }
 
 .boton:hover {
-  background: #e2ad61;
+  background: #faf9f6;
   color: var(--verde-oscuro);
 }
 
 .boton-secundario {
   background: #ffffff;
   color: var(--gris);
-  box-shadow: inset 0 0 0 1px #d7e2df, 0 3px 10px rgb(0 0 0 / 0.1);
+  box-shadow: inset 0 0 0 1px #d6dfda, 0 3px 10px rgb(0 0 0 / 0.1);
 }
 
 .boton-secundario:hover {
-  background: #eef8f7;
+  background: #eef4f1;
   color: var(--verde-oscuro);
 }
 
@@ -992,7 +992,7 @@ main {
 .confirmacion-asistencia {
   position: relative;
   overflow: hidden;
-  background: #fff4e3;
+  background: var(--claro);
   min-height: 595px;
   display: grid;
   place-items: end center;
@@ -1051,8 +1051,8 @@ main {
 .confirmacion-asistencia .boton {
   min-width: min(304px, 84vw);
   min-height: 54px;
-  background: var(--verde);
-  color: var(--blanco);
+  background: var(--blanco);
+  color: var(--gris);
   font-size: 0.95rem;
   text-transform: uppercase;
 }
@@ -1078,7 +1078,7 @@ main {
 .galeria {
   min-height: 470px;
   padding-top: 34px;
-  background: #eaf6f4;
+  background: var(--claro);
   overflow: hidden;
 }
 
@@ -1148,7 +1148,7 @@ main {
   aspect-ratio: 4 / 5;
   object-fit: contain;
   object-position: center center;
-  background: #fbf6ed;
+  background: #f7f2ec;
 }
 
 .polaroid-suave img {
@@ -1167,7 +1167,7 @@ main {
 .fiesta {
   overflow: hidden;
   padding-bottom: 70px;
-  background: #fff3df;
+  background: var(--claro);
 }
 
 .fiesta::before,
@@ -1215,8 +1215,8 @@ main {
   overflow: hidden;
   min-height: 360px;
   padding: 46px 28px;
-  background: #fffaf1;
-  box-shadow: 0 10px 30px rgb(47 127 140 / 0.14);
+  background: var(--blanco);
+  box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
 }
 
 .hojas-musica {
@@ -1338,7 +1338,7 @@ main {
 
 .regalos {
   overflow: hidden;
-  background: #eaf6f4;
+  background: var(--claro);
   min-height: 500px;
   padding-top: 300px;
 }
@@ -1398,7 +1398,7 @@ main {
   padding: 150px 20px;
   overflow: hidden;
   background:
-    linear-gradient(rgb(38 56 61 / 0.5), rgb(38 56 61 / 0.34)),
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
     url("/foto-final-atardecer.webp") center 58% / cover no-repeat;
   color: var(--blanco);
 }
@@ -1409,8 +1409,8 @@ main {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(rgb(47 85 92 / 0.3), rgb(38 56 61 / 0.28)),
-    linear-gradient(rgb(244 239 230 / 0.12), rgb(244 239 230 / 0.12));
+    linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
+    linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18));
   pointer-events: none;
 }
 
@@ -1442,7 +1442,7 @@ main {
 
 .capture-eyebrow {
   margin: 0 0 12px;
-  color: rgb(207 228 227 / 0.94);
+  color: rgb(255 255 255 / 0.92);
   font-size: clamp(1.05rem, 1.55vw, 1.28rem);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1471,9 +1471,9 @@ main {
   min-width: min(360px, 88vw);
   min-height: 52px;
   overflow: hidden;
-  border: 2px solid var(--verde-oscuro);
+  border: 2px solid #3f473d;
   background: rgb(255 255 255 / 0.96);
-  color: var(--verde-oscuro);
+  color: #3f473d;
   padding: 10px 34px;
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   letter-spacing: 0.16em;
@@ -1482,7 +1482,7 @@ main {
 
 .capture-upload-button:hover {
   background: #ffffff;
-  color: var(--negro);
+  color: #2f382f;
 }
 
 .capture-upload-button img {
@@ -1507,8 +1507,8 @@ main {
   align-items: center;
   min-height: 420px;
   padding: 94px 14vw;
-  background: var(--verde-oscuro);
-  color: #f7ead8;
+  background: var(--claro);
+  color: var(--gris);
 }
 
 .footer-invitacion h4 {
@@ -1522,14 +1522,14 @@ main {
 }
 
 .footer-invitacion h4 span {
-  color: var(--verde-oscuro);
+  color: var(--menta);
   display: inline-grid;
   place-items: center;
   width: clamp(44px, 4vw, 58px);
   height: clamp(44px, 4vw, 58px);
   border-radius: 50%;
-  background: var(--dorado);
-  color: var(--verde-oscuro);
+  background: var(--menta);
+  color: var(--verde);
   font-family: Georgia, serif;
   font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   line-height: 1;
@@ -1546,7 +1546,7 @@ main {
 .footer-invitacion li,
 .footer-invitacion button {
   position: relative;
-  color: #f7ead8;
+  color: var(--gris);
   font-size: clamp(0.84rem, 1vw, 0.96rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -1596,7 +1596,7 @@ main {
 
 .footer-invitacion li:hover,
 .footer-invitacion button:hover {
-  color: var(--menta);
+  color: var(--verde-oscuro);
   transform: translateX(8px);
 }
 
@@ -1998,8 +1998,8 @@ footer a {
   .portada {
     min-height: 108svh;
     background:
-      linear-gradient(rgb(38 56 61 / 0.54), rgb(38 56 61 / 0.38)),
-      linear-gradient(rgb(244 239 230 / 0.08), rgb(244 239 230 / 0.08)),
+      linear-gradient(rgb(47 52 51 / 0.52), rgb(47 52 51 / 0.36)),
+      linear-gradient(rgb(243 241 236 / 0.08), rgb(243 241 236 / 0.08)),
       url("/foto-principal-manos.webp") center center / cover no-repeat;
     background-attachment: scroll;
   }
