@@ -181,34 +181,6 @@ export default function Home() {
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const instagramRef = useRef<HTMLElement | null>(null);
-  const instagramCollageRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const updateInstagramParallax = () => {
-      const section = instagramRef.current;
-      const collage = instagramCollageRef.current;
-      if (!section || !collage) return;
-
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 1;
-      const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-      const clampedProgress = Math.min(1, Math.max(0, progress));
-      const movement = (0.5 - clampedProgress) * 260;
-
-      collage.style.setProperty("--instagram-parallax", `${movement}px`);
-    };
-
-    updateInstagramParallax();
-    window.addEventListener("scroll", updateInstagramParallax, { passive: true });
-    window.addEventListener("resize", updateInstagramParallax);
-
-    return () => {
-      window.removeEventListener("scroll", updateInstagramParallax);
-      window.removeEventListener("resize", updateInstagramParallax);
-    };
-  }, []);
-
   const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -248,9 +220,6 @@ export default function Home() {
       <audio ref={audioRef} src="/cancion.mp3" loop preload="metadata" />
 
       <section className="portada">
-        <div className="portada-flor-izq-sup" />
-        <div className="portada-flor-der-inf" />
-        <div className="portada-flor-izq-inf" />
         <div className="content-portada">
           <div className="box-nombres-fecha-portada">
             <span className="fecha">27.09.2026</span>
@@ -432,21 +401,7 @@ export default function Home() {
         <img className="gift-price-icon" src="/precio-paleta.gif" alt="" />
       </section>
 
-      <section className="instagram" ref={instagramRef}>
-        <div className="instagram-flower-collage" ref={instagramCollageRef} aria-hidden="true">
-          {[
-            "/flor-collage-azul.png",
-            "/flor-collage-roja.png",
-            "/flor-collage-rosa.png",
-            "/flor-collage-blanca.png",
-            "/flor-collage-tulipan.png",
-            "/flor-collage-campanilla.png",
-            "/flor-collage-arbol.png",
-            "/flor-collage-narciso.png",
-          ].map((src) => (
-            <img src={src} alt="" key={src} />
-          ))}
-        </div>
+      <section className="instagram">
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
           <p className="capture-eyebrow">Álbum compartido</p>

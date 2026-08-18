@@ -93,9 +93,9 @@ main {
   min-height: 112vh;
   overflow: hidden;
   background:
-    linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
-    linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18)),
-    url("/portada-anillos-flores.png") center center / cover no-repeat;
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
+    linear-gradient(rgb(243 241 236 / 0.1), rgb(243 241 236 / 0.1)),
+    url("/foto-principal-manos.webp") center center / cover no-repeat;
   background-attachment: fixed;
   color: var(--blanco);
   text-align: center;
@@ -1397,7 +1397,9 @@ main {
   min-height: clamp(620px, 62vh, 760px);
   padding: 150px 20px;
   overflow: hidden;
-  background: #26312f;
+  background:
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
+    url("/foto-final-anillo.webp") center 58% / cover no-repeat;
   color: var(--blanco);
 }
 
@@ -1410,59 +1412,6 @@ main {
     linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
     linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18));
   pointer-events: none;
-}
-
-.instagram-flower-collage {
-  position: absolute;
-  inset: -28vh -1vw;
-  z-index: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0;
-  opacity: 0.8;
-  filter: saturate(0.92) contrast(0.96);
-  transform: translate3d(0, var(--instagram-parallax, 0px), 0) scale(1.02);
-  will-change: transform;
-}
-
-.instagram-flower-collage img {
-  width: 100%;
-  height: 100%;
-  min-height: 330px;
-  object-fit: cover;
-}
-
-.instagram-flower-collage img:nth-child(1) {
-  object-position: 50% 60%;
-}
-
-.instagram-flower-collage img:nth-child(2) {
-  object-position: 54% 50%;
-}
-
-.instagram-flower-collage img:nth-child(3) {
-  object-position: 46% 30%;
-}
-
-.instagram-flower-collage img:nth-child(4) {
-  object-position: 62% 44%;
-}
-
-.instagram-flower-collage img:nth-child(5) {
-  object-position: 44% 58%;
-}
-
-.instagram-flower-collage img:nth-child(6) {
-  object-position: 50% 52%;
-}
-
-.instagram-flower-collage img:nth-child(7) {
-  object-position: 50% 50%;
-}
-
-.instagram-flower-collage img:nth-child(8) {
-  object-position: 50% 58%;
 }
 
 .instagram .title,
@@ -2049,9 +1998,9 @@ footer a {
   .portada {
     min-height: 108svh;
     background:
-      linear-gradient(rgb(47 52 51 / 0.36), rgb(47 52 51 / 0.26)),
-      linear-gradient(rgb(243 241 236 / 0.12), rgb(243 241 236 / 0.12)),
-      url("/portada-anillos-flores-mobile.webp") center center / cover no-repeat;
+      linear-gradient(rgb(47 52 51 / 0.52), rgb(47 52 51 / 0.36)),
+      linear-gradient(rgb(243 241 236 / 0.08), rgb(243 241 236 / 0.08)),
+      url("/foto-principal-manos.webp") center center / cover no-repeat;
     background-attachment: scroll;
   }
 
@@ -2174,10 +2123,7 @@ footer a {
   .instagram {
     min-height: 620px;
     padding: 128px 20px;
-  }
-
-  .instagram-flower-collage img {
-    min-height: 310px;
+    background-position: 50% 56%;
   }
 
   .portada-flor-izq-sup {
