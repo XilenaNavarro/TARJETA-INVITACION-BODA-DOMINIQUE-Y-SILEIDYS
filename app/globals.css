@@ -1399,7 +1399,7 @@ main {
   overflow: hidden;
   background:
     linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
-    url("/foto-final-anillo.webp") center 58% / cover no-repeat;
+    url("/foto-final-atardecer.webp") center 58% / cover no-repeat;
   color: var(--blanco);
 }
 
