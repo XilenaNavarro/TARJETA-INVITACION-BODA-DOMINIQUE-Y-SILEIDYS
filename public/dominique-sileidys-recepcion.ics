@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dominique y Sileidys//Invitacion Boda//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:dominique-sileidys-recepcion-20260927@example.local
+DTSTAMP:20260807T000000Z
+DTSTART:20260928T000000Z
+DTEND:20260928T050000Z
+SUMMARY:Boda de Dominique y Sileidys (Recepcion)
+DESCRIPTION:Celebracion de boda de Dominique y Sileidys
+LOCATION:VIA RESTAURANTE, Av. Del Ferrocarril #12-49, ALCAZARES, Santa Marta, Magdalena
+END:VEVENT
+END:VCALENDAR

@@ -3,29 +3,45 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const weddingDate = new Date("2026-09-27T19:00:00");
-const ceremonyStart = "20260927T180000";
-const ceremonyEnd = "20260927T200000";
-const partyStart = "20260927T200000";
-const partyEnd = "20260928T010000";
+const ceremonyStart = "20260927T153000";
+const ceremonyEnd = "20260927T173000";
+const partyStart = "20260927T190000";
+const partyEnd = "20260928T000000";
 const ceremonyTitle = "Boda de Dominique y Sileidys (Consejos Matrimoniales)";
 const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = ceremonyAddress;
+const receptionVenue = "VIA RESTAURANTE";
+const receptionAddress = "Av. Del Ferrocarril #12-49, ALCAZARES, Santa Marta, Magdalena";
+const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
-const mapsQuery = encodeURIComponent(ceremonyAddress);
-const mapsEmbedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
-const mapsOpenUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+const partyDescription = "Celebración de boda de Dominique y Sileidys";
+const ceremonyMapsUrl = "https://maps.app.goo.gl/cGoZyWGiLvwfPeXh9";
+const receptionMapsUrl = "https://maps.app.goo.gl/NaMDcEtK7Ai2cfM3A";
+const receptionMapsQuery = encodeURIComponent(receptionLocation);
+const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
 const spotifySongUrl =
   "https://open.spotify.com/intl-es/track/4UVKdTjE4WobaXwvjapVGn?si=jaPUkZQzT9i-_vh_NZBWeW&utm_source=whatsapp&nd=1&dlsi=4abc65e6672d4172";
 
 const calendarLinks = {
-  apple: `/dominique-sileidys-ceremonia.ics`,
-  google: `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    ceremonyTitle,
-  )}&dates=${ceremonyStart}/${ceremonyEnd}&details=${encodeURIComponent(
-    ceremonyDescription,
-  )}&location=${encodeURIComponent(ceremonyLocation)}`,
-  outlook: `/dominique-sileidys-ceremonia.ics`,
+  ceremony: {
+    apple: `/dominique-sileidys-ceremonia.ics`,
+    google: `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      ceremonyTitle,
+    )}&dates=${ceremonyStart}/${ceremonyEnd}&details=${encodeURIComponent(
+      ceremonyDescription,
+    )}&location=${encodeURIComponent(ceremonyLocation)}`,
+    outlook: `/dominique-sileidys-ceremonia.ics`,
+  },
+  reception: {
+    apple: `/dominique-sileidys-recepcion.ics`,
+    google: `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      partyTitle,
+    )}&dates=${partyStart}/${partyEnd}&details=${encodeURIComponent(
+      partyDescription,
+    )}&location=${encodeURIComponent(receptionLocation)}`,
+    outlook: `/dominique-sileidys-recepcion.ics`,
+  },
 };
 
 function Countdown() {
@@ -87,29 +103,41 @@ function Modal({ title, children, onClose }: { title: string; children: React.Re
   );
 }
 
-function CalendarMenu() {
+function CalendarMenu({
+  links = calendarLinks.ceremony,
+  downloadName = "dominique-sileidys-ceremonia.ics",
+  triggerClassName = "boton",
+  menuClassName = "",
+  label = "Agendar",
+}: {
+  links?: typeof calendarLinks.ceremony;
+  downloadName?: string;
+  triggerClassName?: string;
+  menuClassName?: string;
+  label?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="calendar-menu">
-      <button className="boton" type="button" onClick={() => setOpen((value) => !value)}>
-        Agendar
+      <button className={triggerClassName} type="button" onClick={() => setOpen((value) => !value)}>
+        {label}
       </button>
       {open ? (
-        <div className="calendar-options">
-          <a href={calendarLinks.apple} download="dominique-sileidys-ceremonia.ics">
+        <div className={menuClassName ? `calendar-options ${menuClassName}` : "calendar-options"}>
+          <a href={links.apple} download={downloadName}>
             <span className="cal-icon apple">
               <img src="/apple-calendar.png" alt="" />
             </span>
             <b>Apple Calendar</b>
           </a>
-          <a href={calendarLinks.google} target="_blank">
+          <a href={links.google} target="_blank" rel="noopener noreferrer">
             <span className="cal-icon google">G</span>
             <b>
               Google <em>(online)</em>
             </b>
           </a>
-          <a href={calendarLinks.outlook}>
+          <a href={links.outlook}>
             <span className="cal-icon outlook">O</span>
             <b>Outlook</b>
           </a>
@@ -277,8 +305,8 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Día</h6>
-            <p>Domingo 27 de Septiembre - 6:00 pm</p>
-            <CalendarMenu />
+            <p>Domingo 27 de Septiembre - 3:30 p. m.</p>
+            <CalendarMenu links={calendarLinks.ceremony} downloadName="dominique-sileidys-ceremonia.ics" />
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
@@ -288,10 +316,10 @@ export default function Home() {
               <br />
               Santa Marta, Magdalena
             </p>
-            <button className="boton" type="button" onClick={() => setModal("map")}>
+            <a className="boton" href={ceremonyMapsUrl} target="_blank" rel="noopener noreferrer">
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
               ¿Cómo llegar?
-            </button>
+            </a>
           </div>
         </article>
         <article className="col-fiesta">
@@ -301,26 +329,16 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Día</h6>
-            <p>Domingo 27 de Septiembre - 8:00 pm</p>
-            <a
-              className="boton"
-              href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-                partyTitle,
-              )}&dates=${partyStart}/${partyEnd}&details=${encodeURIComponent(
-                "Celebracion de boda de Dominique y Sileidys",
-              )}&location=${encodeURIComponent(ceremonyLocation)}`}
-              target="_blank"
-            >
-              Agendar
-            </a>
+            <p>Domingo 27 de Septiembre - 7:00 p. m.</p>
+            <CalendarMenu links={calendarLinks.reception} downloadName="dominique-sileidys-recepcion.ics" />
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
-            <p className="direccion-principal">Salón Jardín del Lago</p>
+            <p className="direccion-principal">{receptionVenue}</p>
             <p className="info-direccion">
-              Cl. 22 # 14-58
+              Av. Del Ferrocarril #12-49
               <br />
-              Santa Marta, Magdalena
+              ALCAZARES, Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
@@ -413,13 +431,17 @@ export default function Home() {
             <img src={src} alt="" key={src} />
           ))}
         </div>
-        <h2 className="title">Compartimos este dia junto a vos</h2>
-        <p className="subtitle">Comparte tus fotos y videos de ese hermoso dia</p>
-        <a className="hashtag" href="https://www.instagram.com/" target="_blank">
-          #dominiqueysileidys
-        </a>
-        <a className="boton" href="https://www.instagram.com/" target="_blank">
-          Ver en Instagram
+        <div className="capture-content">
+          <img className="capture-icon" src="/camara-subir.png" alt="" />
+          <p className="capture-eyebrow">Álbum compartido</p>
+          <h2 className="title">Captura el momento</h2>
+          <p className="subtitle">
+            ¡Queremos ver la boda desde tus ojos! Sube tus fotos y videos para que todos podamos revivir este día.
+          </p>
+        </div>
+        <a className="boton capture-upload-button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+          <img src="/camara-subir.png" alt="" />
+          Subir fotos
         </a>
       </section>
 
@@ -433,8 +455,24 @@ export default function Home() {
               Confirmar asistencia
             </button>
           </li>
-          <li>Agendar Recepción</li>
-          <li>Agendar Consejos Matrimoniales</li>
+          <li>
+            <CalendarMenu
+              links={calendarLinks.reception}
+              downloadName="dominique-sileidys-recepcion.ics"
+              triggerClassName="footer-calendar-trigger"
+              menuClassName="footer-calendar-options"
+              label="Agendar Recepción"
+            />
+          </li>
+          <li>
+            <CalendarMenu
+              links={calendarLinks.ceremony}
+              downloadName="dominique-sileidys-ceremonia.ics"
+              triggerClassName="footer-calendar-trigger"
+              menuClassName="footer-calendar-options"
+              label="Agendar Consejos Matrimoniales"
+            />
+          </li>
         </ul>
       </section>
 
@@ -506,15 +544,15 @@ export default function Home() {
       ) : null}
 
       {modal === "map" ? (
-        <Modal title="Cómo llegar a Consejos Matrimoniales" onClose={() => setModal(null)}>
+        <Modal title="Cómo llegar a la Recepción" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
-              title="Mapa de consejos matrimoniales"
-              src={mapsEmbedUrl}
+              title="Mapa de VIA RESTAURANTE"
+              src={receptionMapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <a className="boton ampliar-mapa" href={mapsOpenUrl} target="_blank">
+            <a className="boton ampliar-mapa" href={receptionMapsUrl} target="_blank" rel="noopener noreferrer">
               Ampliar mapa
             </a>
           </div>

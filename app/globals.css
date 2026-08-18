@@ -95,8 +95,8 @@ main {
   background:
     linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
     linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18)),
-    url("/portada-anillos-flores.webp") center center / cover no-repeat;
-  background-attachment: scroll;
+    url("/portada-anillos-flores.png") center center / cover no-repeat;
+  background-attachment: fixed;
   color: var(--blanco);
   text-align: center;
 }
@@ -1466,7 +1466,7 @@ main {
 
 .instagram .title,
 .instagram .subtitle,
-.instagram .hashtag,
+.instagram .capture-content,
 .instagram .boton {
   position: relative;
   z-index: 2;
@@ -1475,6 +1475,70 @@ main {
 .instagram .title,
 .instagram .subtitle {
   color: var(--blanco);
+}
+
+.capture-content {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.capture-icon {
+  display: block;
+  width: clamp(58px, 6vw, 82px);
+  height: auto;
+  margin: 0 auto 18px;
+  filter: invert(1) drop-shadow(0 8px 18px rgb(0 0 0 / 0.28));
+}
+
+.capture-eyebrow {
+  margin: 0 0 12px;
+  color: rgb(255 255 255 / 0.92);
+  font-size: clamp(1.05rem, 1.55vw, 1.28rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 14px rgb(0 0 0 / 0.32);
+}
+
+.instagram .title {
+  margin-bottom: 16px;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: clamp(2rem, 3.8vw, 3.35rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+
+.instagram .subtitle {
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+.capture-upload-button {
+  position: relative;
+  gap: 10px;
+  min-width: min(360px, 88vw);
+  min-height: 52px;
+  overflow: hidden;
+  border: 2px solid #3f473d;
+  background: rgb(255 255 255 / 0.96);
+  color: #3f473d;
+  padding: 10px 34px;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  letter-spacing: 0.16em;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 0.18);
+}
+
+.capture-upload-button:hover {
+  background: #ffffff;
+  color: #2f382f;
+}
+
+.capture-upload-button img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
 }
 
 .hashtag {
@@ -1545,6 +1609,39 @@ main {
   background: none;
   padding: 0;
   cursor: pointer;
+}
+
+.footer-invitacion .calendar-menu {
+  display: inline-block;
+}
+
+.footer-calendar-trigger {
+  border: 0;
+  background: none;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.footer-calendar-options {
+  left: 0;
+  top: calc(100% + 16px);
+  z-index: 40;
+  width: 286px;
+  transform: none;
+}
+
+.footer-calendar-options::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -16px;
+  width: 100%;
+  height: 16px;
+  background: var(--claro);
 }
 
 .footer-invitacion li:hover,
@@ -1954,6 +2051,7 @@ footer a {
       linear-gradient(rgb(47 52 51 / 0.36), rgb(47 52 51 / 0.26)),
       linear-gradient(rgb(243 241 236 / 0.12), rgb(243 241 236 / 0.12)),
       url("/portada-anillos-flores-mobile.webp") center center / cover no-repeat;
+    background-attachment: scroll;
   }
 
   .cuenta-regresiva {
@@ -1975,10 +2073,12 @@ footer a {
   }
 
   .hojas-contador-izq {
-    left: -28px;
-    top: 288px;
-    width: 190px;
-    transform: scaleX(-1) rotate(-12deg);
+    left: auto;
+    right: -104px;
+    top: 246px;
+    width: 225px;
+    transform: rotate(73deg);
+    transform-origin: 86% 84%;
   }
 
   .marco-contador {
