@@ -2,16 +2,14 @@
 @import "tailwindcss";
 
 :root {
-  --verde: #1e5a6e;
-  --verde-oscuro: #0d2b45;
-  --menta: #bfece7;
-  --oliva: #6ba7a0;
-  --dorado: #dcc8aa;
-  --gris: #5f7880;
-  --negro: #0d2b45;
-  --claro: #f7f2ea;
-  --cielo: #b7d4e6;
-  --arena: #dcc8aa;
+  --verde: #526864;
+  --verde-oscuro: #405451;
+  --menta: #cbd9d2;
+  --oliva: #c8c99d;
+  --dorado: #c3aa7c;
+  --gris: #7f8f88;
+  --negro: #2f3433;
+  --claro: #f3f1ec;
   --blanco: #ffffff;
   --letra-primaria: clamp(2.55rem, 4.2vw, 3.85rem);
   --letra-secundaria: clamp(1rem, 1.18vw, 1.14rem);
@@ -95,8 +93,8 @@ main {
   min-height: 112vh;
   overflow: hidden;
   background:
-    linear-gradient(rgb(13 43 69 / 0.54), rgb(13 43 69 / 0.34)),
-    linear-gradient(rgb(183 212 230 / 0.12), rgb(247 242 234 / 0.1)),
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
+    linear-gradient(rgb(243 241 236 / 0.1), rgb(243 241 236 / 0.1)),
     url("/foto-principal-manos.webp") center center / cover no-repeat;
   background-attachment: fixed;
   color: var(--blanco);
@@ -191,7 +189,7 @@ main {
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--menta);
-  color: var(--verde-oscuro);
+  color: var(--verde);
   font-family: Georgia, serif;
   font-size: clamp(1.75rem, 2.35vw, 2.3rem);
   font-weight: 700;
@@ -291,7 +289,6 @@ main {
   width: 150vw;
   height: 342px;
   background: url("/onda-contador.svg") center top / 100% 100% no-repeat;
-  filter: hue-rotate(166deg) saturate(1.18) brightness(1.04);
   pointer-events: none;
   transform: translateX(-50%);
 }
@@ -361,7 +358,7 @@ main {
 
 .falta {
   margin: 0;
-  color: #b89669;
+  color: #bda77c;
   font-size: clamp(1.65rem, 2.55vw, 2.25rem);
   font-weight: 300;
   line-height: 1;
@@ -376,7 +373,7 @@ main {
 .reloj-col {
   min-width: 0;
   padding: 0 9px;
-  border-right: 1px solid rgb(107 167 160 / 0.42);
+  border-right: 1px solid #cfd3d0;
 }
 
 .reloj-col.no-border {
@@ -385,7 +382,7 @@ main {
 
 .number {
   display: block;
-  color: var(--verde-oscuro);
+  color: #818487;
   font-size: clamp(1.45rem, 2.25vw, 1.95rem);
   font-weight: 700;
   line-height: 1;
@@ -394,7 +391,7 @@ main {
 .time {
   display: block;
   margin-top: 13px;
-  color: #b89669;
+  color: #bda77c;
   font-size: clamp(0.86rem, 1.25vw, 1rem);
   font-weight: 300;
   line-height: 1;
@@ -436,7 +433,7 @@ main {
   margin: 0 auto 14px;
   border-radius: 50%;
   background: var(--menta);
-  color: var(--verde-oscuro);
+  color: var(--verde);
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -473,7 +470,7 @@ main {
   justify-content: center;
   column-gap: clamp(24px, 5vw, 82px);
   overflow: hidden;
-  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 54%, #fbf6ed 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta::before,
@@ -500,7 +497,7 @@ main {
 .ceremonia-fiesta.ceremonia-unica {
   grid-template-columns: minmax(280px, 680px);
   justify-content: center;
-  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 100%);
+  background: var(--claro);
 }
 
 .ceremonia-fiesta-flor-der {
@@ -526,12 +523,12 @@ main {
   width: 92px;
   height: 92px;
   margin-bottom: 18px;
-  border: 2px solid rgb(107 167 160 / 0.42);
+  border: 2px solid var(--menta);
   border-radius: 50%;
   background:
     radial-gradient(circle at 50% 42%, var(--menta) 0 11px, transparent 12px),
     radial-gradient(circle at 37% 58%, var(--verde) 0 8px, transparent 9px),
-    radial-gradient(circle at 63% 58%, var(--dorado) 0 8px, transparent 9px);
+    radial-gradient(circle at 63% 58%, var(--oliva) 0 8px, transparent 9px);
 }
 
 .animated-icon {
@@ -654,7 +651,7 @@ main {
 .party-streamer,
 .curl {
   fill: none;
-  stroke: var(--dorado);
+  stroke: var(--oliva);
   stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -672,7 +669,7 @@ main {
 }
 
 .dot {
-  fill: var(--dorado);
+  fill: var(--oliva);
   animation: dot-pop 2.2s ease-in-out infinite;
   transform-origin: center;
 }
@@ -788,7 +785,7 @@ main {
   min-height: 58px;
   margin-bottom: 42px;
   padding: 7px 28px 10px;
-  background: var(--verde);
+  background: #82918a;
   color: var(--blanco);
 }
 
@@ -799,7 +796,7 @@ main {
   top: 0;
   width: 38px;
   height: 100%;
-  background: var(--verde);
+  background: #82918a;
 }
 
 .event-ribbon::before {
@@ -886,18 +883,18 @@ main {
 }
 
 .boton:hover {
-  background: #f9fbfb;
+  background: #faf9f6;
   color: var(--verde-oscuro);
 }
 
 .boton-secundario {
   background: #ffffff;
   color: var(--gris);
-  box-shadow: inset 0 0 0 1px rgb(107 167 160 / 0.36), 0 3px 10px rgb(0 0 0 / 0.1);
+  box-shadow: inset 0 0 0 1px #d6dfda, 0 3px 10px rgb(0 0 0 / 0.1);
 }
 
 .boton-secundario:hover {
-  background: #eef8f6;
+  background: #eef4f1;
   color: var(--verde-oscuro);
 }
 
@@ -1011,7 +1008,6 @@ main {
   width: 132vw;
   height: 430px;
   background: url("/ondas-2.svg") center / 100% 100% no-repeat;
-  filter: hue-rotate(166deg) saturate(1.2) brightness(1.05);
   pointer-events: none;
   transform: translateX(-50%);
 }
@@ -1082,7 +1078,7 @@ main {
 .galeria {
   min-height: 470px;
   padding-top: 34px;
-  background: #eef8f6;
+  background: var(--claro);
   overflow: hidden;
 }
 
@@ -1095,7 +1091,6 @@ main {
   width: 160vw;
   height: 170px;
   background: url("/lineas-3.svg") center / 100% 100% no-repeat;
-  filter: hue-rotate(164deg) saturate(1.14) brightness(1.02);
   pointer-events: none;
   transform: translateX(-50%);
 }
@@ -1153,7 +1148,7 @@ main {
   aspect-ratio: 4 / 5;
   object-fit: contain;
   object-position: center center;
-  background: #f7f2ea;
+  background: #f7f2ec;
 }
 
 .polaroid-suave img {
@@ -1172,7 +1167,7 @@ main {
 .fiesta {
   overflow: hidden;
   padding-bottom: 70px;
-  background: linear-gradient(180deg, #eef8f6 0%, var(--claro) 100%);
+  background: var(--claro);
 }
 
 .fiesta::before,
@@ -1221,7 +1216,7 @@ main {
   min-height: 360px;
   padding: 46px 28px;
   background: var(--blanco);
-  box-shadow: 0 10px 30px rgb(30 90 110 / 0.14);
+  box-shadow: 0 10px 30px rgb(80 115 108 / 0.12);
 }
 
 .hojas-musica {
@@ -1276,8 +1271,8 @@ main {
   align-content: center;
   min-height: 96px;
   padding: 18px 14px;
-  border: 1px solid rgb(107 167 160 / 0.52);
-  background: rgb(191 236 231 / 0.34);
+  border: 1px solid rgb(203 217 210 / 0.78);
+  background: rgb(203 217 210 / 0.22);
 }
 
 .dress-card-option strong {
@@ -1321,7 +1316,7 @@ main {
   width: 52px;
   height: 1px;
   margin: 18px auto 0;
-  background: rgb(107 167 160 / 0.7);
+  background: rgb(203 217 210 / 0.9);
 }
 
 .tips-icon {
@@ -1334,16 +1329,16 @@ main {
 
 .tips-icon {
   position: relative;
-  border: 2px solid rgb(107 167 160 / 0.48);
+  border: 2px solid var(--menta);
   background:
-    radial-gradient(circle at 50% 34%, var(--dorado) 0 18px, transparent 19px),
+    radial-gradient(circle at 50% 34%, var(--oliva) 0 18px, transparent 19px),
     linear-gradient(var(--verde) 0 0) 50% 63% / 44px 10px no-repeat,
     linear-gradient(var(--verde) 0 0) 50% 74% / 34px 8px no-repeat;
 }
 
 .regalos {
   overflow: hidden;
-  background: #fbf6ed;
+  background: var(--claro);
   min-height: 500px;
   padding-top: 300px;
 }
@@ -1357,7 +1352,6 @@ main {
   width: 100vw;
   height: 280px;
   background: url("/ondas-3.svg") center top / 100% 100% no-repeat;
-  filter: hue-rotate(166deg) saturate(1.16) brightness(1.05);
   pointer-events: none;
   transform: translateX(-50%);
 }
@@ -1370,7 +1364,7 @@ main {
   top: 278px;
   z-index: 0;
   height: 4px;
-  background: #fbf6ed;
+  background: var(--claro);
   pointer-events: none;
 }
 
@@ -1404,7 +1398,7 @@ main {
   padding: 150px 20px;
   overflow: hidden;
   background:
-    linear-gradient(rgb(13 43 69 / 0.52), rgb(13 43 69 / 0.34)),
+    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
     url("/foto-final-atardecer.webp") center 58% / cover no-repeat;
   color: var(--blanco);
 }
@@ -1415,8 +1409,8 @@ main {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(rgb(30 90 110 / 0.3), rgb(13 43 69 / 0.28)),
-    linear-gradient(rgb(183 212 230 / 0.14), rgb(247 242 234 / 0.14));
+    linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
+    linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18));
   pointer-events: none;
 }
 
@@ -1448,7 +1442,7 @@ main {
 
 .capture-eyebrow {
   margin: 0 0 12px;
-  color: rgb(191 236 231 / 0.94);
+  color: rgb(255 255 255 / 0.92);
   font-size: clamp(1.05rem, 1.55vw, 1.28rem);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1477,9 +1471,9 @@ main {
   min-width: min(360px, 88vw);
   min-height: 52px;
   overflow: hidden;
-  border: 2px solid var(--verde-oscuro);
+  border: 2px solid #3f473d;
   background: rgb(255 255 255 / 0.96);
-  color: var(--verde-oscuro);
+  color: #3f473d;
   padding: 10px 34px;
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   letter-spacing: 0.16em;
@@ -1488,7 +1482,7 @@ main {
 
 .capture-upload-button:hover {
   background: #ffffff;
-  color: var(--verde);
+  color: #2f382f;
 }
 
 .capture-upload-button img {
@@ -1513,7 +1507,7 @@ main {
   align-items: center;
   min-height: 420px;
   padding: 94px 14vw;
-  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 100%);
+  background: var(--claro);
   color: var(--gris);
 }
 
@@ -1627,7 +1621,7 @@ main {
 
 footer {
   padding: 25px 20px;
-  background: var(--verde-oscuro);
+  background: #2f3433;
   color: rgb(255 255 255 / 0.75);
   text-align: center;
 }
@@ -1720,7 +1714,7 @@ footer a {
   max-height: min(520px, calc(100vh - 110px));
   overflow: visible;
   border-radius: 50%;
-  background: #fbf6ed;
+  background: #fcfaf6;
   padding: 124px 58px 58px;
   text-align: center;
   box-shadow: 0 26px 42px rgb(0 0 0 / 0.28);
@@ -1911,7 +1905,7 @@ footer a {
 }
 
 .dress-modal-icon .bow-fill {
-  fill: rgb(191 236 231 / 0.68);
+  fill: rgb(203 217 210 / 0.6);
   stroke: var(--gris);
   stroke-width: 7;
   stroke-linejoin: round;
@@ -1937,7 +1931,7 @@ footer a {
   height: 58px;
   border: 0;
   border-radius: 50%;
-  background: rgb(13 43 69 / 0.78);
+  background: rgb(47 52 51 / 0.72);
   box-shadow: 0 10px 28px rgb(0 0 0 / 0.24);
   cursor: pointer;
 }
@@ -1957,7 +1951,7 @@ footer a {
   position: absolute;
   inset: 4px;
   z-index: 1;
-  border: 1.5px solid rgb(191 236 231 / 0.72);
+  border: 1.5px solid rgb(203 217 210 / 0.72);
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.74);
@@ -2004,8 +1998,8 @@ footer a {
   .portada {
     min-height: 108svh;
     background:
-      linear-gradient(rgb(13 43 69 / 0.54), rgb(13 43 69 / 0.36)),
-      linear-gradient(rgb(183 212 230 / 0.1), rgb(247 242 234 / 0.08)),
+      linear-gradient(rgb(47 52 51 / 0.52), rgb(47 52 51 / 0.36)),
+      linear-gradient(rgb(243 241 236 / 0.08), rgb(243 241 236 / 0.08)),
       url("/foto-principal-manos.webp") center center / cover no-repeat;
     background-attachment: scroll;
   }
