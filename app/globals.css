@@ -1120,7 +1120,7 @@ main {
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: gallery-scroll 30s linear infinite;
+  animation: gallery-scroll 40s linear infinite;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   will-change: transform;
@@ -2178,7 +2178,7 @@ footer a {
 
   .carrusel-fotos {
     gap: 18px;
-    animation-duration: 38s;
+    animation-duration: 50s;
   }
 
   .polaroid {
