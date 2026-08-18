@@ -4,12 +4,12 @@
 :root {
   --verde: #1e5a6e;
   --verde-oscuro: #0d2b45;
-  --menta: #6ba7a0;
+  --menta: #bfece7;
   --oliva: #6ba7a0;
   --dorado: #dcc8aa;
-  --gris: #1e5a6e;
+  --gris: #5f7880;
   --negro: #0d2b45;
-  --claro: #dcc8aa;
+  --claro: #f7f2ea;
   --cielo: #b7d4e6;
   --arena: #dcc8aa;
   --blanco: #ffffff;
@@ -96,7 +96,7 @@ main {
   overflow: hidden;
   background:
     linear-gradient(rgb(13 43 69 / 0.54), rgb(13 43 69 / 0.34)),
-    linear-gradient(rgb(183 212 230 / 0.12), rgb(220 200 170 / 0.12)),
+    linear-gradient(rgb(183 212 230 / 0.12), rgb(247 242 234 / 0.1)),
     url("/foto-principal-manos.webp") center center / cover no-repeat;
   background-attachment: fixed;
   color: var(--blanco);
@@ -190,7 +190,7 @@ main {
   height: clamp(46px, 4vw, 58px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--cielo);
+  background: var(--menta);
   color: var(--verde-oscuro);
   font-family: Georgia, serif;
   font-size: clamp(1.75rem, 2.35vw, 2.3rem);
@@ -279,7 +279,7 @@ main {
   margin-top: -270px;
   min-height: 760px;
   overflow: hidden;
-  background: linear-gradient(180deg, transparent 0 240px, rgb(220 200 170 / 0.86) 240px 100%);
+  background: linear-gradient(180deg, transparent 0 240px, var(--claro) 240px 100%);
 }
 
 .cuenta-regresiva::before {
@@ -361,7 +361,7 @@ main {
 
 .falta {
   margin: 0;
-  color: var(--verde);
+  color: #b89669;
   font-size: clamp(1.65rem, 2.55vw, 2.25rem);
   font-weight: 300;
   line-height: 1;
@@ -394,7 +394,7 @@ main {
 .time {
   display: block;
   margin-top: 13px;
-  color: var(--verde);
+  color: #b89669;
   font-size: clamp(0.86rem, 1.25vw, 1rem);
   font-weight: 300;
   line-height: 1;
@@ -425,7 +425,7 @@ main {
   padding: 44px 30px;
   border-radius: 6px;
   background: var(--blanco);
-  box-shadow: 0 10px 35px rgb(30 90 110 / 0.14);
+  box-shadow: 0 10px 35px rgb(80 115 108 / 0.14);
 }
 
 .pases-total {
@@ -435,7 +435,7 @@ main {
   height: 78px;
   margin: 0 auto 14px;
   border-radius: 50%;
-  background: var(--cielo);
+  background: var(--menta);
   color: var(--verde-oscuro);
   font-size: 2.5rem;
   font-weight: 700;
@@ -463,7 +463,7 @@ main {
 
 .lista-invitados li {
   padding: 7px 0;
-  border-bottom: 1px solid rgb(183 212 230 / 0.55);
+  border-bottom: 1px solid #ededed;
 }
 
 .ceremonia-fiesta {
@@ -473,7 +473,7 @@ main {
   justify-content: center;
   column-gap: clamp(24px, 5vw, 82px);
   overflow: hidden;
-  background: linear-gradient(180deg, rgb(220 200 170 / 0.88) 0%, rgb(183 212 230 / 0.5) 54%, rgb(220 200 170 / 0.78) 100%);
+  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 54%, #fbf6ed 100%);
 }
 
 .ceremonia-fiesta::before,
@@ -500,7 +500,7 @@ main {
 .ceremonia-fiesta.ceremonia-unica {
   grid-template-columns: minmax(280px, 680px);
   justify-content: center;
-  background: linear-gradient(180deg, rgb(220 200 170 / 0.88) 0%, rgb(183 212 230 / 0.5) 100%);
+  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 100%);
 }
 
 .ceremonia-fiesta-flor-der {
@@ -529,7 +529,7 @@ main {
   border: 2px solid rgb(107 167 160 / 0.42);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 42%, var(--cielo) 0 11px, transparent 12px),
+    radial-gradient(circle at 50% 42%, var(--menta) 0 11px, transparent 12px),
     radial-gradient(circle at 37% 58%, var(--verde) 0 8px, transparent 9px),
     radial-gradient(circle at 63% 58%, var(--dorado) 0 8px, transparent 9px);
 }
@@ -567,7 +567,7 @@ main {
 }
 
 .rings-icon svg {
-  filter: drop-shadow(0 8px 10px rgb(30 90 110 / 0.12));
+  filter: drop-shadow(0 8px 10px rgb(80 115 108 / 0.12));
 }
 
 .rings-icon .ring {
@@ -635,15 +635,6 @@ main {
   width: 24px;
   height: 24px;
   margin-right: 8px;
-}
-
-.soft-gif-icon,
-.section-gif-icon,
-.card-gif-icon,
-.boton-icon,
-.dress-gif-icon,
-.gift-price-icon {
-  filter: brightness(0) saturate(100%) invert(29%) sepia(40%) saturate(811%) hue-rotate(151deg) brightness(88%) contrast(91%);
 }
 
 .party-cone {
@@ -895,7 +886,7 @@ main {
 }
 
 .boton:hover {
-  background: var(--cielo);
+  background: #f9fbfb;
   color: var(--verde-oscuro);
 }
 
@@ -906,7 +897,7 @@ main {
 }
 
 .boton-secundario:hover {
-  background: var(--cielo);
+  background: #eef8f6;
   color: var(--verde-oscuro);
 }
 
@@ -934,12 +925,12 @@ main {
   align-items: center;
   min-height: 52px;
   padding: 0 22px;
-  color: var(--verde-oscuro);
+  color: #3f3f3f;
   text-decoration: none;
 }
 
 .calendar-options a:hover {
-  background: rgb(183 212 230 / 0.35);
+  background: #f5f5f5;
   transform: none;
 }
 
@@ -950,7 +941,7 @@ main {
 }
 
 .calendar-options em {
-  color: var(--verde);
+  color: #9b9b9b;
   font-size: 0.82rem;
   font-style: italic;
   font-weight: 400;
@@ -959,8 +950,8 @@ main {
 .calendar-options small {
   display: block;
   margin: 8px 12px 0 0;
-  border-top: 1px solid rgb(183 212 230 / 0.5);
-  color: var(--oliva);
+  border-top: 1px solid #e5e5e5;
+  color: #c2c2c2;
   font-size: 0.68rem;
   text-align: right;
 }
@@ -985,12 +976,20 @@ main {
   object-fit: contain;
 }
 
-.cal-icon.google,
-.cal-icon.outlook,
-.cal-icon.outlookcom {
-  background: var(--verde);
+.cal-icon.google {
+  background: conic-gradient(#4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
   border-radius: 50%;
   font-size: 1rem;
+}
+
+.cal-icon.outlook,
+.cal-icon.outlookcom {
+  background: #2f76c8;
+  font-size: 1rem;
+}
+
+.cal-icon.outlookcom {
+  background: #2764b2;
 }
 
 .confirmacion-asistencia {
@@ -1083,7 +1082,7 @@ main {
 .galeria {
   min-height: 470px;
   padding-top: 34px;
-  background: rgb(183 212 230 / 0.48);
+  background: #eef8f6;
   overflow: hidden;
 }
 
@@ -1154,7 +1153,7 @@ main {
   aspect-ratio: 4 / 5;
   object-fit: contain;
   object-position: center center;
-  background: rgb(220 200 170 / 0.36);
+  background: #f7f2ea;
 }
 
 .polaroid-suave img {
@@ -1173,7 +1172,7 @@ main {
 .fiesta {
   overflow: hidden;
   padding-bottom: 70px;
-  background: linear-gradient(180deg, rgb(183 212 230 / 0.48) 0%, rgb(220 200 170 / 0.82) 100%);
+  background: linear-gradient(180deg, #eef8f6 0%, var(--claro) 100%);
 }
 
 .fiesta::before,
@@ -1249,7 +1248,7 @@ main {
 
 .item-fiesta h3 {
   margin: 0 0 20px;
-  color: var(--verde-oscuro);
+  color: var(--dorado);
   font-family: "Cookie", cursive;
   font-size: clamp(2.45rem, 3.4vw, 3rem);
   font-weight: 400;
@@ -1258,7 +1257,7 @@ main {
 .item-fiesta p,
 .regalos p,
 .instagram p {
-  color: var(--verde);
+  color: var(--gris);
   font-size: 0.98rem;
   line-height: 1.6;
 }
@@ -1278,11 +1277,11 @@ main {
   min-height: 96px;
   padding: 18px 14px;
   border: 1px solid rgb(107 167 160 / 0.52);
-  background: rgb(183 212 230 / 0.38);
+  background: rgb(191 236 231 / 0.34);
 }
 
 .dress-card-option strong {
-  color: var(--verde-oscuro);
+  color: var(--verde);
   font-family: "Cookie", cursive;
   font-size: clamp(2rem, 3vw, 2.45rem);
   font-weight: 400;
@@ -1322,7 +1321,7 @@ main {
   width: 52px;
   height: 1px;
   margin: 18px auto 0;
-  background: var(--dorado);
+  background: rgb(107 167 160 / 0.7);
 }
 
 .tips-icon {
@@ -1344,7 +1343,7 @@ main {
 
 .regalos {
   overflow: hidden;
-  background: rgb(220 200 170 / 0.84);
+  background: #fbf6ed;
   min-height: 500px;
   padding-top: 300px;
 }
@@ -1371,7 +1370,7 @@ main {
   top: 278px;
   z-index: 0;
   height: 4px;
-  background: rgb(220 200 170 / 0.84);
+  background: #fbf6ed;
   pointer-events: none;
 }
 
@@ -1417,7 +1416,7 @@ main {
   z-index: 1;
   background:
     linear-gradient(rgb(30 90 110 / 0.3), rgb(13 43 69 / 0.28)),
-    linear-gradient(rgb(183 212 230 / 0.14), rgb(220 200 170 / 0.14));
+    linear-gradient(rgb(183 212 230 / 0.14), rgb(247 242 234 / 0.14));
   pointer-events: none;
 }
 
@@ -1449,7 +1448,7 @@ main {
 
 .capture-eyebrow {
   margin: 0 0 12px;
-  color: rgb(183 212 230 / 0.94);
+  color: rgb(191 236 231 / 0.94);
   font-size: clamp(1.05rem, 1.55vw, 1.28rem);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1488,7 +1487,7 @@ main {
 }
 
 .capture-upload-button:hover {
-  background: var(--cielo);
+  background: #ffffff;
   color: var(--verde);
 }
 
@@ -1514,7 +1513,7 @@ main {
   align-items: center;
   min-height: 420px;
   padding: 94px 14vw;
-  background: linear-gradient(180deg, rgb(220 200 170 / 0.84) 0%, rgb(183 212 230 / 0.48) 100%);
+  background: linear-gradient(180deg, var(--claro) 0%, #eef8f6 100%);
   color: var(--gris);
 }
 
@@ -1529,14 +1528,14 @@ main {
 }
 
 .footer-invitacion h4 span {
-  color: var(--cielo);
+  color: var(--menta);
   display: inline-grid;
   place-items: center;
   width: clamp(44px, 4vw, 58px);
   height: clamp(44px, 4vw, 58px);
   border-radius: 50%;
-  background: var(--cielo);
-  color: var(--verde-oscuro);
+  background: var(--menta);
+  color: var(--verde);
   font-family: Georgia, serif;
   font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   line-height: 1;
@@ -1687,7 +1686,7 @@ footer a {
   font-size: clamp(3.4rem, 7vw, 5.2rem);
   font-weight: 400;
   line-height: 0.9;
-  text-shadow: 0 3px 10px rgb(30 90 110 / 0.16);
+  text-shadow: 0 3px 10px rgb(82 104 100 / 0.16);
 }
 
 .music-modal span {
@@ -1721,7 +1720,7 @@ footer a {
   max-height: min(520px, calc(100vh - 110px));
   overflow: visible;
   border-radius: 50%;
-  background: rgb(220 200 170 / 0.92);
+  background: #fbf6ed;
   padding: 124px 58px 58px;
   text-align: center;
   box-shadow: 0 26px 42px rgb(0 0 0 / 0.28);
@@ -1787,8 +1786,8 @@ footer a {
   height: 36px;
   border: 0;
   border-radius: 50%;
-  background: var(--cielo);
-  color: var(--verde-oscuro);
+  background: var(--menta);
+  color: var(--verde);
   font-weight: 700;
   cursor: pointer;
 }
@@ -1854,7 +1853,7 @@ footer a {
 .form select,
 .form textarea {
   width: 100%;
-  border: 1px solid rgb(107 167 160 / 0.55);
+  border: 1px solid #d5dcd8;
   border-radius: 4px;
   background: var(--blanco);
   color: var(--negro);
@@ -1912,7 +1911,7 @@ footer a {
 }
 
 .dress-modal-icon .bow-fill {
-  fill: rgb(183 212 230 / 0.68);
+  fill: rgb(191 236 231 / 0.68);
   stroke: var(--gris);
   stroke-width: 7;
   stroke-linejoin: round;
@@ -1958,7 +1957,7 @@ footer a {
   position: absolute;
   inset: 4px;
   z-index: 1;
-  border: 1.5px solid rgb(183 212 230 / 0.72);
+  border: 1.5px solid rgb(191 236 231 / 0.72);
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.74);
@@ -2006,7 +2005,7 @@ footer a {
     min-height: 108svh;
     background:
       linear-gradient(rgb(13 43 69 / 0.54), rgb(13 43 69 / 0.36)),
-      linear-gradient(rgb(183 212 230 / 0.1), rgb(220 200 170 / 0.08)),
+      linear-gradient(rgb(183 212 230 / 0.1), rgb(247 242 234 / 0.08)),
       url("/foto-principal-manos.webp") center center / cover no-repeat;
     background-attachment: scroll;
   }
@@ -2014,7 +2013,7 @@ footer a {
   .cuenta-regresiva {
     min-height: 610px;
     margin-top: -190px;
-    background: linear-gradient(180deg, transparent 0 168px, rgb(220 200 170 / 0.86) 168px 100%);
+    background: linear-gradient(180deg, transparent 0 168px, var(--claro) 168px 100%);
   }
 
   .cuenta-regresiva::before {
