@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 :root {
-  --verde: #526864;
-  --verde-oscuro: #405451;
-  --menta: #cbd9d2;
-  --oliva: #c8c99d;
-  --dorado: #c3aa7c;
-  --gris: #7f8f88;
-  --negro: #2f3433;
-  --claro: #f3f1ec;
+  --verde: #4e7a82;
+  --verde-oscuro: #2f555e;
+  --menta: #cfe4e3;
+  --oliva: #d8b58a;
+  --dorado: #d29a55;
+  --gris: #697b7e;
+  --negro: #26383d;
+  --claro: #f4efe6;
   --blanco: #ffffff;
   --letra-primaria: clamp(2.55rem, 4.2vw, 3.85rem);
   --letra-secundaria: clamp(1rem, 1.18vw, 1.14rem);
@@ -93,8 +93,8 @@ main {
   min-height: 112vh;
   overflow: hidden;
   background:
-    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
-    linear-gradient(rgb(243 241 236 / 0.1), rgb(243 241 236 / 0.1)),
+    linear-gradient(rgb(38 56 61 / 0.52), rgb(38 56 61 / 0.34)),
+    linear-gradient(rgb(244 239 230 / 0.1), rgb(244 239 230 / 0.1)),
     url("/foto-principal-manos.webp") center center / cover no-repeat;
   background-attachment: fixed;
   color: var(--blanco);
@@ -358,7 +358,7 @@ main {
 
 .falta {
   margin: 0;
-  color: #bda77c;
+  color: var(--dorado);
   font-size: clamp(1.65rem, 2.55vw, 2.25rem);
   font-weight: 300;
   line-height: 1;
@@ -382,7 +382,7 @@ main {
 
 .number {
   display: block;
-  color: #818487;
+  color: var(--gris);
   font-size: clamp(1.45rem, 2.25vw, 1.95rem);
   font-weight: 700;
   line-height: 1;
@@ -391,7 +391,7 @@ main {
 .time {
   display: block;
   margin-top: 13px;
-  color: #bda77c;
+  color: var(--dorado);
   font-size: clamp(0.86rem, 1.25vw, 1rem);
   font-weight: 300;
   line-height: 1;
@@ -785,7 +785,7 @@ main {
   min-height: 58px;
   margin-bottom: 42px;
   padding: 7px 28px 10px;
-  background: #82918a;
+  background: var(--verde);
   color: var(--blanco);
 }
 
@@ -796,7 +796,7 @@ main {
   top: 0;
   width: 38px;
   height: 100%;
-  background: #82918a;
+  background: var(--verde);
 }
 
 .event-ribbon::before {
@@ -883,18 +883,18 @@ main {
 }
 
 .boton:hover {
-  background: #faf9f6;
+  background: #fff8ec;
   color: var(--verde-oscuro);
 }
 
 .boton-secundario {
   background: #ffffff;
   color: var(--gris);
-  box-shadow: inset 0 0 0 1px #d6dfda, 0 3px 10px rgb(0 0 0 / 0.1);
+  box-shadow: inset 0 0 0 1px #d7e2df, 0 3px 10px rgb(0 0 0 / 0.1);
 }
 
 .boton-secundario:hover {
-  background: #eef4f1;
+  background: #eef8f7;
   color: var(--verde-oscuro);
 }
 
@@ -1148,7 +1148,7 @@ main {
   aspect-ratio: 4 / 5;
   object-fit: contain;
   object-position: center center;
-  background: #f7f2ec;
+  background: #fbf6ed;
 }
 
 .polaroid-suave img {
@@ -1398,7 +1398,7 @@ main {
   padding: 150px 20px;
   overflow: hidden;
   background:
-    linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
+    linear-gradient(rgb(38 56 61 / 0.5), rgb(38 56 61 / 0.34)),
     url("/foto-final-atardecer.webp") center 58% / cover no-repeat;
   color: var(--blanco);
 }
@@ -1409,8 +1409,8 @@ main {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(rgb(47 52 51 / 0.38), rgb(47 52 51 / 0.28)),
-    linear-gradient(rgb(243 241 236 / 0.18), rgb(243 241 236 / 0.18));
+    linear-gradient(rgb(47 85 92 / 0.3), rgb(38 56 61 / 0.28)),
+    linear-gradient(rgb(244 239 230 / 0.12), rgb(244 239 230 / 0.12));
   pointer-events: none;
 }
 
@@ -1442,7 +1442,7 @@ main {
 
 .capture-eyebrow {
   margin: 0 0 12px;
-  color: rgb(255 255 255 / 0.92);
+  color: rgb(207 228 227 / 0.94);
   font-size: clamp(1.05rem, 1.55vw, 1.28rem);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1471,9 +1471,9 @@ main {
   min-width: min(360px, 88vw);
   min-height: 52px;
   overflow: hidden;
-  border: 2px solid #3f473d;
+  border: 2px solid var(--verde-oscuro);
   background: rgb(255 255 255 / 0.96);
-  color: #3f473d;
+  color: var(--verde-oscuro);
   padding: 10px 34px;
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   letter-spacing: 0.16em;
@@ -1482,7 +1482,7 @@ main {
 
 .capture-upload-button:hover {
   background: #ffffff;
-  color: #2f382f;
+  color: var(--negro);
 }
 
 .capture-upload-button img {
@@ -1998,8 +1998,8 @@ footer a {
   .portada {
     min-height: 108svh;
     background:
-      linear-gradient(rgb(47 52 51 / 0.52), rgb(47 52 51 / 0.36)),
-      linear-gradient(rgb(243 241 236 / 0.08), rgb(243 241 236 / 0.08)),
+      linear-gradient(rgb(38 56 61 / 0.54), rgb(38 56 61 / 0.38)),
+      linear-gradient(rgb(244 239 230 / 0.08), rgb(244 239 230 / 0.08)),
       url("/foto-principal-manos.webp") center center / cover no-repeat;
     background-attachment: scroll;
   }
