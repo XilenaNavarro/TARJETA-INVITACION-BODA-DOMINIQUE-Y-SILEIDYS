@@ -216,6 +216,52 @@ export default function Home() {
     setIsPlaying(false);
   };
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobile = window.matchMedia("(max-width: 780px)");
+    let frame = 0;
+
+    const updateParallax = () => {
+      frame = 0;
+      const sections = [
+        document.querySelector<HTMLElement>(".portada"),
+        document.querySelector<HTMLElement>(".instagram"),
+      ];
+
+      sections.forEach((section) => {
+        if (!section) return;
+        if (!mobile.matches || reduceMotion.matches) {
+          section.style.removeProperty("--mobile-parallax-y");
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const progress = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        const offset = Math.max(-34, Math.min(34, progress * -42));
+        section.style.setProperty("--mobile-parallax-y", `${offset.toFixed(1)}px`);
+      });
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    mobile.addEventListener("change", requestUpdate);
+    reduceMotion.addEventListener("change", requestUpdate);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      mobile.removeEventListener("change", requestUpdate);
+      reduceMotion.removeEventListener("change", requestUpdate);
+    };
+  }, []);
+
   return (
     <main>
       <audio ref={audioRef} src="/cancion.mp3" loop preload="metadata" />

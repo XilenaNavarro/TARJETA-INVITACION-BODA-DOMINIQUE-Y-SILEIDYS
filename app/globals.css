@@ -2076,7 +2076,7 @@ footer a {
     background:
       linear-gradient(rgb(47 52 51 / 0.52), rgb(47 52 51 / 0.36)),
       linear-gradient(rgb(243 241 236 / 0.08), rgb(243 241 236 / 0.08)),
-      url("/foto-principal-manos.webp") center center / cover no-repeat;
+      url("/foto-principal-manos.webp") center calc(50% + var(--mobile-parallax-y, 0px)) / cover no-repeat;
     background-attachment: scroll;
   }
 
@@ -2204,8 +2204,38 @@ footer a {
   }
 
   .instagram::after {
-    background-position: 50% 56%;
+    background-position: center calc(56% + var(--mobile-parallax-y, 0px));
     background-attachment: scroll;
+  }
+
+  .regalos {
+    min-height: 510px;
+    padding-top: 238px;
+    padding-bottom: 72px;
+  }
+
+  .regalos::before {
+    height: 192px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 192' preserveAspectRatio='none'%3E%3Cpath fill='%2381948B' d='M-40 72 C95 16 210 36 310 108 C410 180 510 94 620 48 C710 10 770 22 840 44 L840 192 L-40 192 Z'/%3E%3Cpath fill='%23C6D7CF' d='M-40 88 C120 160 280 176 452 126 C600 82 680 62 840 78 L840 192 L-40 192 Z'/%3E%3Cpath fill='%23F3F1EC' d='M-40 142 C120 204 316 202 496 154 C640 116 720 108 840 124 L840 192 L-40 192 Z'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
+  }
+
+  .regalos::after {
+    top: 190px;
+  }
+
+  .footer-invitacion .calendar-menu {
+    display: block;
+  }
+
+  .footer-calendar-options {
+    position: static;
+    width: min(300px, calc(100vw - 56px));
+    margin: 14px auto 6px;
+    transform: none;
+  }
+
+  .footer-calendar-options::before {
+    display: none;
   }
 
   .portada-flor-izq-sup {
