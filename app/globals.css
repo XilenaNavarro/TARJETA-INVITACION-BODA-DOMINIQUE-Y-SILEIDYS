@@ -2290,7 +2290,7 @@ footer a {
 
   .carrusel-fotos {
     gap: 18px;
-    animation-duration: 50s;
+    animation-duration: 90s;
   }
 
   .polaroid {
@@ -2332,6 +2332,14 @@ footer a {
     text-align: center;
     white-space: normal;
     font-size: clamp(3rem, 11vw, 4.45rem);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 780px) {
+    .carrusel-fotos {
+      animation-duration: 110s;
+    }
   }
 }
 
