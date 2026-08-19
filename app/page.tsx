@@ -408,6 +408,7 @@ export default function Home() {
 
       <section className="instagram">
         <div className="instagram-wave" aria-hidden="true" />
+        <div className="instagram-bottom-wave" aria-hidden="true" />
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
           <p className="capture-eyebrow">Álbum compartido</p>
@@ -416,7 +417,7 @@ export default function Home() {
             ¡Queremos ver la boda desde tus ojos! Sube tus fotos y videos para que todos podamos revivir este día.
           </p>
         </div>
-        <a className="boton capture-upload-button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a className="boton capture-upload-button" href="https://photos.app.goo.gl/Fs4Bf8ri3PbRMsCS8" target="_blank" rel="noopener noreferrer">
           <img src="/camara-subir.png" alt="" />
           Subir fotos
         </a>
