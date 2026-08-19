@@ -283,14 +283,13 @@ main {
 .cuenta-regresiva::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: -18vw;
+  right: -18vw;
   top: 78px;
   z-index: 0;
-  width: 150vw;
   height: 342px;
-  background: url("/onda-contador.svg") center top / 100% 100% no-repeat;
+  background: url("/onda-contador.svg") center top / 120% 100% no-repeat;
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
 .franja-verde {
@@ -843,10 +842,32 @@ main {
 }
 
 .info-box .direccion-principal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
   color: var(--gris);
   font-size: 1.26rem;
   font-weight: 700;
   line-height: 1.25;
+}
+
+.info-box .direccion-ceremonia {
+  max-width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.14rem;
+  line-height: 1.28;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.info-box .direccion-recepcion {
+  max-width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.18rem;
+  text-transform: none;
 }
 
 .info-direccion {
@@ -1346,14 +1367,13 @@ main {
 .regalos::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: -18vw;
+  right: -18vw;
   top: 0;
   z-index: 0;
-  width: 100vw;
   height: 280px;
-  background: url("/ondas-3.svg") center top / 100% 100% no-repeat;
+  background: url("/ondas-3.svg") center top / 130% 100% no-repeat;
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
 .regalos::after {
@@ -1394,13 +1414,45 @@ main {
 
 .instagram {
   isolation: isolate;
+  position: relative;
   min-height: clamp(620px, 62vh, 760px);
-  padding: 150px 20px;
+  padding: 168px 20px 150px;
   overflow: hidden;
   background:
     linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
-    url("/foto-final-atardecer.webp") center 58% / cover no-repeat;
+    url("/foto-final-atardecer.webp") center 54% / cover no-repeat;
   color: var(--blanco);
+}
+
+.instagram-wave {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  height: 130px;
+  pointer-events: none;
+}
+
+.instagram-wave::before {
+  content: "";
+  position: absolute;
+  top: -102px;
+  left: -10%;
+  width: 120%;
+  height: 192px;
+  border-radius: 0 0 50% 50% / 0 0 42% 48%;
+  background: var(--claro);
+  transform: rotate(-1.8deg);
+  transform-origin: 50% 100%;
+}
+
+.instagram-wave::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -8vw;
+  right: -8vw;
+  height: 124px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 124' preserveAspectRatio='none'%3E%3Cpath d='M-30 94 C 310 36 600 12 865 18 C 1125 24 1350 62 1630 108' fill='none' stroke='%23d4a24f' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
 }
 
 .instagram::before {
@@ -1419,7 +1471,7 @@ main {
 .instagram .capture-content,
 .instagram .boton {
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 
 .instagram .title,
@@ -2011,9 +2063,11 @@ footer a {
   }
 
   .cuenta-regresiva::before {
+    left: -22vw;
+    right: -22vw;
     top: 58px;
-    width: 210vw;
     height: 250px;
+    background-size: 128% 100%;
   }
 
   .decor-conteo {

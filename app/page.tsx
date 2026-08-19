@@ -9,14 +9,15 @@ const partyStart = "20260927T190000";
 const partyEnd = "20260928T000000";
 const ceremonyTitle = "Boda de Dominique y Sileidys (Consejos Matrimoniales)";
 const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
+const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
-const ceremonyLocation = ceremonyAddress;
-const receptionVenue = "VIA RESTAURANTE";
+const ceremonyLocation = `${ceremonyVenue}, ${ceremonyAddress}`;
+const receptionVenue = "Via Restaurante";
 const receptionAddress = "Av. Del Ferrocarril #12-49, ALCAZARES, Santa Marta, Magdalena";
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
-const ceremonyMapsUrl = "https://maps.app.goo.gl/cGoZyWGiLvwfPeXh9";
+const ceremonyMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ceremonyLocation)}`;
 const receptionMapsUrl = "https://maps.app.goo.gl/NaMDcEtK7Ai2cfM3A";
 const receptionMapsQuery = encodeURIComponent(receptionLocation);
 const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
@@ -279,9 +280,9 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
-            <p className="direccion-principal">Cl. 30 # 18-85</p>
+            <p className="direccion-principal direccion-ceremonia">{ceremonyVenue}</p>
             <p className="info-direccion">
-              Brr. 1 de Mayo
+              Cl. 30 # 18-85 Brr. 1 de Mayo
               <br />
               Santa Marta, Magdalena
             </p>
@@ -303,7 +304,7 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
-            <p className="direccion-principal">{receptionVenue}</p>
+            <p className="direccion-principal direccion-recepcion">{receptionVenue}</p>
             <p className="info-direccion">
               Av. Del Ferrocarril #12-49
               <br />
@@ -406,6 +407,7 @@ export default function Home() {
       </section>
 
       <section className="instagram">
+        <div className="instagram-wave" aria-hidden="true" />
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
           <p className="capture-eyebrow">Álbum compartido</p>
@@ -522,7 +524,7 @@ export default function Home() {
         <Modal title="Cómo llegar a la Recepción" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
-              title="Mapa de VIA RESTAURANTE"
+              title="Mapa de Via Restaurante"
               src={receptionMapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
