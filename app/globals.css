@@ -2245,8 +2245,8 @@ footer a {
     left: 0;
     right: 0;
     top: 24px;
-    height: 326px;
-    background-size: 100% 100%;
+    height: clamp(70px, 18.2vw, 142px);
+    background: url("/ondas-1.svg?v=7") center top / 100% auto no-repeat;
   }
 
   .decor-conteo {
