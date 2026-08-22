@@ -2368,18 +2368,19 @@ footer a {
   }
 
   .regalos {
-    min-height: 532px;
-    padding-top: 260px;
+    min-height: 500px;
+    padding-top: 226px;
     padding-bottom: 72px;
   }
 
   .regalos::before {
-    height: 216px;
-    background-size: 100% 100%;
+    height: 178px;
+    background-size: cover;
+    background-position: center top;
   }
 
   .regalos::after {
-    top: 214px;
+    top: 176px;
   }
 
   .footer-invitacion .calendar-menu {
