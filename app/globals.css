@@ -2330,18 +2330,18 @@ footer a {
   }
 
   .confirmacion-asistencia {
-    min-height: 570px;
-    padding: 376px 20px 48px;
+    min-height: 464px;
+    padding: 252px 20px 42px;
   }
 
   .confirmacion-asistencia::before {
     top: 0;
-    height: 344px;
+    height: 230px;
     background-size: 100% 100%;
   }
 
   .confirmacion-asistencia::after {
-    top: 342px;
+    top: 228px;
     height: 10px;
   }
 
@@ -2416,6 +2416,10 @@ footer a {
   .col-ceremonia,
   .col-fiesta {
     padding-top: 54px;
+  }
+
+  .col-fiesta {
+    padding-bottom: 38px;
   }
 
   .col-ceremonia > .animated-icon,
