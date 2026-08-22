@@ -2242,10 +2242,10 @@ footer a {
   }
 
   .cuenta-regresiva::before {
-    left: -10vw;
-    right: -10vw;
-    top: 26px;
-    height: 310px;
+    left: 0;
+    right: 0;
+    top: 24px;
+    height: 326px;
     background-size: 100% 100%;
   }
 
@@ -2330,17 +2330,18 @@ footer a {
   }
 
   .confirmacion-asistencia {
-    min-height: 545px;
-    padding: 352px 20px 48px;
+    min-height: 570px;
+    padding: 376px 20px 48px;
   }
 
   .confirmacion-asistencia::before {
-    top: -26px;
-    height: 330px;
+    top: 0;
+    height: 344px;
+    background-size: 100% 100%;
   }
 
   .confirmacion-asistencia::after {
-    top: 300px;
+    top: 342px;
     height: 10px;
   }
 
@@ -2367,17 +2368,18 @@ footer a {
   }
 
   .regalos {
-    min-height: 510px;
-    padding-top: 238px;
+    min-height: 532px;
+    padding-top: 260px;
     padding-bottom: 72px;
   }
 
   .regalos::before {
-    height: 192px;
+    height: 216px;
+    background-size: 100% 100%;
   }
 
   .regalos::after {
-    top: 190px;
+    top: 214px;
   }
 
   .footer-invitacion .calendar-menu {
