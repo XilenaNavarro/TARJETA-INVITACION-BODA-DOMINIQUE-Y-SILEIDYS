@@ -478,9 +478,10 @@ export default function Home() {
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
           <p className="capture-eyebrow">Álbum compartido</p>
-          <h2 className="title">Captura el momento</h2>
+          <h2 className="title">CAPTURA EL MOMENTO</h2>
           <p className="subtitle">
-            ¡Queremos ver la boda desde tus ojos! Sube tus fotos y videos para que todos podamos revivir este día.
+            Nuestra historia también se contará desde tus ojos. Comparte tus fotos y videos y ayúdanos a guardar cada
+            recuerdo de este día.
           </p>
         </div>
         <a className="boton capture-upload-button" href="https://photos.app.goo.gl/Fs4Bf8ri3PbRMsCS8" target="_blank" rel="noopener noreferrer">
