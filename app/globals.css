@@ -1017,13 +1017,16 @@ main {
 }
 
 .confirmacion-asistencia {
+  --locked-acompananos-wave-top: -26px;
+  --locked-acompananos-wave-height: 370px;
+  --locked-acompananos-wave-cover: 328px;
   position: relative;
   overflow: hidden;
   background: var(--claro);
-  min-height: 635px;
+  min-height: 555px;
   display: grid;
   place-items: end center;
-  padding: 420px 20px 54px;
+  padding: 344px 20px 54px;
 }
 
 .confirmacion-asistencia::before {
@@ -1031,9 +1034,10 @@ main {
   position: absolute;
   left: 0;
   right: 0;
-  top: -42px;
+  top: var(--locked-acompananos-wave-top);
   z-index: 0;
-  height: 430px;
+  height: var(--locked-acompananos-wave-height);
+  /* Locked approved wave: do not resize/reposition unless replacing the approved artwork. */
   background: url("/ondas-2.svg?v=14") center / cover no-repeat;
   pointer-events: none;
 }
@@ -1043,7 +1047,7 @@ main {
   position: absolute;
   left: 0;
   right: 0;
-  top: 386px;
+  top: var(--locked-acompananos-wave-cover);
   z-index: 1;
   height: 10px;
   background: var(--claro);
@@ -2334,18 +2338,18 @@ footer a {
   }
 
   .confirmacion-asistencia {
+    --locked-acompananos-wave-top: 0;
+    --locked-acompananos-wave-height: 230px;
+    --locked-acompananos-wave-cover: 228px;
     min-height: 464px;
     padding: 252px 20px 42px;
   }
 
   .confirmacion-asistencia::before {
-    top: 0;
-    height: 230px;
     background-size: 100% 100%;
   }
 
   .confirmacion-asistencia::after {
-    top: 228px;
     height: 10px;
   }
 
