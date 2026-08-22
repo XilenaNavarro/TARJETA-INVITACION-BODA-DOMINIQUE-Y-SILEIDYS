@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Invitacion Hojas - Dominique y Sileidys",
-  description: "Invitacion digital de boda de Dominique y Sileidys.",
+  title: "Invitación Hojas - Dominique y Sileidys",
+  description: "Invitación digital de boda de Dominique y Sileidys.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

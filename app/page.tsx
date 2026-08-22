@@ -12,8 +12,8 @@ const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
 const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = `${ceremonyVenue}, ${ceremonyAddress}`;
-const receptionVenue = "Via Restaurante";
-const receptionAddress = "Av. Del Ferrocarril #12-49, ALCAZARES, Santa Marta, Magdalena";
+const receptionVenue = "Vía Restaurante";
+const receptionAddress = "Av. del Ferrocarril #12-49, ALCÁZARES, Santa Marta, Magdalena";
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
@@ -303,12 +303,12 @@ export default function Home() {
         <div className="card-grupo-invitados">
           <div className="pases-total">3</div>
           <h3 className="titulo-grupo">INVITADOS</h3>
-          <div className="acompanantes-info">(1 acompanante)</div>
+          <div className="acompanantes-info">(1 acompañante)</div>
           <ul className="lista-invitados">
             <li>Familia invitada</li>
             <li>Persona especial</li>
           </ul>
-          <p>Sera un dia inolvidable y queremos vivirlo contigo.</p>
+          <p>Será un día inolvidable y queremos vivirlo contigo.</p>
         </div>
       </section>
 
@@ -321,7 +321,7 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Día</h6>
-            <p>Domingo 27 de Septiembre - 3:30 p. m.</p>
+            <p>Domingo 27 de septiembre - 3:30 p. m.</p>
             <CalendarMenu links={calendarLinks.ceremony} downloadName="dominique-sileidys-ceremonia.ics" />
           </div>
           <div className="info-box">
@@ -345,16 +345,16 @@ export default function Home() {
           </div>
           <div className="info-box">
             <h6>Día</h6>
-            <p>Domingo 27 de Septiembre - 7:00 p. m.</p>
+            <p>Domingo 27 de septiembre - 7:00 p. m.</p>
             <CalendarMenu links={calendarLinks.reception} downloadName="dominique-sileidys-recepcion.ics" />
           </div>
           <div className="info-box">
             <h6>Lugar</h6>
             <p className="direccion-principal direccion-recepcion">{receptionVenue}</p>
             <p className="info-direccion">
-              Av. Del Ferrocarril #12-49
+              Av. del Ferrocarril #12-49
               <br />
-              ALCAZARES, Santa Marta, Magdalena
+              ALCÁZARES, Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
@@ -417,7 +417,10 @@ export default function Home() {
               "/foto-album-12.webp",
             ].map((src, item) => (
               <div className={src.includes("foto-carrusel") ? "polaroid polaroid-suave" : "polaroid"} key={`${src}-${item}`}>
-                <img src={src} alt="" loading="eager" decoding="async" />
+                <picture>
+                  <source media="(max-width: 780px)" srcSet={src.replace(".webp", "-mobile.webp")} />
+                  <img src={src} alt="" loading={item < 8 ? "eager" : "lazy"} decoding="async" />
+                </picture>
               </div>
             ))}
           </div>
@@ -448,7 +451,7 @@ export default function Home() {
       <section className="regalos">
         <div className="regalos-flor-der" />
         <h2 className="title">Regalos</h2>
-        <p className="subtitle">Si deseas regalarnos algo mas que tu hermosa presencia...</p>
+        <p className="subtitle">Si deseas regalarnos algo más que tu hermosa presencia...</p>
         <img className="gift-price-icon" src="/precio-paleta.gif" alt="" />
       </section>
 
@@ -514,18 +517,16 @@ export default function Home() {
       {musicPrompt ? (
         <Modal title="" onClose={() => enterInvitation(false)}>
           <div className="music-modal">
-            <p>
-              Bienvenidos a la invitación de
-              <br />
-              <strong>Dominique y Sileidys</strong>
+            <img className="music-modal-icon" src="/corazon-linea-paleta.gif" alt="Corazón" />
+            <p className="music-modal-message">
+              <strong>Nos elegimos para toda la vida,</strong>
+              <strong>y los elegimos a ustedes para celebrarlo.</strong>
+              <span>Bienvenidos a nuestra boda.</span>
+              <em>Dominique &amp; Sileidys</em>
             </p>
-            <span>La música de fondo es parte de la experiencia</span>
             <div className="music-actions">
               <button className="boton" type="button" onClick={() => enterInvitation(true)}>
-                Ingresar con música
-              </button>
-              <button className="boton boton-secundario" type="button" onClick={() => enterInvitation(false)}>
-                Ingresar sin música
+                Abrir invitación
               </button>
             </div>
           </div>
@@ -537,12 +538,12 @@ export default function Home() {
           <form className="form">
             <label>
               Nombre completo
-              <input placeholder="Ej: Familia Perez o Juan Lopez" />
+              <input placeholder="Ej: Familia Pérez o Juan López" />
             </label>
             <label>
               ¿Podrás asistir?
               <select defaultValue="si">
-                <option value="si">Si, claro</option>
+                <option value="si">Sí, claro</option>
                 <option value="no">No puedo</option>
               </select>
             </label>
@@ -571,7 +572,7 @@ export default function Home() {
         <Modal title="Cómo llegar a la Recepción" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
-              title="Mapa de Via Restaurante"
+              title="Mapa de Vía Restaurante"
               src={receptionMapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -588,7 +589,7 @@ export default function Home() {
           <form className="form">
             <label>
               Tu nombre
-              <input placeholder="Ej: Maria Lopez" />
+              <input placeholder="Ej: María López" />
             </label>
             <label>
               Nombre de canción y autor
@@ -612,7 +613,7 @@ export default function Home() {
               <img src="/corbata-paleta.gif" alt="" />
             </div>
             <p className="modal-text">
-            Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompanar el
+            Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompañar el
             estilo de la celebración.
             </p>
           </div>

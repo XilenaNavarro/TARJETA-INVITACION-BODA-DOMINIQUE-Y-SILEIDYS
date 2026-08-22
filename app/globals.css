@@ -1734,36 +1734,64 @@ footer a {
 }
 
 .modal-musica {
-  width: min(720px, 100%);
-  padding: 58px 42px;
+  width: min(760px, 100%);
+  padding: 42px 42px 48px;
   text-align: center;
 }
 
-.music-modal p {
-  margin: 0 0 14px;
+.music-modal-icon {
+  display: block;
+  width: clamp(106px, 16vw, 150px);
+  height: clamp(106px, 16vw, 150px);
+  margin: 0 auto 18px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgb(82 104 100 / 0.16));
+}
+
+.music-modal-message {
+  display: grid;
+  gap: 7px;
+  margin: 0;
   color: var(--verde);
   font-family: "Open Sans", Arial, sans-serif;
-  font-size: clamp(1.45rem, 2.9vw, 2.15rem);
-  font-weight: 300;
-  line-height: 1.35;
+  font-size: clamp(1.22rem, 2.35vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.28;
+  text-wrap: balance;
 }
 
-.music-modal p strong {
+.music-modal .music-modal-message strong {
   display: block;
-  margin-top: 14px;
+  color: var(--verde-oscuro);
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  text-shadow: none;
+}
+
+.music-modal .music-modal-message strong:nth-of-type(2) {
+  color: var(--verde-oscuro);
+}
+
+.music-modal .music-modal-message span {
+  display: block;
+  margin-top: 8px;
+  color: var(--verde-oscuro);
+  font-size: clamp(1.02rem, 1.7vw, 1.32rem);
+  font-weight: 400;
+}
+
+.music-modal-message em {
+  display: block;
+  margin-top: 6px;
   color: var(--verde-oscuro);
   font-family: "Cookie", cursive;
-  font-size: clamp(3.4rem, 7vw, 5.2rem);
+  font-size: clamp(2.9rem, 6.4vw, 4.9rem);
+  font-style: normal;
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.92;
   text-shadow: 0 3px 10px rgb(82 104 100 / 0.16);
-}
-
-.music-modal span {
-  display: block;
-  color: var(--gris);
-  font-size: 0.94rem;
-  font-weight: 700;
 }
 
 .music-actions {
@@ -2290,7 +2318,7 @@ footer a {
 
   .carrusel-fotos {
     gap: 18px;
-    animation-duration: 90s;
+    animation-duration: 82s;
   }
 
   .polaroid {
@@ -2301,6 +2329,19 @@ footer a {
   .modal:has(.dress-modal-content) {
     width: min(86vw, 430px);
     padding: 104px 32px 46px;
+  }
+
+  .modal-musica {
+    width: min(92vw, 520px);
+    padding: 34px 22px 38px;
+  }
+
+  .music-modal-icon {
+    margin-bottom: 14px;
+  }
+
+  .music-actions {
+    margin-top: 24px;
   }
 
   .modal:has(.dress-modal-content)::before {
@@ -2338,7 +2379,7 @@ footer a {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 780px) {
     .carrusel-fotos {
-      animation-duration: 110s;
+      animation-duration: 96s;
     }
   }
 }
