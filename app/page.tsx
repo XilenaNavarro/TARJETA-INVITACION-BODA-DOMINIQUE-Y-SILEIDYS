@@ -13,7 +13,7 @@ const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = `${ceremonyVenue}, ${ceremonyAddress}`;
 const receptionVenue = "Vía Restaurante";
-const receptionAddress = "Av. del Ferrocarril #12-49, ALCÁZARES, Santa Marta, Magdalena";
+const receptionAddress = "Av. del Ferrocarril #12-49, Alcazáres, Santa Marta, Magdalena";
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
@@ -23,6 +23,7 @@ const receptionMapsQuery = encodeURIComponent(receptionLocation);
 const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
 const spotifySongUrl =
   "https://open.spotify.com/intl-es/track/4UVKdTjE4WobaXwvjapVGn?si=jaPUkZQzT9i-_vh_NZBWeW&utm_source=whatsapp&nd=1&dlsi=4abc65e6672d4172";
+const likedAlbumPhotos = Array.from({ length: 26 }, (_, index) => `/foto-google-favorita-${String(index + 1).padStart(2, "0")}.webp`);
 
 const calendarLinks = {
   ceremony: {
@@ -118,10 +119,59 @@ function CalendarMenu({
   label?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const menuIdRef = useRef(`calendar-${Math.random().toString(36).slice(2)}`);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const closeOnOutsideClick = (event: MouseEvent | PointerEvent | TouchEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (menuRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick, true);
+    document.addEventListener("touchend", closeOnOutsideClick, true);
+    document.addEventListener("click", closeOnOutsideClick, true);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick, true);
+      document.removeEventListener("touchend", closeOnOutsideClick, true);
+      document.removeEventListener("click", closeOnOutsideClick, true);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const closeOtherMenus = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return;
+      if (event.detail !== menuIdRef.current) setOpen(false);
+    };
+
+    window.addEventListener("calendar-menu-open", closeOtherMenus);
+    return () => window.removeEventListener("calendar-menu-open", closeOtherMenus);
+  }, []);
+
+  const toggleMenu = () => {
+    setOpen((value) => {
+      const next = !value;
+      if (next) {
+        window.dispatchEvent(new CustomEvent("calendar-menu-open", { detail: menuIdRef.current }));
+      }
+      return next;
+    });
+  };
 
   return (
-    <div className="calendar-menu">
-      <button className={triggerClassName} type="button" onClick={() => setOpen((value) => !value)}>
+    <div className="calendar-menu" ref={menuRef}>
+      <button className={triggerClassName} type="button" onClick={toggleMenu}>
         {label}
       </button>
       {open ? (
@@ -308,7 +358,7 @@ export default function Home() {
             <li>Familia invitada</li>
             <li>Persona especial</li>
           </ul>
-          <p>Será un día inolvidable y queremos vivirlo contigo.</p>
+          <p>Qué alegría compartir este momento contigo.</p>
         </div>
       </section>
 
@@ -354,7 +404,7 @@ export default function Home() {
             <p className="info-direccion">
               Av. del Ferrocarril #12-49
               <br />
-              ALCÁZARES, Santa Marta, Magdalena
+              Alcazáres, Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
@@ -367,7 +417,7 @@ export default function Home() {
       <section className="seccion-principal confirmacion-asistencia">
         <div className="box-confirmacion">
           <h2 className="title">Confirmar Asistencia</h2>
-          <p className="subtitle">Es importante que confirmes tu asistencia</p>
+          <p className="subtitle">Nos hará muy felices contar contigo.</p>
           <button className="boton" type="button" onClick={() => setModal("rsvp")}>
             Confirmar asistencia
           </button>
@@ -377,45 +427,12 @@ export default function Home() {
       <section className="galeria">
         <div className="content-galeria">
           <h2 className="title">Retratos de Nuestro Amor</h2>
-          <p className="subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
+          <p className="subtitle">Instantes de nuestra historia que queremos compartir contigo.</p>
           <img className="section-gif-icon" src="/camara-paleta.gif" alt="" />
         </div>
         <div className="content-fotos">
           <div className="carrusel-fotos">
-            {[
-              "/foto-album-01.webp",
-              "/foto-album-16.webp",
-              "/foto-album-02.webp",
-              "/foto-album-18.webp",
-              "/foto-album-03.webp",
-              "/foto-album-15.webp",
-              "/foto-album-04.webp",
-              "/foto-album-10.webp",
-              "/foto-album-06.webp",
-              "/foto-album-17.webp",
-              "/foto-album-08.webp",
-              "/foto-album-11.webp",
-              "/foto-album-07.webp",
-              "/foto-album-05.webp",
-              "/foto-album-09.webp",
-              "/foto-album-12.webp",
-              "/foto-album-01.webp",
-              "/foto-album-16.webp",
-              "/foto-album-02.webp",
-              "/foto-album-18.webp",
-              "/foto-album-03.webp",
-              "/foto-album-15.webp",
-              "/foto-album-04.webp",
-              "/foto-album-10.webp",
-              "/foto-album-06.webp",
-              "/foto-album-17.webp",
-              "/foto-album-08.webp",
-              "/foto-album-11.webp",
-              "/foto-album-07.webp",
-              "/foto-album-05.webp",
-              "/foto-album-09.webp",
-              "/foto-album-12.webp",
-            ].map((src, item) => (
+            {[...likedAlbumPhotos, ...likedAlbumPhotos].map((src, item) => (
               <div className={src.includes("foto-carrusel") ? "polaroid polaroid-suave" : "polaroid"} key={`${src}-${item}`}>
                 <picture>
                   <source media="(max-width: 780px)" srcSet={src.replace(".webp", "-mobile.webp")} />
@@ -519,8 +536,8 @@ export default function Home() {
           <div className="music-modal">
             <img className="music-modal-icon" src="/corazon-linea-paleta.gif" alt="Corazón" />
             <p className="music-modal-message">
-              <strong>Nos elegimos para toda la vida,</strong>
-              <strong>y los elegimos a ustedes para celebrarlo.</strong>
+              <strong>Elegimos caminar juntos,</strong>
+              <span>y celebrarlo junto a quienes amamos.</span>
               <span>Bienvenidos a nuestra boda.</span>
               <em>Dominique &amp; Sileidys</em>
             </p>

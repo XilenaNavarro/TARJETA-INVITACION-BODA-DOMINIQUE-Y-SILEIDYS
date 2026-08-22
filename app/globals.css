@@ -1630,6 +1630,10 @@ main {
   transition: color 180ms ease, transform 180ms ease;
 }
 
+.footer-invitacion li:has(.footer-calendar-options) {
+  z-index: 60;
+}
+
 .footer-invitacion button {
   border: 0;
   background: none;
@@ -1653,9 +1657,10 @@ main {
 }
 
 .footer-calendar-options {
+  position: absolute;
   left: 0;
-  top: calc(100% + 16px);
-  z-index: 40;
+  top: calc(100% + 12px);
+  z-index: 70;
   width: 286px;
   transform: none;
 }
@@ -1664,9 +1669,9 @@ main {
   content: "";
   position: absolute;
   left: 0;
-  top: -16px;
+  top: -12px;
   width: 100%;
-  height: 16px;
+  height: 12px;
   background: var(--claro);
 }
 
@@ -1693,6 +1698,10 @@ main {
 .footer-invitacion li:hover::before {
   opacity: 1;
   transform: translateY(-50%) scale(1);
+}
+
+.footer-invitacion li:has(.footer-calendar-options)::before {
+  z-index: -1;
 }
 
 footer {
@@ -1776,10 +1785,14 @@ footer a {
 
 .music-modal .music-modal-message span {
   display: block;
-  margin-top: 8px;
   color: var(--verde-oscuro);
   font-size: clamp(1.02rem, 1.7vw, 1.32rem);
   font-weight: 400;
+}
+
+.music-modal .music-modal-message span:nth-of-type(2) {
+  margin-top: 8px;
+  font-size: clamp(0.9rem, 1.35vw, 1.08rem);
 }
 
 .music-modal-message em {
