@@ -1030,7 +1030,7 @@ main {
   top: -42px;
   z-index: 0;
   height: 430px;
-  background: url("/ondas-2.svg?v=13") center / 100% 100% no-repeat;
+  background: url("/ondas-2.svg?v=14") center / cover no-repeat;
   pointer-events: none;
 }
 
@@ -1377,7 +1377,7 @@ main {
   top: 0;
   z-index: 0;
   height: 280px;
-  background: url("/ondas-3.svg?v=12") center top / auto 100% no-repeat;
+  background: url("/ondas-3.svg?v=14") center top / cover no-repeat;
   pointer-events: none;
 }
 
@@ -2337,7 +2337,6 @@ footer a {
   .confirmacion-asistencia::before {
     top: -26px;
     height: 330px;
-    background-size: auto 100%;
   }
 
   .confirmacion-asistencia::after {
