@@ -416,10 +416,10 @@ export default function Home() {
 
       <section className="seccion-principal confirmacion-asistencia">
         <div className="box-confirmacion">
-          <h2 className="title">Confirmar Asistencia</h2>
-          <p className="subtitle">Nos hará muy felices contar contigo.</p>
+          <h2 className="title">Acompáñanos</h2>
+          <p className="subtitle">Tu presencia hará este día aún más especial.</p>
           <button className="boton" type="button" onClick={() => setModal("rsvp")}>
-            Confirmar asistencia
+            CONFIRMAR ASISTENCIA
           </button>
         </div>
       </section>
