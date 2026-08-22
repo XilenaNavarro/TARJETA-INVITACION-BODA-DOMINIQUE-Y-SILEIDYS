@@ -53,14 +53,24 @@ const calendarLinks = {
 };
 
 function Countdown() {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
 
   const parts = useMemo(() => {
+    if (!now) {
+      return [
+        ["días", 0],
+        ["hs", 0],
+        ["min", 0],
+        ["seg", 0],
+      ];
+    }
+
     const distance = Math.max(weddingDate.getTime() - now.getTime(), 0);
     return [
       ["días", Math.floor(distance / 86400000)],
