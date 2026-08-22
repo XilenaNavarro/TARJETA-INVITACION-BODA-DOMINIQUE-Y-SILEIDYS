@@ -12,7 +12,7 @@ const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
 const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = `${ceremonyVenue}, ${ceremonyAddress}`;
-const receptionVenue = "Vía Restaurante";
+const receptionVenue = "VIA Restaurante";
 const receptionAddress = "Av. del Ferrocarril #12-49, Alcazáres, Santa Marta, Magdalena";
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
@@ -589,7 +589,7 @@ export default function Home() {
         <Modal title="Cómo llegar a la Recepción" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
-              title="Mapa de Vía Restaurante"
+              title="Mapa de VIA Restaurante"
               src={receptionMapsEmbedUrl}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
