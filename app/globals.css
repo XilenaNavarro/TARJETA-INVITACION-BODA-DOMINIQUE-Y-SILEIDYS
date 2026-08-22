@@ -2242,11 +2242,11 @@ footer a {
   }
 
   .cuenta-regresiva::before {
-    left: 0;
-    right: 0;
-    top: 24px;
-    height: clamp(70px, 18.2vw, 142px);
-    background: url("/ondas-1.svg?v=7") center top / 100% auto no-repeat;
+    left: -120vw;
+    right: -120vw;
+    top: 16px;
+    height: clamp(190px, 62vw, 260px);
+    background: url("/ondas-1.svg?v=8") center top / 100% auto no-repeat;
   }
 
   .decor-conteo {
