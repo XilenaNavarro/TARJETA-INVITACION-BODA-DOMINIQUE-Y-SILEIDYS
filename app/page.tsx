@@ -23,8 +23,9 @@ const receptionMapsQuery = encodeURIComponent(receptionLocation);
 const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
 const spotifySongUrl =
   "https://open.spotify.com/intl-es/track/4UVKdTjE4WobaXwvjapVGn?si=jaPUkZQzT9i-_vh_NZBWeW&utm_source=whatsapp&nd=1&dlsi=4abc65e6672d4172";
+const hiddenAlbumPhotos = new Set([11, 24, 25, 26]);
 const likedAlbumPhotos = Array.from({ length: 26 }, (_, index) => index + 1)
-  .filter((photoNumber) => photoNumber !== 11)
+  .filter((photoNumber) => !hiddenAlbumPhotos.has(photoNumber))
   .map((photoNumber) => `/foto-google-favorita-${String(photoNumber).padStart(2, "0")}.webp`);
 
 const calendarLinks = {
