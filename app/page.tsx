@@ -442,7 +442,15 @@ export default function Home() {
               <div className={src.includes("foto-carrusel") ? "polaroid polaroid-suave" : "polaroid"} key={`${src}-${item}`}>
                 <picture>
                   <source media="(max-width: 780px)" srcSet={src.replace(".webp", "-mobile.webp")} />
-                  <img src={src} alt="" loading={item < 8 ? "eager" : "lazy"} decoding="async" />
+                  <img
+                    src={src}
+                    alt=""
+                    width="360"
+                    height="450"
+                    loading="eager"
+                    fetchPriority={item < 8 ? "high" : "auto"}
+                    decoding="async"
+                  />
                 </picture>
               </div>
             ))}
