@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 const weddingDate = new Date("2026-09-27T19:00:00");
 const ceremonyStart = "20260927T153000";
 const ceremonyEnd = "20260927T173000";
 const partyStart = "20260927T190000";
 const partyEnd = "20260928T000000";
-const ceremonyTitle = "Boda de Dominique y Sileidys (Consejos Matrimoniales)";
+const ceremonyTitle = "Boda de Dominique y Sileidys (Consejos matrimoniales)";
 const partyTitle = "Boda de Dominique y Sileidys (Recepción)";
 const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
@@ -17,7 +17,7 @@ const receptionAddress = "Av. del Ferrocarril #12-49, Alcázares, Santa Marta, M
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
-const ceremonyMapsUrl = "https://share.google/RAmwELFSNDTSbhwpl";
+const ceremonyMapsUrl = "https://maps.app.goo.gl/UouRBxdRUWGK7ENA9";
 const receptionMapsUrl = "https://maps.app.goo.gl/NaMDcEtK7Ai2cfM3A";
 const receptionMapsQuery = encodeURIComponent(receptionLocation);
 const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
@@ -27,6 +27,9 @@ const hiddenAlbumPhotos = new Set([11, 24, 25, 26]);
 const likedAlbumPhotos = Array.from({ length: 26 }, (_, index) => index + 1)
   .filter((photoNumber) => !hiddenAlbumPhotos.has(photoNumber))
   .map((photoNumber) => `/foto-google-favorita-${String(photoNumber).padStart(2, "0")}.webp`);
+const invitedGuests = [
+  { name: "Familia invitada", detail: "3 pases reservados" },
+];
 
 const calendarLinks = {
   ceremony: {
@@ -50,17 +53,15 @@ const calendarLinks = {
 };
 
 function Countdown() {
-  const [now, setNow] = useState<Date | null>(null);
+  const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    setNow(new Date());
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
 
   const parts = useMemo(() => {
-    const current = now ?? weddingDate;
-    const distance = Math.max(weddingDate.getTime() - current.getTime(), 0);
+    const distance = Math.max(weddingDate.getTime() - now.getTime(), 0);
     return [
       ["días", Math.floor(distance / 86400000)],
       ["hs", Math.floor((distance / 3600000) % 24)],
@@ -99,7 +100,7 @@ function Modal({ title, children, onClose }: { title: string; children: React.Re
     <div className="modal-backdrop" role="dialog" aria-modal="true">
       <div className={title ? "modal" : "modal modal-musica"}>
         <button className="modal-close" type="button" onClick={onClose} aria-label="Cerrar">
-          x
+          ×
         </button>
         {title ? <h3>{title}</h3> : null}
         {children}
@@ -123,7 +124,7 @@ function CalendarMenu({
 }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const menuIdRef = useRef(`calendar-${Math.random().toString(36).slice(2)}`);
+  const menuId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -155,18 +156,18 @@ function CalendarMenu({
   useEffect(() => {
     const closeOtherMenus = (event: Event) => {
       if (!(event instanceof CustomEvent)) return;
-      if (event.detail !== menuIdRef.current) setOpen(false);
+      if (event.detail !== menuId) setOpen(false);
     };
 
     window.addEventListener("calendar-menu-open", closeOtherMenus);
     return () => window.removeEventListener("calendar-menu-open", closeOtherMenus);
-  }, []);
+  }, [menuId]);
 
   const toggleMenu = () => {
     setOpen((value) => {
       const next = !value;
       if (next) {
-        window.dispatchEvent(new CustomEvent("calendar-menu-open", { detail: menuIdRef.current }));
+        window.dispatchEvent(new CustomEvent("calendar-menu-open", { detail: menuId }));
       }
       return next;
     });
@@ -206,26 +207,6 @@ function RingsIcon() {
   return <img className="animated-icon soft-gif-icon" src="/libro-abierto-paleta.gif" alt="" />;
 }
 
-function PartyIcon() {
-  return (
-    <div className="animated-icon party-icon" aria-hidden="true">
-      <svg viewBox="0 0 128 128">
-        <path className="party-cone" d="M16 112 L50 42 C57 62 73 78 95 88 Z" />
-        <path className="party-cone-shadow" d="M50 42 C57 62 73 78 95 88 L76 96 C61 86 47 69 40 52 Z" />
-        <path className="party-highlight" d="M22 103 L45 55 C50 67 58 78 69 86 Z" />
-        <path className="party-ribbon" d="M72 28 C93 15 87 6 69 9 C54 12 55 25 73 24 C90 23 95 39 76 44" />
-        <path className="party-streamer" d="M81 64 C94 54 109 51 121 52" />
-        <circle className="dot dot-a" cx="24" cy="64" r="6" />
-        <circle className="dot dot-b" cx="98" cy="18" r="7" />
-        <circle className="dot dot-c" cx="103" cy="54" r="6" />
-        <circle className="dot dot-d" cx="82" cy="102" r="6" />
-        <path className="curl curl-a" d="M19 11 C33 2 41 16 29 30 C23 38 21 49 28 55" />
-        <path className="curl curl-b" d="M108 76 C121 73 124 86 111 92 C104 95 101 102 111 106" />
-      </svg>
-    </div>
-  );
-}
-
 function ReceptionIcon() {
   return <img className="animated-icon reception-icon" src="/fiesta-paleta.gif" alt="" />;
 }
@@ -234,6 +215,10 @@ export default function Home() {
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | "gifts" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [rsvpStep, setRsvpStep] = useState(0);
+  const [selectedGuest, setSelectedGuest] = useState(invitedGuests[0].name);
+  const [ceremonyAnswer, setCeremonyAnswer] = useState("");
+  const [partyAnswer, setPartyAnswer] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playMusic = async () => {
     const audio = audioRef.current;
@@ -267,6 +252,14 @@ export default function Home() {
     }
     audio.pause();
     setIsPlaying(false);
+  };
+
+  const closeRsvp = () => {
+    setModal(null);
+    setRsvpStep(0);
+    setSelectedGuest(invitedGuests[0].name);
+    setCeremonyAnswer("");
+    setPartyAnswer("");
   };
 
   useEffect(() => {
@@ -370,7 +363,7 @@ export default function Home() {
         <article className="col-ceremonia">
           <RingsIcon />
           <div className="event-ribbon">
-            <h3>Consejos Matrimoniales</h3>
+            <h3>Consejos matrimoniales</h3>
           </div>
           <div className="info-box">
             <h6>Día</h6>
@@ -381,7 +374,7 @@ export default function Home() {
             <h6>Lugar</h6>
             <p className="direccion-principal direccion-ceremonia">{ceremonyVenue}</p>
             <p className="info-direccion">
-              Cl. 30 # 18-85 Brr. 1 de Mayo
+              Cl. 30 # 18-85, Brr. 1 de Mayo
               <br />
               Santa Marta, Magdalena
             </p>
@@ -429,7 +422,7 @@ export default function Home() {
 
       <section className="galeria">
         <div className="content-galeria">
-          <h2 className="title">Retratos de Nuestro Amor</h2>
+          <h2 className="title">Retratos de nuestro amor</h2>
           <p className="subtitle">Instantes de nuestra historia que queremos compartir contigo.</p>
           <img className="section-gif-icon" src="/camara-paleta.gif" alt="" />
         </div>
@@ -448,7 +441,7 @@ export default function Home() {
       </section>
 
       <section className="fiesta">
-        <h2 className="title">Código de Vestimenta</h2>
+        <h2 className="title">Código de vestimenta</h2>
         <p className="subtitle">Para nosotros es importante que te sientas y te veas espectacular.</p>
         <div className="items-fiesta">
           <article className="item-fiesta dress-fiesta-card">
@@ -476,12 +469,11 @@ export default function Home() {
       </section>
 
       <section className="instagram">
-        <div className="instagram-wave" aria-hidden="true" />
         <div className="instagram-bottom-wave" aria-hidden="true" />
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
           <p className="capture-eyebrow">Álbum compartido</p>
-          <h2 className="title">CAPTURA EL MOMENTO</h2>
+          <h2 className="title">Captura el momento</h2>
           <p className="subtitle">
             Nuestra historia también se contará desde tus ojos. Comparte tus fotos y videos y ayúdanos a guardar cada
             recuerdo de este día.
@@ -518,7 +510,7 @@ export default function Home() {
               downloadName="dominique-sileidys-ceremonia.ics"
               triggerClassName="footer-calendar-trigger"
               menuClassName="footer-calendar-options"
-              label="Agendar Consejos Matrimoniales"
+              label="Agendar consejos matrimoniales"
             />
           </li>
         </ul>
@@ -542,7 +534,7 @@ export default function Home() {
             <p className="music-modal-message">
               <strong>Elegimos caminar juntos,</strong>
               <span>y celebrarlo junto a quienes amamos.</span>
-              <span>Bienvenidos a nuestra boda.</span>
+              <span>Bienvenido a nuestra boda.</span>
               <em>Dominique &amp; Sileidys</em>
             </p>
             <div className="music-actions">
@@ -555,42 +547,97 @@ export default function Home() {
       ) : null}
 
       {modal === "rsvp" ? (
-        <Modal title="Confirma tu asistencia" onClose={() => setModal(null)}>
-          <form className="form">
-            <label>
-              Nombre completo
-              <input placeholder="Ej: Familia Pérez o Juan López" />
-            </label>
-            <label>
-              ¿Podrás asistir?
-              <select defaultValue="si">
-                <option value="si">Sí, claro</option>
-                <option value="no">No puedo</option>
-              </select>
-            </label>
-            <label>
-              Número de personas
-              <select defaultValue="1">
-                {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <option key={item}>
-                    {item} Persona{item > 1 ? "s" : ""}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Mensaje
-              <textarea placeholder="Restricciones alimenticias o mensaje para los novios" />
-            </label>
-            <button className="boton" type="button" onClick={() => setModal(null)}>
-              Enviar confirmación
-            </button>
-          </form>
+        <Modal title="Confirmar asistencia" onClose={closeRsvp}>
+          <div className="rsvp-flow">
+            {rsvpStep === 0 ? (
+              <>
+                <p className="rsvp-question">
+                  ¿Quién está confirmando? <span>*</span>
+                </p>
+                <div className="rsvp-options rsvp-guest-options">
+                  {invitedGuests.map((guest) => (
+                    <button
+                      className={selectedGuest === guest.name ? "rsvp-option is-selected" : "rsvp-option"}
+                      type="button"
+                      key={guest.name}
+                      onClick={() => setSelectedGuest(guest.name)}
+                    >
+                      <strong>{guest.name}</strong>
+                      <small>{guest.detail}</small>
+                    </button>
+                  ))}
+                </div>
+                <div className="rsvp-actions rsvp-actions-end">
+                  <button className="boton rsvp-next" type="button" onClick={() => setRsvpStep(1)}>
+                    Siguiente →
+                  </button>
+                </div>
+              </>
+            ) : null}
+
+            {rsvpStep === 1 ? (
+              <>
+                <p className="rsvp-guest-summary">{selectedGuest}</p>
+                <p className="rsvp-question">
+                  ¿Asistes a los consejos matrimoniales? <span>*</span>
+                </p>
+                <div className="rsvp-options rsvp-answer-options">
+                  {["Sí, asistiré", "No asistiré"].map((answer) => (
+                    <button
+                      className={ceremonyAnswer === answer ? "rsvp-option is-selected" : "rsvp-option"}
+                      type="button"
+                      key={answer}
+                      onClick={() => setCeremonyAnswer(answer)}
+                    >
+                      {answer}
+                    </button>
+                  ))}
+                </div>
+                <div className="rsvp-actions">
+                  <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(0)}>
+                    ← Anterior
+                  </button>
+                  <button className="boton rsvp-next" type="button" onClick={() => setRsvpStep(2)}>
+                    Siguiente →
+                  </button>
+                </div>
+              </>
+            ) : null}
+
+            {rsvpStep === 2 ? (
+              <>
+                <p className="rsvp-guest-summary">{selectedGuest}</p>
+                <p className="rsvp-question">
+                  ¿Asistes a la recepción? <span>*</span>
+                </p>
+                <div className="rsvp-options rsvp-answer-options">
+                  {["Sí, asistiré", "No asistiré"].map((answer) => (
+                    <button
+                      className={partyAnswer === answer ? "rsvp-option is-selected" : "rsvp-option"}
+                      type="button"
+                      key={answer}
+                      onClick={() => setPartyAnswer(answer)}
+                    >
+                      {answer}
+                    </button>
+                  ))}
+                </div>
+                <div className="rsvp-actions">
+                  <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(1)}>
+                    ← Anterior
+                  </button>
+                  <button className="boton rsvp-next" type="button" onClick={closeRsvp}>
+                    Enviar confirmación
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </div>
         </Modal>
       ) : null}
 
       {modal === "map" ? (
-        <Modal title="Cómo llegar a la Recepción" onClose={() => setModal(null)}>
+        <Modal title="Cómo llegar a la recepción" onClose={() => setModal(null)}>
           <div className="map-modal-content">
             <iframe
               title="Mapa de VIA Restaurante"
@@ -628,14 +675,14 @@ export default function Home() {
       ) : null}
 
       {modal === "dress" ? (
-        <Modal title="Código de Vestimenta" onClose={() => setModal(null)}>
+        <Modal title="Código de vestimenta" onClose={() => setModal(null)}>
           <div className="dress-modal-content">
             <div className="dress-modal-icon" aria-hidden="true">
               <img src="/corbata-paleta.gif" alt="" />
             </div>
             <p className="modal-text">
-            Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompañar el
-            estilo de la celebración.
+              Te esperamos con vestuario elegante. Sugerimos tonos suaves, verdes, dorados o neutros para acompañar el
+              estilo de la celebración.
             </p>
           </div>
         </Modal>

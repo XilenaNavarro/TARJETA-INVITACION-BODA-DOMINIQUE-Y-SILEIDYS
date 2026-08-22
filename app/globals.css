@@ -277,19 +277,23 @@ main {
   margin-top: -270px;
   min-height: 760px;
   overflow: hidden;
-  background: linear-gradient(180deg, transparent 0 240px, var(--claro) 240px 100%);
+  background: transparent;
 }
 
 .cuenta-regresiva::before {
   content: "";
   position: absolute;
-  left: -18vw;
-  right: -18vw;
-  top: 78px;
-  z-index: 0;
-  height: 342px;
-  background: url("/onda-contador.svg") center top / 120% 100% no-repeat;
+  left: -8vw;
+  right: -8vw;
+  top: 36px;
+  z-index: 1;
+  height: 430px;
+  background: url("/ondas-1.svg?v=6") center top / 100% 100% no-repeat;
   pointer-events: none;
+}
+
+.cuenta-regresiva::after {
+  display: none;
 }
 
 .franja-verde {
@@ -968,7 +972,6 @@ main {
 .calendar-options small {
   display: block;
   margin: 8px 12px 0 0;
-  border-top: 1px solid #e5e5e5;
   color: #c2c2c2;
   font-size: 0.68rem;
   text-align: right;
@@ -1014,10 +1017,10 @@ main {
   position: relative;
   overflow: hidden;
   background: var(--claro);
-  min-height: 595px;
+  min-height: 635px;
   display: grid;
   place-items: end center;
-  padding: 370px 20px 54px;
+  padding: 420px 20px 54px;
 }
 
 .confirmacion-asistencia::before {
@@ -1038,15 +1041,10 @@ main {
   position: absolute;
   left: 0;
   right: 0;
-  top: 342px;
-  z-index: 0;
-  height: 42px;
-  background: linear-gradient(
-    180deg,
-    transparent 0,
-    var(--claro) 48%,
-    var(--claro) 100%
-  );
+  top: 386px;
+  z-index: 1;
+  height: 10px;
+  background: var(--claro);
   pointer-events: none;
 }
 
@@ -1097,8 +1095,9 @@ main {
 }
 
 .galeria {
-  min-height: 470px;
+  min-height: 650px;
   padding-top: 34px;
+  padding-bottom: 230px;
   background: var(--claro);
   overflow: hidden;
 }
@@ -1107,7 +1106,7 @@ main {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -22px;
+  bottom: 30px;
   z-index: 0;
   width: 160vw;
   height: 170px;
@@ -1128,7 +1127,7 @@ main {
 
 .content-fotos {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1420px, 100%);
   margin: 12px auto 0;
   overflow: hidden;
@@ -1373,7 +1372,7 @@ main {
   top: 0;
   z-index: 0;
   height: 280px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 0 1760 280' preserveAspectRatio='none'%3E%3Cpath fill='%2381948B' d='M-80 138 C160 40 395 38 620 126 C790 192 960 180 1140 120 C1320 60 1500 20 1680 54 L1680 280 L-80 280 Z'/%3E%3Cpath fill='%23C6D7CF' d='M-80 134 C240 248 560 270 900 184 C1170 116 1390 62 1680 86 L1680 280 L-80 280 Z'/%3E%3Cpath fill='%23F3F1EC' d='M-80 206 C250 312 600 310 930 218 C1200 148 1410 124 1680 154 L1680 280 L-80 280 Z'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
+  background: url("/ondas-3.svg") center top / 100% 100% no-repeat;
   pointer-events: none;
 }
 
@@ -1416,8 +1415,8 @@ main {
 .instagram {
   isolation: isolate;
   position: relative;
-  min-height: clamp(620px, 62vh, 760px);
-  padding: 168px 20px 150px;
+  min-height: clamp(760px, 76vh, 920px);
+  padding: 170px 20px 190px;
   overflow: hidden;
   background: transparent;
   color: var(--blanco);
@@ -1430,7 +1429,7 @@ main {
   z-index: 0;
   background:
     linear-gradient(rgb(47 52 51 / 0.5), rgb(47 52 51 / 0.34)),
-    url("/foto-final-atardecer.webp") center 54% / cover no-repeat;
+    url("/foto-captura-momento.png") center 54% / cover no-repeat;
   background-attachment: fixed;
   pointer-events: none;
 }
@@ -1439,31 +1438,22 @@ main {
   position: absolute;
   inset: 0 0 auto;
   z-index: 3;
-  height: 130px;
+  height: clamp(210px, 17vw, 300px);
   pointer-events: none;
 }
 
 .instagram-wave::before {
   content: "";
   position: absolute;
-  top: -102px;
-  left: -10%;
-  width: 120%;
-  height: 192px;
-  border-radius: 0 0 50% 50% / 0 0 42% 48%;
-  background: var(--claro);
-  transform: rotate(-1.8deg);
-  transform-origin: 50% 100%;
+  top: -1px;
+  left: -4vw;
+  right: -4vw;
+  height: 100%;
+  background: url("/ondas-1.svg?v=6") center top / 100% 100% no-repeat;
 }
 
 .instagram-wave::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -12vw;
-  right: -12vw;
-  height: 124px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 0 1760 124' preserveAspectRatio='none'%3E%3Cpath d='M-30 94 C 310 36 600 12 865 18 C 1125 24 1350 62 1630 108' fill='none' stroke='%23d4a24f' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
+  display: none;
 }
 
 .instagram-bottom-wave {
@@ -1581,8 +1571,8 @@ main {
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 52px;
   align-items: center;
-  min-height: 420px;
-  padding: 94px 14vw;
+  min-height: 320px;
+  padding: 56px 14vw 64px;
   background: var(--claro);
   color: var(--gris);
 }
@@ -1977,6 +1967,125 @@ footer a {
   resize: vertical;
 }
 
+.rsvp-flow {
+  display: grid;
+  gap: 24px;
+}
+
+.rsvp-question {
+  margin: 0;
+  color: var(--verde);
+  font-size: clamp(1.12rem, 2.2vw, 1.55rem);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.rsvp-question span {
+  color: #c34a38;
+}
+
+.rsvp-options {
+  display: grid;
+  gap: 12px;
+}
+
+.rsvp-answer-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rsvp-option {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 4px;
+  min-height: 64px;
+  border: 0;
+  border-radius: 10px;
+  background: #f0eee9;
+  color: var(--verde);
+  padding: 14px 20px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.rsvp-option:hover {
+  transform: translateY(-1px);
+}
+
+.rsvp-answer-options .rsvp-option {
+  justify-items: center;
+  text-align: center;
+}
+
+.rsvp-option strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.rsvp-option small {
+  color: var(--gris);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.rsvp-option.is-selected {
+  background: var(--menta);
+  color: var(--verde-oscuro);
+  box-shadow: inset 0 0 0 2px var(--gris);
+}
+
+.rsvp-guest-summary {
+  margin: -8px 0 0;
+  color: var(--gris);
+  font-weight: 700;
+  text-align: center;
+}
+
+.rsvp-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.rsvp-actions-end {
+  justify-content: flex-end;
+}
+
+.rsvp-prev,
+.rsvp-next {
+  min-width: min(190px, 44vw);
+  min-height: 54px;
+  margin-top: 0;
+}
+
+.rsvp-prev {
+  background: var(--menta);
+  color: var(--blanco);
+  box-shadow: none;
+}
+
+.rsvp-message {
+  display: grid;
+  gap: 8px;
+  color: var(--verde);
+  font-weight: 700;
+}
+
+.rsvp-message textarea {
+  width: 100%;
+  min-height: 96px;
+  border: 1px solid #d5dcd8;
+  border-radius: 8px;
+  background: #f7f5f0;
+  color: var(--negro);
+  padding: 13px 14px;
+  resize: vertical;
+  outline: 0;
+}
+
 .modal-text {
   color: var(--gris);
   line-height: 1.7;
@@ -2124,15 +2233,15 @@ footer a {
   .cuenta-regresiva {
     min-height: 610px;
     margin-top: -190px;
-    background: linear-gradient(180deg, transparent 0 168px, var(--claro) 168px 100%);
+    background: transparent;
   }
 
   .cuenta-regresiva::before {
-    left: -22vw;
-    right: -22vw;
-    top: 58px;
-    height: 250px;
-    background-size: 128% 100%;
+    left: -10vw;
+    right: -10vw;
+    top: 26px;
+    height: 310px;
+    background-size: 100% 100%;
   }
 
   .decor-conteo {
@@ -2216,8 +2325,8 @@ footer a {
   }
 
   .confirmacion-asistencia {
-    min-height: 505px;
-    padding: 302px 20px 48px;
+    min-height: 545px;
+    padding: 352px 20px 48px;
   }
 
   .confirmacion-asistencia::before {
@@ -2227,8 +2336,8 @@ footer a {
   }
 
   .confirmacion-asistencia::after {
-    top: 246px;
-    height: 38px;
+    top: 300px;
+    height: 10px;
   }
 
   .item-fiesta h3 {
@@ -2240,13 +2349,17 @@ footer a {
   }
 
   .instagram {
-    min-height: 620px;
-    padding: 128px 20px;
+    min-height: 700px;
+    padding: 146px 20px 152px;
   }
 
   .instagram::after {
     background-position: center calc(56% + var(--mobile-parallax-y, 0px));
     background-attachment: scroll;
+  }
+
+  .instagram-wave {
+    height: 190px;
   }
 
   .regalos {
@@ -2259,7 +2372,6 @@ footer a {
     height: 192px;
     left: -6vw;
     right: -6vw;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-40 0 880 192' preserveAspectRatio='none'%3E%3Cpath fill='%2381948B' d='M-40 72 C95 16 210 36 310 108 C410 180 510 94 620 48 C710 10 770 22 840 44 L840 192 L-40 192 Z'/%3E%3Cpath fill='%23C6D7CF' d='M-40 88 C120 160 280 176 452 126 C600 82 680 62 840 78 L840 192 L-40 192 Z'/%3E%3Cpath fill='%23F3F1EC' d='M-40 142 C120 204 316 202 496 154 C640 116 720 108 840 124 L840 192 L-40 192 Z'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
   }
 
   .regalos::after {
@@ -2331,6 +2443,17 @@ footer a {
     mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   }
 
+  .galeria {
+    min-height: 560px;
+    padding-bottom: 178px;
+  }
+
+  .galeria::after {
+    bottom: 22px;
+    height: 136px;
+    width: 190vw;
+  }
+
   .carrusel-fotos {
     gap: 18px;
     animation-duration: 90s;
@@ -2372,6 +2495,19 @@ footer a {
   .modal:has(.dress-modal-content) .modal-close {
     top: 64px;
     right: 38px;
+  }
+
+  .rsvp-answer-options {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-actions {
+    flex-direction: column;
+  }
+
+  .rsvp-prev,
+  .rsvp-next {
+    width: 100%;
   }
 
   .dress-modal-icon {
