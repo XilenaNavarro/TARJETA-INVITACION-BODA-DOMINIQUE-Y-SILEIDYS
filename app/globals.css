@@ -1017,16 +1017,16 @@ main {
 }
 
 .confirmacion-asistencia {
-  --locked-acompananos-wave-top: -26px;
-  --locked-acompananos-wave-height: 370px;
-  --locked-acompananos-wave-cover: 328px;
+  --locked-acompananos-wave-top: -42px;
+  --locked-acompananos-wave-height: 430px;
+  --locked-acompananos-wave-cover: 386px;
   position: relative;
   overflow: hidden;
   background: var(--claro);
-  min-height: 555px;
+  min-height: 635px;
   display: grid;
   place-items: end center;
-  padding: 344px 20px 54px;
+  padding: 420px 20px 54px;
 }
 
 .confirmacion-asistencia::before {
