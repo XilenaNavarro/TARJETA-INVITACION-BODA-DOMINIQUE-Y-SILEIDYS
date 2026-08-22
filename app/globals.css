@@ -103,8 +103,7 @@ main {
 .portada-flor-izq-sup,
 .portada-flor-der-inf,
 .portada-flor-izq-inf,
-.ceremonia-fiesta-flor-der,
-.regalos-flor-der {
+.ceremonia-fiesta-flor-der {
   position: absolute;
   background: url("/hoja-1.svg") center / contain no-repeat;
   pointer-events: none;
@@ -1092,7 +1091,6 @@ main {
 
 .galeria,
 .fiesta,
-.regalos,
 .instagram {
   position: relative;
   padding: 86px 20px;
@@ -1283,7 +1281,6 @@ main {
 }
 
 .item-fiesta p,
-.regalos p,
 .instagram p {
   color: var(--gris);
   font-size: 0.98rem;
@@ -1369,60 +1366,24 @@ main {
     linear-gradient(var(--verde) 0 0) 50% 74% / 34px 8px no-repeat;
 }
 
-.regalos {
+.onda-separador-regalos {
+  position: relative;
   overflow: hidden;
   background: var(--claro);
-  min-height: 560px;
-  padding-top: 335px;
-  padding-bottom: 58px;
+  height: clamp(72px, 18.14vw, 360px);
 }
 
-.regalos::before {
+.onda-separador-regalos::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   z-index: 0;
-  height: 280px;
-  background: url("/ondas-3.svg?v=14") center top / cover no-repeat;
+  bottom: 0;
+  /* Locked approved wave separator. Keep the SVG proportional and uncropped. */
+  background: url("/ondas-3.svg?v=18") center top / 100% 100% no-repeat;
   pointer-events: none;
-}
-
-.regalos::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 278px;
-  z-index: 1;
-  height: 2px;
-  background: var(--claro);
-  pointer-events: none;
-}
-
-.regalos-flor-der {
-  right: -90px;
-  top: 260px;
-  width: 210px;
-  height: 380px;
-  opacity: 0.42;
-}
-
-.regalos .title,
-.regalos .subtitle,
-.regalos .gift-price-icon,
-.regalos .boton {
-  position: relative;
-  z-index: 1;
-}
-
-.gift-price-icon {
-  display: block;
-  width: clamp(140px, 18vw, 190px);
-  height: auto;
-  margin: 32px auto 36px;
-  object-fit: contain;
 }
 
 .instagram {
@@ -2376,19 +2337,12 @@ footer a {
     height: 190px;
   }
 
-  .regalos {
-    min-height: 500px;
-    padding-top: clamp(138px, 36vw, 210px);
-    padding-bottom: 72px;
+  .onda-separador-regalos {
+    height: clamp(72px, 18.14vw, 142px);
   }
 
-  .regalos::before {
-    height: clamp(70px, 18.2vw, 142px);
-    background: url("/ondas-3.svg?v=15") center top / 100% auto no-repeat;
-  }
-
-  .regalos::after {
-    top: clamp(68px, 18.2vw, 140px);
+  .onda-separador-regalos::before {
+    background: url("/ondas-3.svg?v=18") center top / 100% 100% no-repeat;
   }
 
   .footer-invitacion .calendar-menu {
@@ -2595,7 +2549,6 @@ footer a {
 .confirmacion-asistencia .title,
 .galeria .title,
 .fiesta > .title,
-.regalos .title,
 .instagram .title {
   font-size: var(--letra-primaria);
 }
@@ -2604,7 +2557,6 @@ footer a {
 .confirmacion-asistencia .subtitle,
 .galeria .subtitle,
 .fiesta > .subtitle,
-.regalos .subtitle,
 .instagram .subtitle {
   font-size: var(--letra-secundaria);
   font-weight: 700;

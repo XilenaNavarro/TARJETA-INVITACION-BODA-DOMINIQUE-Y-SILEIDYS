@@ -218,7 +218,7 @@ function RingsIcon() {
 }
 
 export default function Home() {
-  const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | "gifts" | null>(null);
+  const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [rsvpStep, setRsvpStep] = useState(0);
@@ -449,12 +449,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="regalos">
-        <div className="regalos-flor-der" />
-        <h2 className="title">Regalos</h2>
-        <p className="subtitle">Si deseas regalarnos algo más que tu hermosa presencia...</p>
-        <img className="gift-price-icon" src="/precio-paleta.gif" alt="" />
-      </section>
+      <section className="onda-separador-regalos" aria-hidden="true" />
 
       <section className="instagram">
         <div className="instagram-bottom-wave" aria-hidden="true" />
@@ -647,14 +642,6 @@ export default function Home() {
         </Modal>
       ) : null}
 
-      {modal === "gifts" ? (
-        <Modal title="Regalos" onClose={() => setModal(null)}>
-          <p className="modal-text">
-            Tu presencia es nuestro mayor regalo. Si deseas tener un detalle adicional, puedes coordinarlo directamente
-            con los novios.
-          </p>
-        </Modal>
-      ) : null}
     </main>
   );
 }
