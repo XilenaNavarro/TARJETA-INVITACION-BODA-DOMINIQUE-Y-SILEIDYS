@@ -217,10 +217,6 @@ function RingsIcon() {
   return <img className="animated-icon soft-gif-icon" src="/libro-abierto-paleta.gif" alt="" />;
 }
 
-function ReceptionIcon() {
-  return <img className="animated-icon reception-icon" src="/fiesta-paleta.gif" alt="" />;
-}
-
 export default function Home() {
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | "gifts" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
@@ -368,7 +364,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ceremonia-fiesta">
+      <section className="ceremonia-fiesta ceremonia-unica">
         <div className="ceremonia-fiesta-flor-der" />
         <article className="col-ceremonia">
           <RingsIcon />
@@ -392,30 +388,6 @@ export default function Home() {
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
               ¿Cómo llegar?
             </a>
-          </div>
-        </article>
-        <article className="col-fiesta">
-          <ReceptionIcon />
-          <div className="event-ribbon">
-            <h3>Recepción</h3>
-          </div>
-          <div className="info-box">
-            <h6>Día</h6>
-            <p>Domingo 27 de septiembre - 7:00 p. m.</p>
-            <CalendarMenu links={calendarLinks.reception} downloadName="dominique-sileidys-recepcion.ics" />
-          </div>
-          <div className="info-box">
-            <h6>Lugar</h6>
-            <p className="direccion-principal direccion-recepcion">{receptionVenue}</p>
-            <p className="info-direccion">
-              Av. del Ferrocarril #12-49
-              <br />
-              Alcázares, Santa Marta, Magdalena
-            </p>
-            <button className="boton" type="button" onClick={() => setModal("map")}>
-              <img className="boton-icon" src="/destino-paleta.gif" alt="" />
-              ¿Cómo llegar?
-            </button>
           </div>
         </article>
       </section>
@@ -512,15 +484,6 @@ export default function Home() {
             <button type="button" onClick={() => setModal("rsvp")}>
               Confirmar asistencia
             </button>
-          </li>
-          <li>
-            <CalendarMenu
-              links={calendarLinks.reception}
-              downloadName="dominique-sileidys-recepcion.ics"
-              triggerClassName="footer-calendar-trigger"
-              menuClassName="footer-calendar-options"
-              label="Agendar Recepción"
-            />
           </li>
           <li>
             <CalendarMenu

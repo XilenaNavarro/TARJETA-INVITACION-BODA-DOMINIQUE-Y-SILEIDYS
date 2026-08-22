@@ -502,6 +502,10 @@ main {
   background: var(--claro);
 }
 
+.ceremonia-fiesta.ceremonia-unica .ceremonia-fiesta-flor-der {
+  z-index: 0;
+}
+
 .ceremonia-fiesta-flor-der {
   top: 245px;
   right: -78px;
@@ -2433,6 +2437,14 @@ footer a {
   .event-ribbon {
     min-width: min(280px, 82vw);
     margin-bottom: 34px;
+  }
+
+  .ceremonia-fiesta.ceremonia-unica .event-ribbon {
+    min-width: min(318px, 86vw);
+  }
+
+  .ceremonia-fiesta.ceremonia-unica .col-ceremonia h3 {
+    font-size: clamp(2.05rem, 8.2vw, 2.75rem);
   }
 
   .ceremonia-fiesta .boton {
