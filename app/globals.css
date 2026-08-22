@@ -1028,7 +1028,7 @@ main {
   left: 50%;
   top: -42px;
   z-index: 0;
-  width: 132vw;
+  width: 150vw;
   height: 430px;
   background: url("/ondas-2.svg") center / 100% 100% no-repeat;
   pointer-events: none;
@@ -1366,13 +1366,14 @@ main {
 .regalos::before {
   content: "";
   position: absolute;
-  left: -4vw;
-  right: -4vw;
+  left: 50%;
   top: 0;
   z-index: 0;
+  width: 150vw;
   height: 280px;
   background: url("/ondas-3.svg") center top / 100% 100% no-repeat;
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .regalos::after {
@@ -2369,8 +2370,9 @@ footer a {
 
   .regalos::before {
     height: 192px;
-    left: -6vw;
-    right: -6vw;
+    left: 50%;
+    right: auto;
+    width: 165vw;
   }
 
   .regalos::after {
