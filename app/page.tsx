@@ -336,7 +336,7 @@ export default function Home() {
               Una cuerda triple
               <br />
               no se rompe fácilmente
-              <small>ECLESIASTES 4:12</small>
+              <small>Eclesiastés 4:12</small>
               <br />
               <img src="/fixdate-comilla-cierre.svg" alt="" />
             </p>
