@@ -2369,18 +2369,17 @@ footer a {
 
   .regalos {
     min-height: 500px;
-    padding-top: 226px;
+    padding-top: clamp(138px, 36vw, 210px);
     padding-bottom: 72px;
   }
 
   .regalos::before {
-    height: 178px;
-    background-size: cover;
-    background-position: center top;
+    height: clamp(70px, 18.2vw, 142px);
+    background: url("/ondas-3.svg?v=15") center top / 100% auto no-repeat;
   }
 
   .regalos::after {
-    top: 176px;
+    top: clamp(68px, 18.2vw, 140px);
   }
 
   .footer-invitacion .calendar-menu {
