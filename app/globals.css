@@ -1038,7 +1038,7 @@ main {
   z-index: 0;
   height: var(--locked-acompananos-wave-height);
   /* Locked approved wave: do not resize/reposition unless replacing the approved artwork. */
-  background: url("/ondas-2.svg?v=16") center / cover no-repeat;
+  background: url("/ondas-2.svg?v=17") center / cover no-repeat;
   pointer-events: none;
 }
 
@@ -2339,14 +2339,15 @@ footer a {
 
   .confirmacion-asistencia {
     --locked-acompananos-wave-top: 0;
-    --locked-acompananos-wave-height: 230px;
-    --locked-acompananos-wave-cover: 228px;
+    --locked-acompananos-wave-height: clamp(70px, 18.2vw, 142px);
+    --locked-acompananos-wave-cover: clamp(68px, 18.2vw, 140px);
     min-height: 464px;
     padding: 252px 20px 42px;
   }
 
   .confirmacion-asistencia::before {
-    background-size: 100% 100%;
+    /* Locked mobile approved wave: keep proportional; do not use 100% 100%. */
+    background: url("/ondas-2.svg?v=17") center top / 100% auto no-repeat;
   }
 
   .confirmacion-asistencia::after {
