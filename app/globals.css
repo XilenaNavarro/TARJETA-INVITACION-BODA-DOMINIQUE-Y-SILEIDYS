@@ -1025,14 +1025,13 @@ main {
 .confirmacion-asistencia::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: -42px;
   z-index: 0;
-  width: 150vw;
   height: 430px;
-  background: url("/ondas-2.svg") center / 100% 100% no-repeat;
+  background: url("/ondas-2.svg?v=8") center / 100% 100% no-repeat;
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
 .confirmacion-asistencia::after {
@@ -1366,14 +1365,13 @@ main {
 .regalos::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: 0;
   z-index: 0;
-  width: 150vw;
   height: 280px;
-  background: url("/ondas-3.svg") center top / 100% 100% no-repeat;
+  background: url("/ondas-3.svg?v=8") center top / 100% 100% no-repeat;
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
 .regalos::after {
@@ -2331,7 +2329,6 @@ footer a {
 
   .confirmacion-asistencia::before {
     top: -26px;
-    width: 190vw;
     height: 330px;
   }
 
@@ -2370,9 +2367,6 @@ footer a {
 
   .regalos::before {
     height: 192px;
-    left: 50%;
-    right: auto;
-    width: 165vw;
   }
 
   .regalos::after {
