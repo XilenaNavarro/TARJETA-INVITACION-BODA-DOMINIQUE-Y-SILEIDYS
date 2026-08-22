@@ -22,6 +22,11 @@
 # misc
 .DS_Store
 *.pem
+/.codex-*.pid
+/.codex-line-debug.png
+/.codex-package/
+/.codex-work/
+/server.err
 
 # debug
 npm-debug.log*
