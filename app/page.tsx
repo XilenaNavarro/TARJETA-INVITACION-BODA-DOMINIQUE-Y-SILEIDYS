@@ -224,7 +224,6 @@ export default function Home() {
   const [rsvpStep, setRsvpStep] = useState(0);
   const [selectedGuest, setSelectedGuest] = useState(invitedGuests[0].name);
   const [ceremonyAnswer, setCeremonyAnswer] = useState("");
-  const [partyAnswer, setPartyAnswer] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playMusic = async () => {
     const audio = audioRef.current;
@@ -265,7 +264,6 @@ export default function Home() {
     setRsvpStep(0);
     setSelectedGuest(invitedGuests[0].name);
     setCeremonyAnswer("");
-    setPartyAnswer("");
   };
 
   useEffect(() => {
@@ -576,35 +574,6 @@ export default function Home() {
                 </div>
                 <div className="rsvp-actions">
                   <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(0)}>
-                    ← Anterior
-                  </button>
-                  <button className="boton rsvp-next" type="button" onClick={() => setRsvpStep(2)}>
-                    Siguiente →
-                  </button>
-                </div>
-              </>
-            ) : null}
-
-            {rsvpStep === 2 ? (
-              <>
-                <p className="rsvp-guest-summary">{selectedGuest}</p>
-                <p className="rsvp-question">
-                  ¿Asistes a la recepción? <span>*</span>
-                </p>
-                <div className="rsvp-options rsvp-answer-options">
-                  {["Sí, asistiré", "No asistiré"].map((answer) => (
-                    <button
-                      className={partyAnswer === answer ? "rsvp-option is-selected" : "rsvp-option"}
-                      type="button"
-                      key={answer}
-                      onClick={() => setPartyAnswer(answer)}
-                    >
-                      {answer}
-                    </button>
-                  ))}
-                </div>
-                <div className="rsvp-actions">
-                  <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(1)}>
                     ← Anterior
                   </button>
                   <button className="boton rsvp-next" type="button" onClick={closeRsvp}>
