@@ -1375,7 +1375,15 @@ main {
 }
 
 .regalos::after {
-  display: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 278px;
+  z-index: 1;
+  height: 2px;
+  background: var(--claro);
+  pointer-events: none;
 }
 
 .regalos-flor-der {
@@ -2359,6 +2367,10 @@ footer a {
 
   .regalos::before {
     height: 192px;
+  }
+
+  .regalos::after {
+    top: 190px;
   }
 
   .footer-invitacion .calendar-menu {
