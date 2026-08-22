@@ -17,7 +17,7 @@ const receptionAddress = "Av. del Ferrocarril #12-49, Alcazáres, Santa Marta, M
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
-const ceremonyMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ceremonyLocation)}`;
+const ceremonyMapsUrl = "https://share.google/RAmwELFSNDTSbhwpl";
 const receptionMapsUrl = "https://maps.app.goo.gl/NaMDcEtK7Ai2cfM3A";
 const receptionMapsQuery = encodeURIComponent(receptionLocation);
 const receptionMapsEmbedUrl = `https://www.google.com/maps?q=${receptionMapsQuery}&output=embed`;
