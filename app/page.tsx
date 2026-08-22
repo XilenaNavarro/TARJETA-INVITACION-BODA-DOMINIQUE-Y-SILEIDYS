@@ -390,6 +390,10 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="onda-entre-secciones" aria-hidden="true">
+        <img src="/ondas-3.svg?v=21" alt="" />
+      </section>
+
       <section className="seccion-principal confirmacion-asistencia">
         <div className="box-confirmacion">
           <h2 className="title">Acompáñanos</h2>
@@ -448,8 +452,6 @@ export default function Home() {
           </article>
         </div>
       </section>
-
-      <section className="onda-separador-regalos" aria-hidden="true" />
 
       <section className="instagram">
         <div className="instagram-bottom-wave" aria-hidden="true" />

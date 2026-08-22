@@ -1015,42 +1015,28 @@ main {
   background: #2764b2;
 }
 
+.onda-entre-secciones {
+  overflow: hidden;
+  line-height: 0;
+  background: var(--claro);
+}
+
+.onda-entre-secciones img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
 .confirmacion-asistencia {
-  --locked-acompananos-wave-top: -42px;
-  --locked-acompananos-wave-height: 430px;
-  --locked-acompananos-wave-cover: 386px;
   position: relative;
   overflow: hidden;
   background: var(--claro);
-  min-height: 635px;
+  min-height: 320px;
   display: grid;
-  place-items: end center;
-  padding: 420px 20px 54px;
-}
-
-.confirmacion-asistencia::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: var(--locked-acompananos-wave-top);
-  z-index: 0;
-  height: var(--locked-acompananos-wave-height);
-  /* Locked approved wave: do not resize/reposition unless replacing the approved artwork. */
-  background: url("/ondas-2.svg?v=17") center / cover no-repeat;
-  pointer-events: none;
-}
-
-.confirmacion-asistencia::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: var(--locked-acompananos-wave-cover);
-  z-index: 1;
-  height: 10px;
-  background: var(--claro);
-  pointer-events: none;
+  place-items: center;
+  padding: 86px 20px 64px;
 }
 
 .box-confirmacion {
@@ -1364,26 +1350,6 @@ main {
     radial-gradient(circle at 50% 34%, var(--oliva) 0 18px, transparent 19px),
     linear-gradient(var(--verde) 0 0) 50% 63% / 44px 10px no-repeat,
     linear-gradient(var(--verde) 0 0) 50% 74% / 34px 8px no-repeat;
-}
-
-.onda-separador-regalos {
-  position: relative;
-  overflow: hidden;
-  background: var(--claro);
-  height: clamp(72px, 18.14vw, 360px);
-}
-
-.onda-separador-regalos::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 0;
-  bottom: 0;
-  /* Locked approved wave separator. Keep the SVG proportional and uncropped. */
-  background: url("/ondas-3.svg?v=18") center top / 100% 100% no-repeat;
-  pointer-events: none;
 }
 
 .instagram {
@@ -2299,20 +2265,8 @@ footer a {
   }
 
   .confirmacion-asistencia {
-    --locked-acompananos-wave-top: 0;
-    --locked-acompananos-wave-height: clamp(70px, 18.2vw, 142px);
-    --locked-acompananos-wave-cover: clamp(68px, 18.2vw, 140px);
-    min-height: 464px;
-    padding: 252px 20px 42px;
-  }
-
-  .confirmacion-asistencia::before {
-    /* Locked mobile approved wave: keep proportional; do not use 100% 100%. */
-    background: url("/ondas-2.svg?v=17") center top / 100% auto no-repeat;
-  }
-
-  .confirmacion-asistencia::after {
-    height: 10px;
+    min-height: 300px;
+    padding: 72px 20px 48px;
   }
 
   .item-fiesta h3 {
@@ -2335,14 +2289,6 @@ footer a {
 
   .instagram-wave {
     height: 190px;
-  }
-
-  .onda-separador-regalos {
-    height: clamp(72px, 18.14vw, 142px);
-  }
-
-  .onda-separador-regalos::before {
-    background: url("/ondas-3.svg?v=18") center top / 100% 100% no-repeat;
   }
 
   .footer-invitacion .calendar-menu {
