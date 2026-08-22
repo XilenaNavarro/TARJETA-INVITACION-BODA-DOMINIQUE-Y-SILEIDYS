@@ -13,7 +13,7 @@ const ceremonyVenue = "Salón del Reino de los Testigos de Jehová";
 const ceremonyAddress = "Cl. 30 # 18-85, Brr. 1 de Mayo, Santa Marta, Magdalena";
 const ceremonyLocation = `${ceremonyVenue}, ${ceremonyAddress}`;
 const receptionVenue = "VIA Restaurante";
-const receptionAddress = "Av. del Ferrocarril #12-49, Alcazáres, Santa Marta, Magdalena";
+const receptionAddress = "Av. del Ferrocarril #12-49, Alcázares, Santa Marta, Magdalena";
 const receptionLocation = `${receptionVenue}, ${receptionAddress}`;
 const ceremonyDescription = "Consejos matrimoniales de Dominique y Sileidys";
 const partyDescription = "Celebración de boda de Dominique y Sileidys";
@@ -407,7 +407,7 @@ export default function Home() {
             <p className="info-direccion">
               Av. del Ferrocarril #12-49
               <br />
-              Alcazáres, Santa Marta, Magdalena
+              Alcázares, Santa Marta, Magdalena
             </p>
             <button className="boton" type="button" onClick={() => setModal("map")}>
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
