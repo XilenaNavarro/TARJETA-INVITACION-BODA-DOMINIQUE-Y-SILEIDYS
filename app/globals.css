@@ -1038,7 +1038,7 @@ main {
   z-index: 0;
   height: var(--locked-acompananos-wave-height);
   /* Locked approved wave: do not resize/reposition unless replacing the approved artwork. */
-  background: url("/ondas-2.svg?v=14") center / cover no-repeat;
+  background: url("/ondas-2.svg?v=16") center / cover no-repeat;
   pointer-events: none;
 }
 
