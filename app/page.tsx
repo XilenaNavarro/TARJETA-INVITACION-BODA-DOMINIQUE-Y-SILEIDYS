@@ -472,7 +472,11 @@ export default function Home() {
 
       <section className="footer-invitacion">
         <h4>
-          Dominique <span>&amp;</span> Sileidys
+          Dominique
+          <br className="mobile-break" />
+          <span>&amp;</span>
+          <br className="mobile-break" />
+          Sileidys
         </h4>
         <ul>
           <li>

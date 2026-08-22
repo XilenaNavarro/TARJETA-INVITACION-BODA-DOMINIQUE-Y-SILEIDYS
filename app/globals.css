@@ -1539,6 +1539,7 @@ main {
   font-family: Georgia, serif;
   font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   line-height: 1;
+  margin: 0 clamp(8px, 1.1vw, 14px);
 }
 
 .footer-invitacion ul {
@@ -2449,6 +2450,10 @@ footer a {
     text-align: center;
     white-space: normal;
     font-size: clamp(3rem, 11vw, 4.45rem);
+  }
+
+  .footer-invitacion h4 span {
+    margin: 10px auto 8px;
   }
 }
 
