@@ -28,8 +28,57 @@ const likedAlbumPhotos = Array.from({ length: 26 }, (_, index) => index + 1)
   .filter((photoNumber) => !hiddenAlbumPhotos.has(photoNumber))
   .map((photoNumber) => `/foto-google-favorita-${String(photoNumber).padStart(2, "0")}.webp`);
 const invitedGuests = [
-  { name: "Familia invitada", detail: "3 pases reservados" },
+  { code: "inv-001", name: "Xilena Navarro", passes: 1, phone: "3126708644" },
+  { code: "inv-002", name: "Sileidys Navarro", passes: 1, phone: "3143928344" },
+  { code: "inv-003", name: "Familia Herrera Torregrosa", passes: 2, phone: "3176207539" },
 ];
+
+type InvitedGuest = (typeof invitedGuests)[number];
+
+const defaultGuest = invitedGuests[0];
+
+const guestDetail = (guest: InvitedGuest) =>
+  `${guest.passes} ${guest.passes === 1 ? "pase reservado" : "pases reservados"}`;
+
+const companionDetail = (guest: InvitedGuest) => {
+  const companions = guest.passes - 1;
+  if (companions <= 0) return "";
+  return `(${companions} ${companions === 1 ? "acompañante" : "acompañantes"})`;
+};
+
+const invitationTone = (guest: InvitedGuest) =>
+  guest.passes === 1
+    ? "Qué alegría compartir este momento contigo."
+    : "Qué alegría compartir este momento con ustedes.";
+
+const invitationUrlFor = (guest: InvitedGuest) => {
+  if (typeof window === "undefined") return `/?codigo=${guest.code}`;
+  const url = new URL(window.location.href);
+  url.search = "";
+  url.hash = "";
+  url.searchParams.set("codigo", guest.code);
+  return url.toString();
+};
+
+const whatsappUrlFor = (guest: InvitedGuest) => {
+  const message = [
+    `Hola ${guest.name},`,
+    "con mucha alegría te compartimos nuestra invitación a la boda de Dominique y Sileidys.",
+    `Tenemos ${guestDetail(guest)} para ${guest.passes === 1 ? "ti" : "ustedes"}.`,
+    invitationUrlFor(guest),
+  ].join(" ");
+
+  return `https://wa.me/57${guest.phone}?text=${encodeURIComponent(message)}`;
+};
+
+const searchValue = (searchParams: HomeProps["searchParams"], key: string) => {
+  const value = searchParams?.[key];
+  return Array.isArray(value) ? value[0] : value;
+};
+
+type HomeProps = {
+  searchParams?: Record<string, string | string[] | undefined>;
+};
 
 const calendarLinks = {
   ceremony: {
@@ -217,14 +266,21 @@ function RingsIcon() {
   return <img className="animated-icon soft-gif-icon" src="/libro-abierto-paleta.gif" alt="" />;
 }
 
-export default function Home() {
+export default function Home({ searchParams }: HomeProps) {
+  const initialCode =
+    searchValue(searchParams, "codigo") ?? searchValue(searchParams, "code") ?? searchValue(searchParams, "inv");
+  const initialGuest = invitedGuests.find((guest) => guest.code === initialCode) ?? defaultGuest;
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [rsvpStep, setRsvpStep] = useState(0);
-  const [selectedGuest, setSelectedGuest] = useState(invitedGuests[0].name);
+  const [inviteCode, setInviteCode] = useState(initialGuest.code);
+  const [showSendLinks, setShowSendLinks] = useState(false);
+  const [selectedGuestCode, setSelectedGuestCode] = useState(initialGuest.code);
   const [ceremonyAnswer, setCeremonyAnswer] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const currentGuest = invitedGuests.find((guest) => guest.code === inviteCode) ?? defaultGuest;
+  const selectedGuest = invitedGuests.find((guest) => guest.code === selectedGuestCode) ?? currentGuest;
   const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -262,9 +318,22 @@ export default function Home() {
   const closeRsvp = () => {
     setModal(null);
     setRsvpStep(0);
-    setSelectedGuest(invitedGuests[0].name);
+    setSelectedGuestCode(currentGuest.code);
     setCeremonyAnswer("");
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedCode = params.get("codigo") ?? params.get("code") ?? params.get("inv");
+    const requestedGuest = invitedGuests.find((guest) => guest.code === requestedCode);
+
+    if (requestedGuest) {
+      setInviteCode(requestedGuest.code);
+      setSelectedGuestCode(requestedGuest.code);
+    }
+
+    setShowSendLinks(params.get("envios") === "1" || params.get("admin") === "1");
+  }, []);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -351,14 +420,14 @@ export default function Home() {
 
       <section className="seccion-principal bloque-grupo-invitados">
         <div className="card-grupo-invitados">
-          <div className="pases-total">3</div>
+          <div className="pases-total">{currentGuest.passes}</div>
           <h3 className="titulo-grupo">INVITADOS</h3>
-          <div className="acompanantes-info">(1 acompañante)</div>
+          {companionDetail(currentGuest) ? <div className="acompanantes-info">{companionDetail(currentGuest)}</div> : null}
           <ul className="lista-invitados">
-            <li>Familia invitada</li>
-            <li>Persona especial</li>
+            <li>{currentGuest.name}</li>
+            {currentGuest.passes > 1 ? <li>Persona especial</li> : null}
           </ul>
-          <p>Qué alegría compartir este momento contigo.</p>
+          <p>{invitationTone(currentGuest)}</p>
         </div>
       </section>
 
@@ -496,6 +565,30 @@ export default function Home() {
         </ul>
       </section>
 
+      {showSendLinks ? (
+        <section className="seccion-principal panel-envios-whatsapp">
+          <div className="content-envios-whatsapp">
+            <h2 className="title">Envíos por WhatsApp</h2>
+            <p className="subtitle">Prueba de invitaciones personalizadas con mensaje breve.</p>
+            <div className="lista-envios-whatsapp">
+              {invitedGuests.map((guest) => (
+                <article className="envio-whatsapp" key={guest.code}>
+                  <div>
+                    <strong>{guest.name}</strong>
+                    <small>
+                      {guest.code} · {guestDetail(guest)} · {guest.phone}
+                    </small>
+                  </div>
+                  <a className="boton" href={whatsappUrlFor(guest)} target="_blank" rel="noopener noreferrer">
+                    Enviar WhatsApp
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <button
         className={isPlaying ? "controlador-musica is-playing" : "controlador-musica"}
         type="button"
@@ -537,13 +630,13 @@ export default function Home() {
                 <div className="rsvp-options rsvp-guest-options">
                   {invitedGuests.map((guest) => (
                     <button
-                      className={selectedGuest === guest.name ? "rsvp-option is-selected" : "rsvp-option"}
+                      className={selectedGuest.code === guest.code ? "rsvp-option is-selected" : "rsvp-option"}
                       type="button"
-                      key={guest.name}
-                      onClick={() => setSelectedGuest(guest.name)}
+                      key={guest.code}
+                      onClick={() => setSelectedGuestCode(guest.code)}
                     >
                       <strong>{guest.name}</strong>
-                      <small>{guest.detail}</small>
+                      <small>{guestDetail(guest)}</small>
                     </button>
                   ))}
                 </div>
@@ -557,7 +650,7 @@ export default function Home() {
 
             {rsvpStep === 1 ? (
               <>
-                <p className="rsvp-guest-summary">{selectedGuest}</p>
+                <p className="rsvp-guest-summary">{selectedGuest.name}</p>
                 <p className="rsvp-question">
                   ¿Asistes a los consejos matrimoniales? <span>*</span>
                 </p>

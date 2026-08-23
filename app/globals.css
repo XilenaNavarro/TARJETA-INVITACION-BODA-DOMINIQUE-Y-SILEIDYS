@@ -455,13 +455,24 @@ main {
 
 .lista-invitados {
   list-style: none;
-  margin: 22px 0;
+  margin: 28px 0 24px;
   padding: 0;
 }
 
 .lista-invitados li {
-  padding: 7px 0;
+  padding: 9px 0;
   border-bottom: 1px solid #ededed;
+  color: var(--verde);
+  font-size: clamp(1.22rem, 2.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.28;
+}
+
+.card-grupo-invitados p {
+  margin: 0;
+  font-size: clamp(1.12rem, 1.8vw, 1.34rem);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .ceremonia-fiesta {
@@ -1635,6 +1646,52 @@ main {
   z-index: -1;
 }
 
+.panel-envios-whatsapp {
+  background: #ffffff;
+}
+
+.content-envios-whatsapp {
+  width: min(780px, 100%);
+  margin: 0 auto;
+}
+
+.lista-envios-whatsapp {
+  display: grid;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.envio-whatsapp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid #dfe6e2;
+  border-radius: 8px;
+  background: var(--claro);
+  text-align: left;
+}
+
+.envio-whatsapp strong {
+  display: block;
+  color: var(--verde);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.envio-whatsapp small {
+  display: block;
+  margin-top: 4px;
+  color: var(--gris);
+  font-weight: 700;
+}
+
+.envio-whatsapp .boton {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
 footer {
   padding: 25px 20px;
   background: #2f3433;
@@ -2458,6 +2515,16 @@ footer a {
 
   .footer-invitacion h4 span {
     margin: 10px auto 8px;
+  }
+
+  .envio-whatsapp {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    text-align: center;
+  }
+
+  .envio-whatsapp .boton {
+    width: 100%;
   }
 }
 
