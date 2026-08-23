@@ -32,6 +32,7 @@ const invitedGuests = [
   { code: "inv-002", name: "Sileidys Navarro", passes: 1, phone: "3143928344" },
   { code: "inv-003", name: "Familia Herrera Torregrosa", passes: 2, phone: "3176207539" },
 ];
+const publicInvitationUrl = "https://invitacion-boda-sileidys.vercel.app";
 
 type InvitedGuest = (typeof invitedGuests)[number];
 
@@ -41,21 +42,17 @@ const guestDetail = (guest: InvitedGuest) =>
   `${guest.passes} ${guest.passes === 1 ? "pase reservado" : "pases reservados"}`;
 
 const invitationUrlFor = (guest: InvitedGuest) => {
-  if (typeof window === "undefined") return `/?codigo=${guest.code}`;
-  const url = new URL(window.location.href);
-  url.search = "";
-  url.hash = "";
+  const url = new URL(publicInvitationUrl);
   url.searchParams.set("codigo", guest.code);
   return url.toString();
 };
 
 const whatsappUrlFor = (guest: InvitedGuest) => {
   const message = [
-    `Hola ${guest.name},`,
-    "con mucha alegría te compartimos nuestra invitación a la boda de Dominique y Sileidys.",
-    `Tenemos ${guestDetail(guest)} para ${guest.passes === 1 ? "ti" : "ustedes"}.`,
+    `${guest.name}🤍`,
+    "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes.",
     invitationUrlFor(guest),
-  ].join(" ");
+  ].join("\n\n");
 
   return `https://wa.me/57${guest.phone}?text=${encodeURIComponent(message)}`;
 };
