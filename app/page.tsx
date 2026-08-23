@@ -40,17 +40,6 @@ const defaultGuest = invitedGuests[0];
 const guestDetail = (guest: InvitedGuest) =>
   `${guest.passes} ${guest.passes === 1 ? "pase reservado" : "pases reservados"}`;
 
-const companionDetail = (guest: InvitedGuest) => {
-  const companions = guest.passes - 1;
-  if (companions <= 0) return "";
-  return `(${companions} ${companions === 1 ? "acompañante" : "acompañantes"})`;
-};
-
-const invitationTone = (guest: InvitedGuest) =>
-  guest.passes === 1
-    ? "Qué alegría compartir este momento contigo."
-    : "Qué alegría compartir este momento con ustedes.";
-
 const invitationUrlFor = (guest: InvitedGuest) => {
   if (typeof window === "undefined") return `/?codigo=${guest.code}`;
   const url = new URL(window.location.href);
@@ -422,12 +411,7 @@ export default function Home({ searchParams }: HomeProps) {
         <div className="card-grupo-invitados">
           <div className="pases-total">{currentGuest.passes}</div>
           <h3 className="titulo-grupo">INVITADOS</h3>
-          {companionDetail(currentGuest) ? <div className="acompanantes-info">{companionDetail(currentGuest)}</div> : null}
-          <ul className="lista-invitados">
-            <li>{currentGuest.name}</li>
-            {currentGuest.passes > 1 ? <li>Persona especial</li> : null}
-          </ul>
-          <p>{invitationTone(currentGuest)}</p>
+          <p>Qué alegría compartir este momento con ustedes.</p>
         </div>
       </section>
 

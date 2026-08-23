@@ -469,7 +469,8 @@ main {
 }
 
 .card-grupo-invitados p {
-  margin: 0;
+  margin: 32px auto 0;
+  max-width: 440px;
   font-size: clamp(1.12rem, 1.8vw, 1.34rem);
   font-weight: 400;
   line-height: 1.5;
