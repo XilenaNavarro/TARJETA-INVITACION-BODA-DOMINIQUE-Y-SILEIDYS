@@ -141,6 +141,7 @@ const GUESTS = {
   "inv-138": {"name": "Familia Jeschke", "isGroup": true, "phone": ""},
   "inv-139": {"name": "Familia Liedloff", "isGroup": true, "phone": ""},
   "inv-140": {"name": "Xilena Navarro", "isGroup": false, "phone": "3126708644"},
+  "inv-143": {"name": "Familia Herrera Torregrosa", "isGroup": true, "phone": ""},
 };
 const PUBLIC_INVITATION_URL = "https://invitacion-boda-sileidys.vercel.app";
 const SHARE_PREVIEW_VERSION = "20260824b";

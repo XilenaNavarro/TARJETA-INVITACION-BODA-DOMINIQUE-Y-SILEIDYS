@@ -168,6 +168,7 @@ const invitedGuests = [
   {"code": "inv-138", "name": "Familia Jeschke", "isGroup": true},
   {"code": "inv-139", "name": "Familia Liedloff", "isGroup": true},
   {"code": "inv-140", "name": "Xilena Navarro", "isGroup": false},
+  {"code": "inv-143", "name": "Familia Herrera Torregrosa", "isGroup": true},
   {"code": "inv-146", "name": "Familia Aldarraga Carrascal", "isGroup": true},
   {"code": "inv-147", "name": "Wilmer Monzalvo", "isGroup": false},
   {"code": "inv-148", "name": "Familia Navarro Zamora", "isGroup": true},
