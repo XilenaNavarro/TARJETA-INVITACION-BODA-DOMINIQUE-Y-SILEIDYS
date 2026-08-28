@@ -426,23 +426,18 @@ main {
   box-shadow: 0 10px 35px rgb(80 115 108 / 0.14);
 }
 
-.pases-total {
-  display: grid;
-  place-items: center;
-  width: 78px;
-  height: 78px;
-  margin: 0 auto 14px;
-  border-radius: 50%;
-  background: var(--menta);
-  color: var(--verde);
-  font-size: 2.5rem;
-  font-weight: 700;
+.icono-invitados {
+  display: block;
+  width: 98px;
+  height: 98px;
+  margin: 0 auto 18px;
+  object-fit: contain;
 }
 
 .titulo-grupo {
   margin: 0;
   color: var(--verde);
-  font-size: 1.2rem;
+  font-size: clamp(1.25rem, 2.1vw, 1.58rem);
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -1142,7 +1137,7 @@ main {
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: gallery-scroll 48s linear infinite;
+  animation: gallery-scroll 42s linear infinite;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   will-change: transform;
@@ -1652,22 +1647,22 @@ main {
 }
 
 .content-envios-whatsapp {
-  width: min(780px, 100%);
+  width: min(860px, 100%);
   margin: 0 auto;
 }
 
 .lista-envios-whatsapp {
   display: grid;
-  gap: 14px;
-  margin-top: 30px;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .envio-whatsapp {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) 112px auto;
+  gap: 14px;
   align-items: center;
-  padding: 18px;
+  padding: 14px 16px;
   border: 1px solid #dfe6e2;
   border-radius: 8px;
   background: var(--claro);
@@ -1686,6 +1681,30 @@ main {
   margin-top: 4px;
   color: var(--gris);
   font-weight: 700;
+}
+
+.estado-envio {
+  justify-self: start;
+  min-width: 92px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.estado-pendiente {
+  border: 1px solid rgb(123 118 107 / 0.28);
+  background: #fffaf0;
+  color: #7b6b45;
+}
+
+.estado-enviado {
+  border: 1px solid rgb(45 107 83 / 0.25);
+  background: #eaf7ef;
+  color: #2d6b53;
 }
 
 .envio-whatsapp .boton {
@@ -2035,11 +2054,33 @@ footer a {
   box-shadow: inset 0 0 0 2px var(--gris);
 }
 
+.rsvp-locked-guest {
+  cursor: default;
+}
+
+.rsvp-locked-guest:hover {
+  transform: none;
+}
+
 .rsvp-guest-summary {
   margin: -8px 0 0;
   color: var(--gris);
   font-weight: 700;
   text-align: center;
+}
+
+.rsvp-status {
+  margin: 12px 0 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rsvp-status-success {
+  color: var(--verde);
+}
+
+.rsvp-status-error {
+  color: #c34a38;
 }
 
 .rsvp-actions {
@@ -2444,7 +2485,7 @@ footer a {
 
   .carrusel-fotos {
     gap: 12px;
-    animation-duration: 90s;
+    animation-duration: 54s;
   }
 
   .polaroid {
@@ -2524,6 +2565,10 @@ footer a {
     text-align: center;
   }
 
+  .estado-envio {
+    justify-self: center;
+  }
+
   .envio-whatsapp .boton {
     width: 100%;
   }
@@ -2532,7 +2577,7 @@ footer a {
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 780px) {
     .carrusel-fotos {
-      animation-duration: 110s;
+      animation-duration: 60s;
     }
   }
 }

@@ -28,34 +28,212 @@ const likedAlbumPhotos = Array.from({ length: 26 }, (_, index) => index + 1)
   .filter((photoNumber) => !hiddenAlbumPhotos.has(photoNumber))
   .map((photoNumber) => `/foto-google-favorita-${String(photoNumber).padStart(2, "0")}.webp`);
 const invitedGuests = [
-  { code: "inv-001", name: "Xilena Navarro", passes: 1, phone: "3126708644" },
-  { code: "inv-002", name: "Sileidys Navarro", passes: 1, phone: "3143928344" },
-  { code: "inv-003", name: "Familia Herrera Torregrosa", passes: 2, phone: "3176207539" },
+  {"code": "inv-001", "name": "Familia Navarro Perez", "isGroup": true},
+  {"code": "inv-002", "name": "Familia Navarro Aguas", "isGroup": true},
+  {"code": "inv-003", "name": "Familia Jeschke", "isGroup": true},
+  {"code": "inv-004", "name": "Familia Ramirez", "isGroup": true},
+  {"code": "inv-005", "name": "Familia Villanueva", "isGroup": true},
+  {"code": "inv-006", "name": "Familia Herrera", "isGroup": true},
+  {"code": "inv-007", "name": "Maria Isabel Jaramillo", "isGroup": false},
+  {"code": "inv-008", "name": "Familia Gayoso", "isGroup": true},
+  {"code": "inv-009", "name": "Familia Gonzalez", "isGroup": true},
+  {"code": "inv-010", "name": "Familia Montaño", "isGroup": true},
+  {"code": "inv-011", "name": "Familia Barrios", "isGroup": true},
+  {"code": "inv-012", "name": "Familia Romero", "isGroup": true},
+  {"code": "inv-013", "name": "Xiomara Guzman", "isGroup": false},
+  {"code": "inv-014", "name": "Familia Hernandez", "isGroup": true},
+  {"code": "inv-015", "name": "Familia Perez", "isGroup": true},
+  {"code": "inv-016", "name": "Familia Pretel Guzman", "isGroup": true},
+  {"code": "inv-017", "name": "Familia Valbuena", "isGroup": true},
+  {"code": "inv-018", "name": "Familia Delgado", "isGroup": true},
+  {"code": "inv-019", "name": "Familia Vasquez", "isGroup": true},
+  {"code": "inv-020", "name": "Familia Pretel", "isGroup": true},
+  {"code": "inv-021", "name": "Familia Ramirez", "isGroup": true},
+  {"code": "inv-022", "name": "Familia Marquez", "isGroup": true},
+  {"code": "inv-023", "name": "Familia Berdugo", "isGroup": true},
+  {"code": "inv-024", "name": "Carmen Cecilia Orozco", "isGroup": false},
+  {"code": "inv-025", "name": "Familia Ortiz", "isGroup": true},
+  {"code": "inv-026", "name": "Familia Peña", "isGroup": true},
+  {"code": "inv-027", "name": "Leidys Florez", "isGroup": false},
+  {"code": "inv-028", "name": "Familia Carrascal", "isGroup": true},
+  {"code": "inv-029", "name": "Familia Martinez", "isGroup": true},
+  {"code": "inv-030", "name": "Familia Prado", "isGroup": true},
+  {"code": "inv-031", "name": "Melania Montero", "isGroup": false},
+  {"code": "inv-032", "name": "Familia Peñaloza", "isGroup": true},
+  {"code": "inv-033", "name": "Familia Lossada", "isGroup": true},
+  {"code": "inv-034", "name": "Familia Pinzon", "isGroup": true},
+  {"code": "inv-035", "name": "Rosmira y Gina", "isGroup": true},
+  {"code": "inv-036", "name": "Betsy Liscano", "isGroup": false},
+  {"code": "inv-037", "name": "Familia Aristizabal", "isGroup": true},
+  {"code": "inv-038", "name": "Familia Perez Carrascal", "isGroup": true},
+  {"code": "inv-039", "name": "Stella y Henry", "isGroup": true},
+  {"code": "inv-040", "name": "Familia Villada", "isGroup": true},
+  {"code": "inv-041", "name": "Familia Castillo", "isGroup": true},
+  {"code": "inv-042", "name": "Familia Tinoco", "isGroup": true},
+  {"code": "inv-043", "name": "Familia Herrera", "isGroup": true},
+  {"code": "inv-044", "name": "Familia Acuña", "isGroup": true},
+  {"code": "inv-045", "name": "Familia Herrera Alean", "isGroup": true},
+  {"code": "inv-046", "name": "Familia Patiño", "isGroup": true},
+  {"code": "inv-047", "name": "Familia Castañeda", "isGroup": true},
+  {"code": "inv-048", "name": "Familia Hurtado", "isGroup": true},
+  {"code": "inv-049", "name": "Familia Daza", "isGroup": true},
+  {"code": "inv-050", "name": "Familia Martínez", "isGroup": true},
+  {"code": "inv-051", "name": "Familia Ortiz Carrascal", "isGroup": true},
+  {"code": "inv-052", "name": "Familia Polo", "isGroup": true},
+  {"code": "inv-053", "name": "Isabel Carrascal", "isGroup": false},
+  {"code": "inv-054", "name": "Familia Solano", "isGroup": true},
+  {"code": "inv-055", "name": "Familia Perez Pretel", "isGroup": true},
+  {"code": "inv-056", "name": "Juliana Marquez", "isGroup": false},
+  {"code": "inv-057", "name": "Abadis Castañez", "isGroup": false},
+  {"code": "inv-058", "name": "Evarista Acosta", "isGroup": false},
+  {"code": "inv-059", "name": "Marta Castellar", "isGroup": false},
+  {"code": "inv-060", "name": "Familia Pavajau", "isGroup": true},
+  {"code": "inv-061", "name": "Adriana e hijos", "isGroup": true},
+  {"code": "inv-062", "name": "Familia Ramirez", "isGroup": true},
+  {"code": "inv-063", "name": "Elsy Castro", "isGroup": false},
+  {"code": "inv-064", "name": "Everlides Requena", "isGroup": false},
+  {"code": "inv-065", "name": "Fidelina Gutierrez", "isGroup": false},
+  {"code": "inv-066", "name": "Iromaldis", "isGroup": false},
+  {"code": "inv-067", "name": "Familia Fajardo", "isGroup": true},
+  {"code": "inv-068", "name": "Jaqueline Trigos", "isGroup": false},
+  {"code": "inv-069", "name": "Josefina Polo", "isGroup": false},
+  {"code": "inv-070", "name": "Familia Amesti", "isGroup": true},
+  {"code": "inv-071", "name": "Luz Marina Acosta", "isGroup": false},
+  {"code": "inv-072", "name": "Familia Angulo", "isGroup": true},
+  {"code": "inv-073", "name": "Socorro de Lora", "isGroup": false},
+  {"code": "inv-074", "name": "Stella Fernanda Perez", "isGroup": false},
+  {"code": "inv-075", "name": "Familia Pacheco", "isGroup": true},
+  {"code": "inv-076", "name": "Familia Bermudez", "isGroup": true},
+  {"code": "inv-077", "name": "Familia Palacios", "isGroup": true},
+  {"code": "inv-078", "name": "Osiris Meza", "isGroup": false},
+  {"code": "inv-079", "name": "Omaira", "isGroup": false},
+  {"code": "inv-080", "name": "Familia Guio", "isGroup": true},
+  {"code": "inv-081", "name": "Angelina Berdugo", "isGroup": false},
+  {"code": "inv-082", "name": "Beatriz y Debbie", "isGroup": true},
+  {"code": "inv-083", "name": "Nini", "isGroup": false},
+  {"code": "inv-084", "name": "Familia Hernandez", "isGroup": true},
+  {"code": "inv-085", "name": "Familia Fontanilla", "isGroup": true},
+  {"code": "inv-086", "name": "Familia Martinez", "isGroup": true},
+  {"code": "inv-087", "name": "Alix Castañez", "isGroup": false},
+  {"code": "inv-088", "name": "Edicson Jimenez", "isGroup": false},
+  {"code": "inv-089", "name": "Daniel Garcia", "isGroup": false},
+  {"code": "inv-090", "name": "Familia Brito", "isGroup": true},
+  {"code": "inv-091", "name": "Familia Obreo", "isGroup": true},
+  {"code": "inv-092", "name": "Familia Diaz", "isGroup": true},
+  {"code": "inv-093", "name": "Familia Eguis", "isGroup": true},
+  {"code": "inv-094", "name": "Familia Villegas", "isGroup": true},
+  {"code": "inv-095", "name": "Maria Moreno", "isGroup": false},
+  {"code": "inv-096", "name": "Mildreth y Virni", "isGroup": true},
+  {"code": "inv-097", "name": "Familia Navarro Coronel", "isGroup": true},
+  {"code": "inv-098", "name": "Familia Coronel", "isGroup": true},
+  {"code": "inv-099", "name": "Familia Martelo", "isGroup": true},
+  {"code": "inv-100", "name": "Nora Torres", "isGroup": false},
+  {"code": "inv-101", "name": "Maria Iuminada", "isGroup": false},
+  {"code": "inv-102", "name": "Familia Mercado", "isGroup": true},
+  {"code": "inv-103", "name": "Marisol e hijo", "isGroup": true},
+  {"code": "inv-104", "name": "Familia Arrollo", "isGroup": true},
+  {"code": "inv-105", "name": "Jaime Martinez", "isGroup": false},
+  {"code": "inv-106", "name": "Georgina Villadiego", "isGroup": false},
+  {"code": "inv-107", "name": "Eugenia Gonzalez", "isGroup": false},
+  {"code": "inv-108", "name": "Familia Martinez", "isGroup": true},
+  {"code": "inv-109", "name": "Familia Sanchez", "isGroup": true},
+  {"code": "inv-110", "name": "Clara Mandon", "isGroup": false},
+  {"code": "inv-111", "name": "Cindy", "isGroup": false},
+  {"code": "inv-112", "name": "Barbara y familia", "isGroup": true},
+  {"code": "inv-113", "name": "Anayibis Rada", "isGroup": false},
+  {"code": "inv-114", "name": "Ana Maria Guarnizo", "isGroup": false},
+  {"code": "inv-115", "name": "Andrea Bernal", "isGroup": false},
+  {"code": "inv-116", "name": "Gema", "isGroup": false},
+  {"code": "inv-117", "name": "Leonor Maldonado", "isGroup": false},
+  {"code": "inv-118", "name": "Maria Iluminada", "isGroup": false},
+  {"code": "inv-119", "name": "Familia Perez", "isGroup": true},
+  {"code": "inv-120", "name": "Familia Granados", "isGroup": true},
+  {"code": "inv-121", "name": "Belkis Urbina", "isGroup": false},
+  {"code": "inv-122", "name": "Saury Morales", "isGroup": false},
+  {"code": "inv-123", "name": "Familia Ariz", "isGroup": true},
+  {"code": "inv-124", "name": "Familia Parra", "isGroup": true},
+  {"code": "inv-125", "name": "Diosmaira Barela", "isGroup": false},
+  {"code": "inv-126", "name": "Mailin", "isGroup": false},
+  {"code": "inv-127", "name": "Familia Rodriguez", "isGroup": true},
+  {"code": "inv-128", "name": "Rita Mercado", "isGroup": false},
+  {"code": "inv-129", "name": "Jessica Ballestas", "isGroup": false},
+  {"code": "inv-130", "name": "Maisa", "isGroup": false},
+  {"code": "inv-131", "name": "Antonella", "isGroup": false},
+  {"code": "inv-132", "name": "Familia Ramirez", "isGroup": true},
+  {"code": "inv-133", "name": "Jairo Torregrosa", "isGroup": false},
+  {"code": "inv-134", "name": "Familia Lara Ortiz", "isGroup": true},
+  {"code": "inv-135", "name": "Familia Navarro Lara", "isGroup": true},
+  {"code": "inv-136", "name": "Familia Lara Rodriguez", "isGroup": true},
+  {"code": "inv-137", "name": "Familia Koslowski", "isGroup": true},
+  {"code": "inv-138", "name": "Familia Jeschke", "isGroup": true},
+  {"code": "inv-139", "name": "Familia Liedloff", "isGroup": true},
+  {"code": "inv-140", "name": "Xilena Navarro", "isGroup": false},
+  {"code": "inv-146", "name": "Familia Aldarraga Carrascal", "isGroup": true},
+  {"code": "inv-147", "name": "Wilmer Monzalvo", "isGroup": false},
+  {"code": "inv-148", "name": "Familia Navarro Zamora", "isGroup": true},
+  {"code": "inv-149", "name": "María Navarro e hijos", "isGroup": true},
+  {"code": "inv-150", "name": "Katherine y familia", "isGroup": true},
+  {"code": "inv-151", "name": "Rosa Yolenis y familia", "isGroup": true},
+  {"code": "inv-152", "name": "Keidys y familia", "isGroup": true},
+  {"code": "inv-153", "name": "Dianis e hijo", "isGroup": true},
+  {"code": "inv-154", "name": "Luis Alberto y familia", "isGroup": true},
+  {"code": "inv-155", "name": "Osiris Meza", "isGroup": false},
+  {"code": "inv-157", "name": "Familia Guio", "isGroup": true},
+  {"code": "inv-158", "name": "Diosmaira Barela", "isGroup": false},
+  {"code": "inv-159", "name": "Alonso y Karen", "isGroup": true},
+  {"code": "inv-160", "name": "Mishelle y Leonardo", "isGroup": true},
+  {"code": "inv-161", "name": "Hermanos Zamora", "isGroup": true},
 ];
 const publicInvitationUrl = "https://invitacion-boda-sileidys.vercel.app";
+const sharePreviewVersion = "20260824b";
+const sentGuestsStorageKey = "dominique-sileidys-sent-guests-v2";
+const googleSheetsEndpoint =
+  process.env.NEXT_PUBLIC_RSVP_GOOGLE_SCRIPT_URL ??
+  "https://script.google.com/macros/s/AKfycbxe_LVuoix1MV5JqRj6wSmKHAtDOxwcStu3kMNg1C7l83NiajAarCteafG4M5rppY7R/exec";
 
 type InvitedGuest = (typeof invitedGuests)[number];
 
 const defaultGuest = invitedGuests[0];
 
-const guestDetail = (guest: InvitedGuest) =>
-  `${guest.passes} ${guest.passes === 1 ? "pase reservado" : "pases reservados"}`;
+const isSingleGuest = (guest: InvitedGuest) => !guest.isGroup;
+
+const guestCardMessageFor = (guest: InvitedGuest) =>
+  isSingleGuest(guest)
+    ? "Qué alegría compartir este momento contigo."
+    : "Qué alegría compartir este momento con ustedes.";
+
+const welcomeMessageFor = (guest: InvitedGuest) =>
+  isSingleGuest(guest) ? "Te damos la bienvenida a nuestra boda." : "Les damos la bienvenida a nuestra boda.";
+
+const invitationMessageFor = (guest: InvitedGuest) =>
+  isSingleGuest(guest)
+    ? "Queremos que seas parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo contigo."
+    : "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes.";
 
 const invitationUrlFor = (guest: InvitedGuest) => {
-  const url = new URL(publicInvitationUrl);
-  url.searchParams.set("codigo", guest.code);
-  return url.toString();
+  return `${publicInvitationUrl}/${guest.code}?v=${sharePreviewVersion}`;
 };
 
 const whatsappUrlFor = (guest: InvitedGuest) => {
-  const message = [
-    `${guest.name}🤍`,
-    "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes.",
+  const url = new URL(googleSheetsEndpoint);
+  url.searchParams.set("action", "whatsapp");
+  url.searchParams.set("code", guest.code);
+  return url.toString();
+};
+
+const sentStatusUrlFor = (callbackName: string) => {
+  const url = new URL(googleSheetsEndpoint);
+  url.searchParams.set("action", "sent-status");
+  url.searchParams.set("callback", callbackName);
+  return url.toString();
+};
+
+const whatsappMessageFor = (guest: InvitedGuest) =>
+  [
+    guest.name,
+    invitationMessageFor(guest),
     invitationUrlFor(guest),
   ].join("\n\n");
-
-  return `https://wa.me/57${guest.phone}?text=${encodeURIComponent(message)}`;
-};
 
 const searchValue = (searchParams: HomeProps["searchParams"], key: string) => {
   const value = searchParams?.[key];
@@ -256,17 +434,19 @@ export default function Home({ searchParams }: HomeProps) {
   const initialCode =
     searchValue(searchParams, "codigo") ?? searchValue(searchParams, "code") ?? searchValue(searchParams, "inv");
   const initialGuest = invitedGuests.find((guest) => guest.code === initialCode) ?? defaultGuest;
+  const shouldShowSendLinks = searchValue(searchParams, "envios") === "1" || searchValue(searchParams, "admin") === "1";
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [rsvpStep, setRsvpStep] = useState(0);
   const [inviteCode, setInviteCode] = useState(initialGuest.code);
-  const [showSendLinks, setShowSendLinks] = useState(false);
-  const [selectedGuestCode, setSelectedGuestCode] = useState(initialGuest.code);
+  const [showSendLinks, setShowSendLinks] = useState(shouldShowSendLinks);
+  const [sentGuestCodes, setSentGuestCodes] = useState<string[]>([]);
   const [ceremonyAnswer, setCeremonyAnswer] = useState("");
+  const [isSubmittingRsvp, setIsSubmittingRsvp] = useState(false);
+  const [rsvpStatus, setRsvpStatus] = useState<"idle" | "success" | "error">("idle");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const currentGuest = invitedGuests.find((guest) => guest.code === inviteCode) ?? defaultGuest;
-  const selectedGuest = invitedGuests.find((guest) => guest.code === selectedGuestCode) ?? currentGuest;
   const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -304,8 +484,74 @@ export default function Home({ searchParams }: HomeProps) {
   const closeRsvp = () => {
     setModal(null);
     setRsvpStep(0);
-    setSelectedGuestCode(currentGuest.code);
     setCeremonyAnswer("");
+    setIsSubmittingRsvp(false);
+    setRsvpStatus("idle");
+  };
+
+  const submitRsvp = async () => {
+    if (!ceremonyAnswer || isSubmittingRsvp) return;
+
+    if (!googleSheetsEndpoint) {
+      setRsvpStatus("error");
+      return;
+    }
+
+    setIsSubmittingRsvp(true);
+    setRsvpStatus("idle");
+
+    const payload = {
+      submittedAt: new Date().toISOString(),
+      code: currentGuest.code,
+      name: currentGuest.name,
+      recipientType: currentGuest.isGroup ? "Grupo/Familia" : "Individual",
+      answer: ceremonyAnswer,
+      invitationUrl: invitationUrlFor(currentGuest),
+    };
+
+    try {
+      await fetch(googleSheetsEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+      });
+      setRsvpStatus("success");
+      window.setTimeout(closeRsvp, 900);
+    } catch {
+      setRsvpStatus("error");
+    } finally {
+      setIsSubmittingRsvp(false);
+    }
+  };
+
+  const syncSentGuestCodes = (guestCodes: string[]) => {
+    if (!guestCodes.length) return;
+
+    void fetch(googleSheetsEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify({
+        action: "sync-sent",
+        codes: guestCodes,
+        syncedAt: new Date().toISOString(),
+      }),
+    });
+  };
+
+  const markGuestAsSent = (guestCode: string) => {
+    setSentGuestCodes((currentCodes) => {
+      if (currentCodes.includes(guestCode)) return currentCodes;
+      const nextCodes = [...currentCodes, guestCode];
+      window.localStorage.setItem(sentGuestsStorageKey, JSON.stringify(nextCodes));
+      return nextCodes;
+    });
+    syncSentGuestCodes([guestCode]);
   };
 
   useEffect(() => {
@@ -315,11 +561,58 @@ export default function Home({ searchParams }: HomeProps) {
 
     if (requestedGuest) {
       setInviteCode(requestedGuest.code);
-      setSelectedGuestCode(requestedGuest.code);
     }
 
     setShowSendLinks(params.get("envios") === "1" || params.get("admin") === "1");
   }, []);
+
+  useEffect(() => {
+    const savedCodes = window.localStorage.getItem(sentGuestsStorageKey);
+    if (!savedCodes) return;
+
+    try {
+      const parsedCodes = JSON.parse(savedCodes);
+      if (Array.isArray(parsedCodes)) {
+        const localCodes = parsedCodes.filter((code): code is string => typeof code === "string");
+        setSentGuestCodes(localCodes);
+        syncSentGuestCodes(localCodes);
+      }
+    } catch {
+      window.localStorage.removeItem(sentGuestsStorageKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!showSendLinks) return;
+
+    const callbackName = `__dominiqueSileidysSentStatus_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const callbacks = window as unknown as Record<string, ((payload: { sentCodes?: unknown }) => void) | undefined>;
+    const script = document.createElement("script");
+
+    callbacks[callbackName] = (payload) => {
+      const remoteCodes = payload.sentCodes;
+      if (!Array.isArray(remoteCodes)) return;
+
+      setSentGuestCodes((currentCodes) => {
+        const mergedCodes = new Set([
+          ...currentCodes,
+          ...remoteCodes.filter((code): code is string => typeof code === "string"),
+        ]);
+        const nextCodes = Array.from(mergedCodes);
+        window.localStorage.setItem(sentGuestsStorageKey, JSON.stringify(nextCodes));
+        return nextCodes;
+      });
+    };
+
+    script.src = sentStatusUrlFor(callbackName);
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      delete callbacks[callbackName];
+      script.remove();
+    };
+  }, [showSendLinks]);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -406,9 +699,9 @@ export default function Home({ searchParams }: HomeProps) {
 
       <section className="seccion-principal bloque-grupo-invitados">
         <div className="card-grupo-invitados">
-          <div className="pases-total">{currentGuest.passes}</div>
-          <h3 className="titulo-grupo">INVITADOS</h3>
-          <p>Qué alegría compartir este momento con ustedes.</p>
+          <img className="icono-invitados" src="/boda-paleta.gif?v=3" alt="" />
+          <h3 className="titulo-grupo">{currentGuest.name}</h3>
+          <p>{guestCardMessageFor(currentGuest)}</p>
         </div>
       </section>
 
@@ -471,8 +764,8 @@ export default function Home({ searchParams }: HomeProps) {
                     alt=""
                     width="360"
                     height="450"
-                    loading="eager"
-                    fetchPriority={item < 8 ? "high" : "auto"}
+                    loading="lazy"
+                    fetchPriority="low"
                     decoding="async"
                   />
                 </picture>
@@ -549,22 +842,31 @@ export default function Home({ searchParams }: HomeProps) {
       {showSendLinks ? (
         <section className="seccion-principal panel-envios-whatsapp">
           <div className="content-envios-whatsapp">
-            <h2 className="title">Envíos por WhatsApp</h2>
-            <p className="subtitle">Prueba de invitaciones personalizadas con mensaje breve.</p>
+            <h2 className="title">Terceros para envío</h2>
             <div className="lista-envios-whatsapp">
-              {invitedGuests.map((guest) => (
-                <article className="envio-whatsapp" key={guest.code}>
-                  <div>
-                    <strong>{guest.name}</strong>
-                    <small>
-                      {guest.code} · {guestDetail(guest)} · {guest.phone}
-                    </small>
-                  </div>
-                  <a className="boton" href={whatsappUrlFor(guest)} target="_blank" rel="noopener noreferrer">
-                    Enviar WhatsApp
-                  </a>
-                </article>
-              ))}
+              {invitedGuests.map((guest) => {
+                const wasSent = sentGuestCodes.includes(guest.code);
+
+                return (
+                  <article className="envio-whatsapp" key={guest.code}>
+                    <div className="envio-whatsapp-info">
+                      <strong>{guest.name}</strong>
+                    </div>
+                    <span className={wasSent ? "estado-envio estado-enviado" : "estado-envio estado-pendiente"}>
+                      {wasSent ? "Enviado" : "Pendiente"}
+                    </span>
+                    <a
+                      className="boton"
+                      href={whatsappUrlFor(guest)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => markGuestAsSent(guest.code)}
+                    >
+                      Enviar WhatsApp
+                    </a>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -588,7 +890,7 @@ export default function Home({ searchParams }: HomeProps) {
             <p className="music-modal-message">
               <strong>Elegimos caminar juntos,</strong>
               <span>y celebrarlo junto a quienes amamos.</span>
-              <span>Bienvenido a nuestra boda.</span>
+              <span>{welcomeMessageFor(currentGuest)}</span>
               <em>Dominique &amp; Sileidys</em>
             </p>
             <div className="music-actions">
@@ -606,20 +908,12 @@ export default function Home({ searchParams }: HomeProps) {
             {rsvpStep === 0 ? (
               <>
                 <p className="rsvp-question">
-                  ¿Quién está confirmando? <span>*</span>
+                  Estás confirmando esta invitación <span>*</span>
                 </p>
                 <div className="rsvp-options rsvp-guest-options">
-                  {invitedGuests.map((guest) => (
-                    <button
-                      className={selectedGuest.code === guest.code ? "rsvp-option is-selected" : "rsvp-option"}
-                      type="button"
-                      key={guest.code}
-                      onClick={() => setSelectedGuestCode(guest.code)}
-                    >
-                      <strong>{guest.name}</strong>
-                      <small>{guestDetail(guest)}</small>
-                    </button>
-                  ))}
+                  <div className="rsvp-option is-selected rsvp-locked-guest">
+                    <strong>{currentGuest.name}</strong>
+                  </div>
                 </div>
                 <div className="rsvp-actions rsvp-actions-end">
                   <button className="boton rsvp-next" type="button" onClick={() => setRsvpStep(1)}>
@@ -631,7 +925,7 @@ export default function Home({ searchParams }: HomeProps) {
 
             {rsvpStep === 1 ? (
               <>
-                <p className="rsvp-guest-summary">{selectedGuest.name}</p>
+                <p className="rsvp-guest-summary">{currentGuest.name}</p>
                 <p className="rsvp-question">
                   ¿Asistes a los consejos matrimoniales? <span>*</span>
                 </p>
@@ -651,10 +945,16 @@ export default function Home({ searchParams }: HomeProps) {
                   <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(0)}>
                     ← Anterior
                   </button>
-                  <button className="boton rsvp-next" type="button" onClick={closeRsvp}>
-                    Enviar confirmación
+                  <button className="boton rsvp-next" type="button" onClick={submitRsvp} disabled={!ceremonyAnswer || isSubmittingRsvp}>
+                    {isSubmittingRsvp ? "Enviando..." : "Enviar confirmación"}
                   </button>
                 </div>
+                {rsvpStatus === "success" ? (
+                  <p className="rsvp-status rsvp-status-success">Confirmación enviada.</p>
+                ) : null}
+                {rsvpStatus === "error" ? (
+                  <p className="rsvp-status rsvp-status-error">Falta conectar Google Sheets.</p>
+                ) : null}
               </>
             ) : null}
           </div>
