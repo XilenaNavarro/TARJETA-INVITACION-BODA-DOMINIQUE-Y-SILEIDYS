@@ -1759,7 +1759,7 @@ footer a {
 .music-modal-icon {
   display: block;
   width: clamp(106px, 16vw, 150px);
-  height: clamp(106px, 16vw, 150px);
+  height: clamp(112px, 17vw, 158px);
   margin: 0 auto 18px;
   object-fit: contain;
   filter: drop-shadow(0 10px 18px rgb(82 104 100 / 0.16));

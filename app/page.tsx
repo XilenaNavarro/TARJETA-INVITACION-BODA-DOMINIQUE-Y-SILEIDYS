@@ -886,7 +886,7 @@ export default function Home({ searchParams }: HomeProps) {
       {musicPrompt ? (
         <Modal title="" onClose={() => enterInvitation(false)}>
           <div className="music-modal">
-            <img className="music-modal-icon" src="/corazon-linea-paleta.gif" alt="Corazón" />
+            <img className="music-modal-icon" src="/anillos-bienvenida-paleta.webp" alt="Anillos de boda" />
             <p className="music-modal-message">
               <strong>Elegimos caminar juntos,</strong>
               <span>y celebrarlo junto a quienes amamos.</span>
