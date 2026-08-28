@@ -192,21 +192,68 @@ const googleSheetsEndpoint =
   "https://script.google.com/macros/s/AKfycbxe_LVuoix1MV5JqRj6wSmKHAtDOxwcStu3kMNg1C7l83NiajAarCteafG4M5rppY7R/exec";
 
 type InvitedGuest = (typeof invitedGuests)[number];
+type InvitationLanguage = "es" | "de";
 
 const defaultGuest = invitedGuests[0];
+const generalGuest = {"code": "general", "name": "Invitados especiales", "isGroup": true};
+const germanGeneralGuest = {"code": "aleman", "name": "Liebe Gäste", "isGroup": true};
+const germanInvitedGuests = [
+  {"code": "inv-137", "name": "Familie Koslowski", "isGroup": true},
+  {"code": "inv-138", "name": "Familie Jeschke", "isGroup": true},
+  {"code": "inv-139", "name": "Familie Liedloff", "isGroup": true},
+  {"code": "inv-003", "name": "Familie Jeschke", "isGroup": true},
+  {"code": "inv-144", "name": "Familie Wauer", "isGroup": true},
+  {"code": "inv-162", "name": "Petala", "isGroup": false},
+  {"code": "inv-145", "name": "Familie Schnitzspan", "isGroup": true},
+];
 
 const isSingleGuest = (guest: InvitedGuest) => !guest.isGroup;
 
-const guestCardMessageFor = (guest: InvitedGuest) =>
-  isSingleGuest(guest)
+const findGuestByCode = (code: string | undefined, language: InvitationLanguage) => {
+  if (!code) return undefined;
+  return (language === "de" ? germanInvitedGuests : invitedGuests).find((guest) => guest.code === code);
+};
+
+const isGermanInvitation = (searchParams: HomeProps["searchParams"]) =>
+  searchValue(searchParams, "idioma") === "de" ||
+  searchValue(searchParams, "lang") === "de" ||
+  searchValue(searchParams, "aleman") === "1";
+
+const isGeneralInvitation = (searchParams: HomeProps["searchParams"]) =>
+  searchValue(searchParams, "general") === "1";
+
+const isGroupValue = (value?: string) => value === "1" || value === "true" || value === "grupo" || value === "familia";
+
+const customGuestFromSearch = (searchParams: HomeProps["searchParams"], fallbackCode: string) => {
+  const name = searchValue(searchParams, "nombre") ?? searchValue(searchParams, "name");
+  if (!name) return null;
+
+  const isGroup = isGroupValue(searchValue(searchParams, "grupo") ?? searchValue(searchParams, "group"));
+  return {"code": fallbackCode, "name": name, "isGroup": isGroup};
+};
+
+const guestCardMessageFor = (guest: InvitedGuest, language: InvitationLanguage) =>
+  language === "de"
+    ? isSingleGuest(guest)
+      ? "Was für eine Freude, diesen Moment mit dir zu teilen."
+      : "Was für eine Freude, diesen Moment mit euch zu teilen."
+    : isSingleGuest(guest)
     ? "Qué alegría compartir este momento contigo."
     : "Qué alegría compartir este momento con ustedes.";
 
-const welcomeMessageFor = (guest: InvitedGuest) =>
-  isSingleGuest(guest) ? "Te damos la bienvenida a nuestra boda." : "Les damos la bienvenida a nuestra boda.";
+const welcomeMessageFor = (guest: InvitedGuest, language: InvitationLanguage) =>
+  language === "de"
+    ? isSingleGuest(guest)
+      ? "Wir heißen dich herzlich zu unserer Hochzeit willkommen."
+      : "Wir heißen euch herzlich zu unserer Hochzeit willkommen."
+    : isSingleGuest(guest) ? "Te damos la bienvenida a nuestra boda." : "Les damos la bienvenida a nuestra boda.";
 
-const invitationMessageFor = (guest: InvitedGuest) =>
-  isSingleGuest(guest)
+const invitationMessageFor = (guest: InvitedGuest, language: InvitationLanguage = "es") =>
+  language === "de"
+    ? isSingleGuest(guest)
+      ? "Wir möchten, dass du an einem der wichtigsten Tage unseres Lebens dabei bist. Es macht uns sehr glücklich, diesen Tag mit dir zu teilen."
+      : "Wir möchten, dass ihr an einem der wichtigsten Tage unseres Lebens dabei seid. Es macht uns sehr glücklich, diesen Tag mit euch zu teilen."
+    : isSingleGuest(guest)
     ? "Queremos que seas parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo contigo."
     : "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes.";
 
@@ -265,8 +312,9 @@ const calendarLinks = {
   },
 };
 
-function Countdown() {
+function Countdown({ language }: { language: InvitationLanguage }) {
   const [now, setNow] = useState<Date | null>(null);
+  const labels = language === "de" ? ["Tage", "Std", "Min", "Sek"] : ["días", "hs", "min", "seg"];
 
   useEffect(() => {
     setNow(new Date());
@@ -277,21 +325,21 @@ function Countdown() {
   const parts = useMemo(() => {
     if (!now) {
       return [
-        ["días", 0],
-        ["hs", 0],
-        ["min", 0],
-        ["seg", 0],
+        [labels[0], 0],
+        [labels[1], 0],
+        [labels[2], 0],
+        [labels[3], 0],
       ];
     }
 
     const distance = Math.max(weddingDate.getTime() - now.getTime(), 0);
     return [
-      ["días", Math.floor(distance / 86400000)],
-      ["hs", Math.floor((distance / 3600000) % 24)],
-      ["min", Math.floor((distance / 60000) % 60)],
-      ["seg", Math.floor((distance / 1000) % 60)],
+      [labels[0], Math.floor(distance / 86400000)],
+      [labels[1], Math.floor((distance / 3600000) % 24)],
+      [labels[2], Math.floor((distance / 60000) % 60)],
+      [labels[3], Math.floor((distance / 1000) % 60)],
     ];
-  }, [now]);
+  }, [labels, now]);
 
   return (
     <section className="cuenta-regresiva">
@@ -301,7 +349,7 @@ function Countdown() {
         <img className="marco-contador" src="/marco-contador.svg" alt="" />
         <div className="box-aros">
           <div className="box-circulo">
-            <span className="falta">Falta</span>
+            <span className="falta">{language === "de" ? "Verbleibend" : "Falta"}</span>
             <div className="reloj">
               {parts.map(([label, value], index) => (
                 <div className={index === parts.length - 1 ? "reloj-col no-border" : "reloj-col"} key={label}>
@@ -431,9 +479,15 @@ function RingsIcon() {
 }
 
 export default function Home({ searchParams }: HomeProps) {
+  const language: InvitationLanguage = isGermanInvitation(searchParams) ? "de" : "es";
+  const isGeneral = isGeneralInvitation(searchParams);
+  const variantDefaultGuest = language === "de" ? germanGeneralGuest : isGeneral ? generalGuest : defaultGuest;
   const initialCode =
     searchValue(searchParams, "codigo") ?? searchValue(searchParams, "code") ?? searchValue(searchParams, "inv");
-  const initialGuest = invitedGuests.find((guest) => guest.code === initialCode) ?? defaultGuest;
+  const initialGuest =
+    customGuestFromSearch(searchParams, language === "de" ? "aleman-personal" : "general-personal") ??
+    (isGeneral ? generalGuest : findGuestByCode(initialCode, language)) ??
+    variantDefaultGuest;
   const shouldShowSendLinks = searchValue(searchParams, "envios") === "1" || searchValue(searchParams, "admin") === "1";
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
@@ -446,7 +500,10 @@ export default function Home({ searchParams }: HomeProps) {
   const [isSubmittingRsvp, setIsSubmittingRsvp] = useState(false);
   const [rsvpStatus, setRsvpStatus] = useState<"idle" | "success" | "error">("idle");
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const currentGuest = invitedGuests.find((guest) => guest.code === inviteCode) ?? defaultGuest;
+  const currentGuest =
+    customGuestFromSearch(searchParams, language === "de" ? "aleman-personal" : "general-personal") ??
+    (isGeneral ? generalGuest : findGuestByCode(inviteCode, language)) ??
+    variantDefaultGuest;
   const playMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -557,14 +614,19 @@ export default function Home({ searchParams }: HomeProps) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requestedCode = params.get("codigo") ?? params.get("code") ?? params.get("inv");
-    const requestedGuest = invitedGuests.find((guest) => guest.code === requestedCode);
+    const requestedName = params.get("nombre") ?? params.get("name");
+    const requestedGuest = findGuestByCode(requestedCode ?? undefined, language);
 
-    if (requestedGuest) {
+    if (requestedName) {
+      setInviteCode(language === "de" ? "aleman-personal" : "general-personal");
+    } else if (isGeneral) {
+      setInviteCode(generalGuest.code);
+    } else if (requestedGuest) {
       setInviteCode(requestedGuest.code);
     }
 
     setShowSendLinks(params.get("envios") === "1" || params.get("admin") === "1");
-  }, []);
+  }, [isGeneral, language]);
 
   useEffect(() => {
     const savedCodes = window.localStorage.getItem(sentGuestsStorageKey);
@@ -681,10 +743,10 @@ export default function Home({ searchParams }: HomeProps) {
             <p>
               <img src="/fixdate-comilla-apertura.svg" alt="" />
               <br />
-              Una cuerda triple
+              {language === "de" ? "Eine dreifache Schnur" : "Una cuerda triple"}
               <br />
-              no se rompe fácilmente
-              <small>Eclesiastés 4:12</small>
+              {language === "de" ? "lässt sich nicht so schnell zerreißen" : "no se rompe fácilmente"}
+              <small>{language === "de" ? "Prediger 4:12" : "Eclesiastés 4:12"}</small>
               <br />
               <img src="/fixdate-comilla-cierre.svg" alt="" />
             </p>
@@ -694,14 +756,14 @@ export default function Home({ searchParams }: HomeProps) {
       </section>
 
       <div id="cuenta">
-        <Countdown />
+        <Countdown language={language} />
       </div>
 
       <section className="seccion-principal bloque-grupo-invitados">
         <div className="card-grupo-invitados">
           <img className="icono-invitados" src="/boda-paleta.gif?v=3" alt="" />
           <h3 className="titulo-grupo">{currentGuest.name}</h3>
-          <p>{guestCardMessageFor(currentGuest)}</p>
+          <p>{guestCardMessageFor(currentGuest, language)}</p>
         </div>
       </section>
 
@@ -710,16 +772,34 @@ export default function Home({ searchParams }: HomeProps) {
         <article className="col-ceremonia">
           <RingsIcon />
           <div className="event-ribbon">
-            <h3>Consejos matrimoniales</h3>
+            <h3>{language === "de" ? "Biblischer Vortrag" : "Consejos matrimoniales"}</h3>
           </div>
           <div className="info-box">
-            <h6>Día</h6>
-            <p>Domingo 27 de septiembre - 3:30 p. m.</p>
-            <CalendarMenu links={calendarLinks.ceremony} downloadName="dominique-sileidys-ceremonia.ics" />
+            <h6>{language === "de" ? "Tag" : "Día"}</h6>
+            <p>
+              {language === "de" ? (
+                <>
+                  Sonntag, 27. September - 15:30 Uhr
+                  <br />
+                  22:30 Uhr deutsche Zeit
+                  <br />
+                  04:30 Uhr China-Zeit
+                </>
+              ) : (
+                "Domingo 27 de septiembre - 3:30 p. m."
+              )}
+            </p>
+            <CalendarMenu
+              links={calendarLinks.ceremony}
+              downloadName="dominique-sileidys-ceremonia.ics"
+              label={language === "de" ? "Zum Kalender hinzufügen" : "Agendar"}
+            />
           </div>
           <div className="info-box">
-            <h6>Lugar</h6>
-            <p className="direccion-principal direccion-ceremonia">{ceremonyVenue}</p>
+            <h6>{language === "de" ? "Ort" : "Lugar"}</h6>
+            <p className="direccion-principal direccion-ceremonia">
+              {language === "de" ? "Königreichssaal der Zeugen Jehovas" : ceremonyVenue}
+            </p>
             <p className="info-direccion">
               Cl. 30 # 18-85, Brr. 1 de Mayo
               <br />
@@ -727,7 +807,7 @@ export default function Home({ searchParams }: HomeProps) {
             </p>
             <a className="boton" href={ceremonyMapsUrl} target="_blank" rel="noopener noreferrer">
               <img className="boton-icon" src="/destino-paleta.gif" alt="" />
-              ¿Cómo llegar?
+              {language === "de" ? "Anfahrt" : "¿Cómo llegar?"}
             </a>
           </div>
         </article>
@@ -739,18 +819,32 @@ export default function Home({ searchParams }: HomeProps) {
 
       <section className="seccion-principal confirmacion-asistencia">
         <div className="box-confirmacion">
-          <h2 className="title">Acompáñanos</h2>
-          <p className="subtitle">Tu presencia hará este día aún más especial.</p>
+          <h2 className="title">
+            {language === "de" ? (isSingleGuest(currentGuest) ? "Begleite uns" : "Begleitet uns") : "Acompáñanos"}
+          </h2>
+          <p className="subtitle">
+            {language === "de"
+              ? isSingleGuest(currentGuest)
+                ? "Wir freuen uns auf deine Anwesenheit, auch über Zoom."
+                : "Wir freuen uns auf eure Anwesenheit, auch über Zoom."
+              : "Tu presencia hará este día aún más especial."}
+          </p>
           <button className="boton" type="button" onClick={() => setModal("rsvp")}>
-            CONFIRMAR ASISTENCIA
+            {language === "de" ? "ZUSAGE GEBEN" : "CONFIRMAR ASISTENCIA"}
           </button>
         </div>
       </section>
 
       <section className="galeria">
         <div className="content-galeria">
-          <h2 className="title">Retratos de nuestro amor</h2>
-          <p className="subtitle">Instantes de nuestra historia que queremos compartir contigo.</p>
+          <h2 className="title">{language === "de" ? "Momente unserer Liebe" : "Retratos de nuestro amor"}</h2>
+          <p className="subtitle">
+            {language === "de"
+              ? isSingleGuest(currentGuest)
+                ? "Fotos, die wir gerne mit dir teilen möchten."
+                : "Fotos, die wir gerne mit euch teilen möchten."
+              : "Instantes de nuestra historia que queremos compartir contigo."}
+          </p>
           <img className="section-gif-icon" src="/camara-paleta.gif" alt="" />
         </div>
         <div className="content-fotos">
@@ -776,21 +870,27 @@ export default function Home({ searchParams }: HomeProps) {
       </section>
 
       <section className="fiesta">
-        <h2 className="title">Código de vestimenta</h2>
-        <p className="subtitle">Para nosotros es importante que te sientas y te veas espectacular.</p>
+        <h2 className="title">{language === "de" ? "Dresscode" : "Código de vestimenta"}</h2>
+        <p className="subtitle">
+          {language === "de"
+            ? isSingleGuest(currentGuest)
+              ? "Uns ist wichtig, dass du dich wohlfühlst und festlich gekleidet bist."
+              : "Uns ist wichtig, dass ihr euch wohlfühlt und festlich gekleidet seid."
+            : "Para nosotros es importante que te sientas y te veas espectacular."}
+        </p>
         <div className="items-fiesta">
           <article className="item-fiesta dress-fiesta-card">
             <div className="content-item-fiesta">
               <img className="dress-gif-icon" src="/vestido-paleta.gif" alt="" />
-              <h3>Ellas</h3>
-              <p className="dress-code-main">Vestido formal</p>
+              <h3>{language === "de" ? "Damen" : "Ellas"}</h3>
+              <p className="dress-code-main">{language === "de" ? "Formelles Kleid" : "Vestido formal"}</p>
             </div>
           </article>
           <article className="item-fiesta dress-fiesta-card">
             <div className="content-item-fiesta">
               <img className="dress-gif-icon" src="/corbata-paleta.gif" alt="" />
-              <h3>Ellos</h3>
-              <p className="dress-code-main">Traje formal</p>
+              <h3>{language === "de" ? "Herren" : "Ellos"}</h3>
+              <p className="dress-code-main">{language === "de" ? "Formeller Anzug" : "Traje formal"}</p>
             </div>
           </article>
         </div>
@@ -800,16 +900,19 @@ export default function Home({ searchParams }: HomeProps) {
         <div className="instagram-bottom-wave" aria-hidden="true" />
         <div className="capture-content">
           <img className="capture-icon" src="/camara-subir.png" alt="" />
-          <p className="capture-eyebrow">Álbum compartido</p>
-          <h2 className="title">Captura el momento</h2>
+          <p className="capture-eyebrow">{language === "de" ? "Gemeinsames Album" : "Álbum compartido"}</p>
+          <h2 className="title">{language === "de" ? "Haltet den Moment fest" : "Captura el momento"}</h2>
           <p className="subtitle">
-            Nuestra historia también se contará desde tus ojos. Comparte tus fotos y videos y ayúdanos a guardar cada
-            recuerdo de este día.
+            {language === "de"
+              ? isSingleGuest(currentGuest)
+                ? "Unsere Geschichte wird auch durch deine Augen erzählt. Teile deine Fotos und Videos und hilf uns, jede Erinnerung an diesen Tag zu bewahren."
+                : "Unsere Geschichte wird auch durch eure Augen erzählt. Teilt eure Fotos und Videos und helft uns, jede Erinnerung an diesen Tag zu bewahren."
+              : "Nuestra historia también se contará desde tus ojos. Comparte tus fotos y videos y ayúdanos a guardar cada recuerdo de este día."}
           </p>
         </div>
         <a className="boton capture-upload-button" href="https://photos.app.goo.gl/Fs4Bf8ri3PbRMsCS8" target="_blank" rel="noopener noreferrer">
           <img src="/camara-subir.png" alt="" />
-          Subir fotos
+          {language === "de" ? "Fotos hochladen" : "Subir fotos"}
         </a>
       </section>
 
@@ -824,7 +927,7 @@ export default function Home({ searchParams }: HomeProps) {
         <ul>
           <li>
             <button type="button" onClick={() => setModal("rsvp")}>
-              Confirmar asistencia
+              {language === "de" ? "Anwesenheit bestätigen" : "Confirmar asistencia"}
             </button>
           </li>
           <li>
@@ -833,7 +936,7 @@ export default function Home({ searchParams }: HomeProps) {
               downloadName="dominique-sileidys-ceremonia.ics"
               triggerClassName="footer-calendar-trigger"
               menuClassName="footer-calendar-options"
-              label="Agendar consejos matrimoniales"
+              label={language === "de" ? "Biblischen Vortrag im Kalender speichern" : "Agendar consejos matrimoniales"}
             />
           </li>
         </ul>
@@ -888,14 +991,14 @@ export default function Home({ searchParams }: HomeProps) {
           <div className="music-modal">
             <img className="music-modal-icon" src="/anillos-bienvenida-paleta.webp" alt="Anillos de boda" />
             <p className="music-modal-message">
-              <strong>Elegimos caminar juntos,</strong>
-              <span>y celebrarlo junto a quienes amamos.</span>
-              <span>{welcomeMessageFor(currentGuest)}</span>
+              <strong>{language === "de" ? "Wir gehen unseren Weg gemeinsam," : "Elegimos caminar juntos,"}</strong>
+              <span>{language === "de" ? "und dies mit den Menschen zu feiern, die wir lieben." : "y celebrarlo junto a quienes amamos."}</span>
+              <span>{welcomeMessageFor(currentGuest, language)}</span>
               <em>Dominique &amp; Sileidys</em>
             </p>
             <div className="music-actions">
               <button className="boton" type="button" onClick={() => enterInvitation(true)}>
-                Abrir invitación
+                {language === "de" ? "Einladung öffnen" : "Abrir invitación"}
               </button>
             </div>
           </div>
@@ -903,12 +1006,12 @@ export default function Home({ searchParams }: HomeProps) {
       ) : null}
 
       {modal === "rsvp" ? (
-        <Modal title="Confirmar asistencia" onClose={closeRsvp}>
+        <Modal title={language === "de" ? "Anwesenheit bestätigen" : "Confirmar asistencia"} onClose={closeRsvp}>
           <div className="rsvp-flow">
             {rsvpStep === 0 ? (
               <>
                 <p className="rsvp-question">
-                  Estás confirmando esta invitación <span>*</span>
+                  {language === "de" ? "Du bestätigst diese Einladung" : "Estás confirmando esta invitación"} <span>*</span>
                 </p>
                 <div className="rsvp-options rsvp-guest-options">
                   <div className="rsvp-option is-selected rsvp-locked-guest">
@@ -917,7 +1020,7 @@ export default function Home({ searchParams }: HomeProps) {
                 </div>
                 <div className="rsvp-actions rsvp-actions-end">
                   <button className="boton rsvp-next" type="button" onClick={() => setRsvpStep(1)}>
-                    Siguiente →
+                    {language === "de" ? "Weiter →" : "Siguiente →"}
                   </button>
                 </div>
               </>
@@ -927,10 +1030,10 @@ export default function Home({ searchParams }: HomeProps) {
               <>
                 <p className="rsvp-guest-summary">{currentGuest.name}</p>
                 <p className="rsvp-question">
-                  ¿Asistes a los consejos matrimoniales? <span>*</span>
+                  {language === "de" ? "Nimmst du am biblischen Vortrag teil?" : "¿Asistes a los consejos matrimoniales?"} <span>*</span>
                 </p>
                 <div className="rsvp-options rsvp-answer-options">
-                  {["Sí, asistiré", "No asistiré"].map((answer) => (
+                  {(language === "de" ? ["Ja, ich nehme teil", "Nein, ich nehme nicht teil"] : ["Sí, asistiré", "No asistiré"]).map((answer) => (
                     <button
                       className={ceremonyAnswer === answer ? "rsvp-option is-selected" : "rsvp-option"}
                       type="button"
@@ -943,17 +1046,21 @@ export default function Home({ searchParams }: HomeProps) {
                 </div>
                 <div className="rsvp-actions">
                   <button className="boton rsvp-prev" type="button" onClick={() => setRsvpStep(0)}>
-                    ← Anterior
+                    {language === "de" ? "← Zurück" : "← Anterior"}
                   </button>
                   <button className="boton rsvp-next" type="button" onClick={submitRsvp} disabled={!ceremonyAnswer || isSubmittingRsvp}>
-                    {isSubmittingRsvp ? "Enviando..." : "Enviar confirmación"}
+                    {isSubmittingRsvp ? (language === "de" ? "Wird gesendet..." : "Enviando...") : (language === "de" ? "Bestätigung senden" : "Enviar confirmación")}
                   </button>
                 </div>
                 {rsvpStatus === "success" ? (
-                  <p className="rsvp-status rsvp-status-success">Confirmación enviada.</p>
+                  <p className="rsvp-status rsvp-status-success">
+                    {language === "de" ? "Zusage gesendet." : "Confirmación enviada."}
+                  </p>
                 ) : null}
                 {rsvpStatus === "error" ? (
-                  <p className="rsvp-status rsvp-status-error">Falta conectar Google Sheets.</p>
+                  <p className="rsvp-status rsvp-status-error">
+                    {language === "de" ? "Google Sheets ist noch nicht verbunden." : "Falta conectar Google Sheets."}
+                  </p>
                 ) : null}
               </>
             ) : null}
