@@ -142,15 +142,43 @@ const GUESTS = {
   "inv-139": {"name": "Familia Liedloff", "isGroup": true, "phone": ""},
   "inv-140": {"name": "Xilena Navarro", "isGroup": false, "phone": "3126708644"},
   "inv-143": {"name": "Familia Herrera Torregrosa", "isGroup": true, "phone": ""},
+  "inv-146": {"name": "Familia Aldarraga Carrascal", "isGroup": true, "phone": "3502403761"},
+  "inv-147": {"name": "Wilmer Monzalvo", "isGroup": false, "phone": "3043404874"},
+  "inv-148": {"name": "Familia Navarro Zamora", "isGroup": true, "phone": "3133719616"},
+  "inv-149": {"name": "María Navarro e hijos", "isGroup": true, "phone": "3107092324"},
+  "inv-150": {"name": "Katherine y familia", "isGroup": true, "phone": "3137478503"},
+  "inv-151": {"name": "Rosa Yolenis y familia", "isGroup": true, "phone": "3004120472"},
+  "inv-152": {"name": "Keidys y familia", "isGroup": true, "phone": "3235070607"},
+  "inv-153": {"name": "Dianis e hijo", "isGroup": true, "phone": "3005912859"},
+  "inv-154": {"name": "Luis Alberto y familia", "isGroup": true, "phone": "3205131753"},
+  "inv-155": {"name": "Osiris Meza", "isGroup": false, "phone": "3008531651"},
+  "inv-157": {"name": "Familia Guio", "isGroup": true, "phone": "3144277810"},
+  "inv-158": {"name": "Diosmaira Barela", "isGroup": false, "phone": "3175312497"},
+  "inv-159": {"name": "Alonso y Karen", "isGroup": true, "phone": "3168005275"},
+  "inv-160": {"name": "Mishelle y Leonardo", "isGroup": true, "phone": "3023047068"},
+  "inv-161": {"name": "Hermanos Zamora", "isGroup": true, "phone": "3134828392"},
+  "inv-162": {"name": "Familia Romero Navarro", "isGroup": true, "phone": "3016218970"},
+  "inv-163": {"name": "Familia Romero Navarro", "isGroup": true, "phone": "3016218970"},
+  "inv-164": {"name": "Familia Romero Navarro", "isGroup": true, "phone": "3016218970"},
+  "inv-165": {"name": "Rosa María Navarro", "isGroup": false, "phone": "3206740690"},
 };
 const PUBLIC_INVITATION_URL = "https://invitacion-boda-sileidys.vercel.app";
 const SHARE_PREVIEW_VERSION = "20260824b";
+const GERMAN_GUEST_NAMES = {
+  "inv-137": "Familie Koslowski",
+  "inv-138": "Familie Jeschke",
+  "inv-139": "Familie Liedloff",
+  "inv-003": "Familie Jeschke",
+  "inv-144": "Familie Wauer",
+  "inv-162": "Petala",
+  "inv-145": "Familie Schnitzspan",
+};
 
 function doGet(event) {
   const params = event.parameter || {};
 
   if (params.action === "whatsapp") {
-    return redirectToWhatsapp(params.code || "");
+    return redirectToWhatsapp(params.code || "", params.lang || params.idioma || "");
   }
 
   if (params.action === "sent-status") {
@@ -180,8 +208,9 @@ function doPost(event) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-function redirectToWhatsapp(code) {
+function redirectToWhatsapp(code, language) {
   const guest = GUESTS[code];
+  const isGerman = isGermanLanguage(language);
 
   if (!guest) {
     return HtmlService.createHtmlOutput("Invitado no encontrado.");
@@ -193,10 +222,14 @@ function redirectToWhatsapp(code) {
 
   markWhatsappSent(code, guest);
 
+  const displayGuest = {
+    name: isGerman ? (GERMAN_GUEST_NAMES[code] || guest.name) : guest.name,
+    isGroup: guest.isGroup,
+  };
   const message = [
-    guest.name,
-    invitationMessageFor(guest),
-    invitationUrlFor(code),
+    displayGuest.name,
+    invitationMessageFor(displayGuest, isGerman),
+    invitationUrlFor(code, isGerman),
   ].join("\n\n");
 
   const whatsappUrl = "https://api.whatsapp.com/send?phone=57" + guest.phone + "&text=" + encodeURIComponent(message);
@@ -214,14 +247,25 @@ function redirectToWhatsapp(code) {
   );
 }
 
-function invitationUrlFor(code) {
-  return PUBLIC_INVITATION_URL + "/" + encodeURIComponent(code) + "?v=" + encodeURIComponent(SHARE_PREVIEW_VERSION);
+function invitationUrlFor(code, isGerman) {
+  const path = isGerman ? "/aleman/" : "/";
+  return PUBLIC_INVITATION_URL + path + encodeURIComponent(code) + "?v=" + encodeURIComponent(SHARE_PREVIEW_VERSION);
 }
 
-function invitationMessageFor(guest) {
+function invitationMessageFor(guest, isGerman) {
+  if (isGerman) {
+    return guest.isGroup
+      ? "Wir möchten, dass ihr an einem der wichtigsten Tage unseres Lebens dabei seid. Es macht uns sehr glücklich, diesen Tag mit euch zu teilen."
+      : "Wir möchten, dass du an einem der wichtigsten Tage unseres Lebens dabei bist. Es macht uns sehr glücklich, diesen Tag mit dir zu teilen.";
+  }
+
   return guest.isGroup
     ? "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes."
     : "Queremos que seas parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo contigo.";
+}
+
+function isGermanLanguage(language) {
+  return language === "de" || language === "aleman" || language === "alemana";
 }
 
 function jsonpOutput(callback, payload) {

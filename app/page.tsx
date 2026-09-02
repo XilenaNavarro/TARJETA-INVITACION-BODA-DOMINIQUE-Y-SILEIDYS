@@ -184,6 +184,10 @@ const invitedGuests = [
   {"code": "inv-159", "name": "Alonso y Karen", "isGroup": true},
   {"code": "inv-160", "name": "Mishelle y Leonardo", "isGroup": true},
   {"code": "inv-161", "name": "Hermanos Zamora", "isGroup": true},
+  {"code": "inv-162", "name": "Familia Romero Navarro", "isGroup": true},
+  {"code": "inv-163", "name": "Familia Romero Navarro", "isGroup": true},
+  {"code": "inv-164", "name": "Familia Romero Navarro", "isGroup": true},
+  {"code": "inv-165", "name": "Rosa María Navarro", "isGroup": false},
 ];
 const publicInvitationUrl = "https://invitacion-boda-sileidys.vercel.app";
 const sharePreviewVersion = "20260824b";
@@ -258,14 +262,17 @@ const invitationMessageFor = (guest: InvitedGuest, language: InvitationLanguage 
     ? "Queremos que seas parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo contigo."
     : "Queremos que sean parte de uno de los días más importantes para nosotros. Nos hará muy felices compartirlo con ustedes.";
 
-const invitationUrlFor = (guest: InvitedGuest) => {
-  return `${publicInvitationUrl}/${guest.code}?v=${sharePreviewVersion}`;
+const invitationUrlFor = (guest: InvitedGuest, language: InvitationLanguage = "es") => {
+  const params = new URLSearchParams({ v: sharePreviewVersion });
+  const path = language === "de" ? `/aleman/${guest.code}` : `/${guest.code}`;
+  return `${publicInvitationUrl}${path}?${params.toString()}`;
 };
 
-const whatsappUrlFor = (guest: InvitedGuest) => {
+const whatsappUrlFor = (guest: InvitedGuest, language: InvitationLanguage = "es") => {
   const url = new URL(googleSheetsEndpoint);
   url.searchParams.set("action", "whatsapp");
   url.searchParams.set("code", guest.code);
+  if (language === "de") url.searchParams.set("lang", "de");
   return url.toString();
 };
 
@@ -490,6 +497,7 @@ export default function Home({ searchParams }: HomeProps) {
     (isGeneral ? generalGuest : findGuestByCode(initialCode, language)) ??
     variantDefaultGuest;
   const shouldShowSendLinks = searchValue(searchParams, "envios") === "1" || searchValue(searchParams, "admin") === "1";
+  const sendLinkGuests = language === "de" ? germanInvitedGuests : invitedGuests;
   const [modal, setModal] = useState<"rsvp" | "map" | "song" | "dress" | "tips" | null>(null);
   const [musicPrompt, setMusicPrompt] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -564,7 +572,7 @@ export default function Home({ searchParams }: HomeProps) {
       name: currentGuest.name,
       recipientType: currentGuest.isGroup ? "Grupo/Familia" : "Individual",
       answer: ceremonyAnswer,
-      invitationUrl: invitationUrlFor(currentGuest),
+      invitationUrl: invitationUrlFor(currentGuest, language),
     };
 
     try {
@@ -948,7 +956,7 @@ export default function Home({ searchParams }: HomeProps) {
           <div className="content-envios-whatsapp">
             <h2 className="title">Terceros para envío</h2>
             <div className="lista-envios-whatsapp">
-              {invitedGuests.map((guest) => {
+              {sendLinkGuests.map((guest) => {
                 const wasSent = sentGuestCodes.includes(guest.code);
 
                 return (
@@ -961,7 +969,7 @@ export default function Home({ searchParams }: HomeProps) {
                     </span>
                     <a
                       className="boton"
-                      href={whatsappUrlFor(guest)}
+                      href={whatsappUrlFor(guest, language)}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => markGuestAsSent(guest.code)}
